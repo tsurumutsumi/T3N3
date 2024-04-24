@@ -1,0 +1,33 @@
+#drag-and-drop-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    width: 500px;
+    height: 300px;
+    cursor: pointer;
+    
+    &.active {
+      background-color: lightyellow;
+    }
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  #previews {
+    border: 1px solid gray;
+    min-height: 10px;
+    background-color: lightblue;
+    margin-bottom: 10px;
+    
+    img {
+      max-width: 300px;
+    }
+  }
+  
+  #html-code {
+    border: 1px solid gray;
+    background-color: lightgray;
+  }
