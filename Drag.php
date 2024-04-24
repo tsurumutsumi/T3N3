@@ -1,14 +1,12 @@
-<?php 
-    require header.php;
-    
-    echo '<fom action="" method="POST" enctype="multipart/form-data">';
-        echo '<div class="upload-area">';
-            echo '<i class="fas fa-cloud-upload-alt"></i>';
-            echo '<p>Drag and drop a file or click</p>';
-            echo '<input type="file" name="upload_file" id="input-files">';
-        echo '</div>';
-        echo '<input type="submit" id="submit-btn" value="送信">';
-    echo '</form>';
+<?php require header.php;?>
 
-    require footer.php;
-?>
+    <fom action="" method="POST" enctype="multipart/form-data">
+        <div class="upload-area">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Drag and drop a file or click</p>
+            <input type="file" name="upload_file" id="input-files">
+        </div>
+        <input type="submit" id="submit-btn" value="送信">
+    </form>
+
+<?php require footer.php;?>
