@@ -16,3 +16,5 @@
 </div>
 
 
+<?php require 'top/footer.php'; ?>
+
