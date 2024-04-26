@@ -7,7 +7,7 @@
             <p>Drag and drop a file or click</p>
             <input type="file" name="upload_file" id="input-files">
         </div>
-        <input type="submit" id="submit-btn" value="送信">
+        <input type="submit" id="submit-btn" value="プレビュー">
     </form>
 
 <?php require 'footer.php';?>
