@@ -1,4 +1,4 @@
-<?php require header.php;?>
+<?php require 'header.php';?>
 
     <fom action="" method="POST" enctype="multipart/form-data">
         <div class="upload-area">
@@ -9,4 +9,4 @@
         <input type="submit" id="submit-btn" value="送信">
     </form>
 
-<?php require footer.php;?>
+<?php require 'footer.php';?>
