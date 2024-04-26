@@ -1,7 +1,9 @@
-<?php require 'top/db_connect.php'; ?>
+<!-- <?php require 'top/db_connect.php'; ?> -->
 <?php require 'top/header.php'; ?>
 
-<div class="slideshow">
+
+    <!-- スライド部分は人気の投稿、自分のチャットなどを表示予定 -->
+    <div class="slideshow">
         <!-- imagesフォルダ内にある画像を表示  -->
         <!-- ここに4行追加 -->
             <img src="img/kikou.png">
