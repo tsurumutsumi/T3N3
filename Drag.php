@@ -1,6 +1,7 @@
 <?php require 'header.php';?>
+<link rel="stylesheet" href="css/Drag.css">
 
-    <fom action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
         <div class="upload-area">
             <i class="fas fa-cloud-upload-alt"></i>
             <p>Drag and drop a file or click</p>
