@@ -1,4 +1,4 @@
-<!-- <?php require 'top/db_connect.php'; ?> -->
+<?php require 'top/db_connect.php'; ?>
 <?php require 'top/header.php'; ?>
 
 
@@ -15,7 +15,9 @@
     <!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->
     <script src="slick/slick.min.js"></script>
     <script src="script/slideshow.js"></script>
-</div>
+
+
+    <!-- ↓投稿表示部分 -->
 
 
 <?php require 'top/footer.php'; ?>
