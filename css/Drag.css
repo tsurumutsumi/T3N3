@@ -2,6 +2,7 @@ body{
   background-color: #de9610;
 }
 form {
+  background-color: white;
   margin: 50px auto;
   width: 800px;
   height: 400px;
