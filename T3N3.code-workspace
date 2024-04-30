@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
+			"name": "T3N3",
 			"path": "."
 		},
 		{
-			"path": "."
+			"name": "slick",
+			"path": "../../../Downloads/slick"
 		}
-	]
+	],
+	"settings": {}
 }
