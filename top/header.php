@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,3 +14,12 @@
 
 <body>
 <br><br>
+=======
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SPT</title>
+</head>
+<body>
+>>>>>>> 9004d13f0d744bba5bcc93ce4c4d63e894f24d86
