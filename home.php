@@ -1,5 +1,9 @@
 <?php require 'top/db-connect.php'; ?>
 <?php require 'top/header.php'; ?>
+<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="slick/slick.css">
+<link rel="stylesheet" href="slick/slick-theme.css">
+
 
 <?php
 $pdo=new PDO($connect,USER,PASS);
@@ -13,10 +17,10 @@ $pdo=new PDO($connect,USER,PASS);
             echo '<img src="img/taiiku_boushi_tate.png">';
             echo '<img src="img/undoukai_pyramid.png">';
     echo '</div>';
-        echo '<script src="script/jquery-3.7.0.min.js"></script>';
+        echo '<script src="js/jquery-3.7.0.min.js"></script>';
         echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
         echo '<script src="slick/slick.min.js"></script>';
-        echo '<script src="script/slideshow.js"></script>';
+        echo '<script src="js/slideshow.js"></script>';
 
 
         echo '<!-- ↓投稿表示部分 -->';
