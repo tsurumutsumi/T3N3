@@ -1,3 +1,14 @@
 body{
     background-color: #a0c238;
 }
+
+/* ダウンロードしたフォント */
+@font-face {font-family: "Darumadrop One";
+    src: url("/font/DarumadropOne-Regular.ttf");}
+
+h1{
+    font-family: Darumadrop One;
+}
+p{
+    font-family: Darumadrop One;
+}
