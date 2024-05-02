@@ -10,13 +10,5 @@
 
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
+<body>
 
-<body>
-<br><br>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<title>SPT</title>
-</head>
-<body>

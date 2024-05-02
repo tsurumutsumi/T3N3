@@ -1,4 +1,5 @@
 <?php require 'header.php';?>
+<link rel="stylesheet" href="./css/Drag.css">
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="upload-area">
         <img  class="imgDrag" src="img/img.png">
