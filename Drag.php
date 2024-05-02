@@ -1,13 +1,10 @@
 <?php require 'header.php';?>
-<link rel="stylesheet" href="./css/Drag.css">
-
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="upload-area">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Drag and drop a file or click</p>
+        <img  class="imgDrag" src="img/img.png">
             <input type="file" name="upload_file" id="input-files">
         </div>
-        <input type="submit" id="submit-btn" value="プレビュー">
+        <input type="submit" id="submit-btn" value="プレビュー表示">
     </form>
 
 <?php require 'footer.php';?>
