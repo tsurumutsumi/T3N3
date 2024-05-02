@@ -13,24 +13,24 @@ $pdo=new PDO($connect,USER,PASS);
             echo '<img src="img/taiiku_boushi_tate.png">';
             echo '<img src="img/undoukai_pyramid.png">';
     echo '</div>';
-    echo '<script src="script/jquery-3.7.0.min.js"></script>';
-    echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
-    echo '<script src="slick/slick.min.js"></script>';
-    echo '<script src="script/slideshow.js"></script>';
+        echo '<script src="script/jquery-3.7.0.min.js"></script>';
+        echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
+        echo '<script src="slick/slick.min.js"></script>';
+        echo '<script src="script/slideshow.js"></script>';
 
 
-    echo '<!-- ↓投稿表示部分 -->';
-    echo '<!-- 全ユーザーの投稿 -->';
-    echo '<div class="post_list">';
-        $sql=$pdo->prepare(
-            'select comment,picture,post_date 
-             from post_history '); //全ユーザーの投稿を表示
-        $sql->execute();
-        foreach($sql as $row){
-            echo $row['comment'],$row['picture'],$row['post_date'];
-            
-        }
-    echo '</div>';
+        echo '<!-- ↓投稿表示部分 -->';
+        echo '<!-- 全ユーザーの投稿 -->';
+        echo '<div class="post_list">';
+            $sql=$pdo->prepare(
+                'select comment,picture,post_date 
+                from post_history '); //全ユーザーの投稿を表示
+            $sql->execute();
+            foreach($sql as $row){
+                echo $row['comment'],$row['picture'],$row['post_date'];
+                
+            }
+        echo '</div>';
 ?>
 
 
