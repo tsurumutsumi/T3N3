@@ -1,5 +1,5 @@
-<?php require 'db-connect.php'; ?>
+<?php require 'top/db-connect.php'; ?>
 <h1>ログアウト</h1>
 <p>ログアウトしますか？</p>
-<a href="logout-output.php">ログアウト</a>
+<a href="rogout-output.php">ログアウト</a>
 <?php require 'footer.php'; ?>
