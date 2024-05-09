@@ -8,7 +8,7 @@
 
 <!-- ログインボタン -->
 <div class="login">
-    <form action="rogin.php" method="post" >
+    <form action="login/login.php" method="post" >
         <button type="image" class="icon">
         <!-- 画像変更するならここ -->
             <img src="img/icon.png" alt="Button Image" class="iconImg">
