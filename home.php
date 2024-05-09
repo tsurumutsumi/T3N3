@@ -5,6 +5,17 @@
 <link rel="stylesheet" href="slick/slick-theme.css">
 
 
+
+<!-- ログインボタン -->
+<div class="login">
+    <form action="rogin.php" method="post" >
+        <button type="image" class="icon">
+        <!-- 画像変更するならここ -->
+            <img src="img/icon.png" alt="Button Image" class="iconImg">
+        </button>
+    </form>
+</div>
+
 <?php
 $pdo=new PDO($connect,USER,PASS);
 
