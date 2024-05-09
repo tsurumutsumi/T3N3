@@ -25,6 +25,9 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
         <p>ニックネーム</p>
             <input type="text" name="nickname">
             <br>
+        <p>アイコン</p>
+            <input type="file" name="icon">
+            <br>
         <input type="submit" value="さくせい">
 </form>
 

@@ -41,6 +41,7 @@ $user =
             <img src="<?php echo $user['icon']; ?>" alt="アイコン">
             <p>投稿数: <?php echo $post_count; ?></p>
         </div>
+        
         <h2>投稿履歴</h2>
         <div class="posts">
             <?php foreach($posts as $post): ?>
