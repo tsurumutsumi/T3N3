@@ -1,14 +1,194 @@
-body{
-    background-color: #a0c238;
-}
-
 /* ダウンロードしたフォント */
 @font-face {font-family: "Darumadrop One";
     src: url("/font/DarumadropOne-Regular.ttf");}
 
-h1{
+body{
+    background-color: #a0c238;
     font-family: Darumadrop One;
 }
-p{
+/* 新規登録ボタンの位置 */
+.sign{
+    text-align: right;
+	margin-bottom: 10px;
+}
+
+/* ログイン情報入力の部分 */
+.back{
+	margin: auto;
+	width: 800px;
+	background-color: #d6e0bac0;
+	border: 1px solid black;
+	/* padding: 0 60px; */
+}
+
+/* ログインの文字変更はここ */
+h1{
+    font-size: 45px;
+	text-align: center;
+}
+
+/* メールアドレス入力部分 */
+/* ----テキストボックス（外）---- */
+.iptxt{
+    position: relative;
+	width: 80%;
+	/* 下線の位置 */
+	margin: 40px 80px;
+}
+/* 入力する文字 */
+.iptxt input[type='text']{
+    font: 24px/28px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.iptxt input[type='text']:focus{
+    outline: none;
+}
+/* テキストボックス（中） */
+.ml{
+	/* ラベルと線の幅 */
+    padding: 4px 0;
+	/* margin-right: 50px; */
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+
+.ml ~ .focus_line{
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #a0c238;
+}
+/* 下線と文字の動きと色を付ける下線の長さ */
+.ml:focus ~ .focus_line,
+.iptxt.ml ~ .focus_line {
+    width: 100%;
+	transition: 0.4s;
+}
+/* ラベル */
+.ml ~ label{
+    position: absolute;
+	/* z-index: -1; */
+	top: 4px;
+	left: 0;
+	/* width: 50%; */
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: black;
+	/* ラベルのフォントサイズ */
+	font-size: 20px;
+}
+.ml:focus ~ label,.iptxt.ml ~ label{
+    font-size: 12px;
+	top: -16px;
+	transition: 0.3s;
+	color:#697e28;
+}
+/* ----ここまで---- */
+
+/* パスワード入力部分 */
+/* ----テキストボックス（外）---- */
+.ippass{
+    position: relative;
+	width: 80%;
+	/* 下線の位置 */
+	margin: 40px 80px;
+}
+/* 入力する文字 */
+.ippass input[type='password']{
+    font: 24px/28px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	padding-left: 4em;
+}
+.ippass input[type='password']:focus{
+    outline: none;
+}
+/* テキストボックス（中） */
+.pw{
+	/* ラベルと線の幅 */
+    padding: 4px 0px 4px 96px;
+	width: 640px;
+	height: 36.8px;
+	/* margin-right: 50px; */
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+
+.pw ~ .focus_line{
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #a0c238;
+}
+/* 下線と文字の動きと色を付ける下線の長さ */
+.pw:focus ~ .focus_line,
+.ippass.pw ~ .focus_line {
+    width: 100%;
+	transition: 0.4s;
+}
+/* ラベル */
+.pw ~ label{
+    position: absolute;
+	/* z-index: -1; */
+	top: 4px;
+	left: 0;
+	/* width: 50%; */
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: black;
+	/* ラベルのフォントサイズ */
+	font-size: 20px;
+}
+.pw:focus ~ label,.ippass.pw ~ label{
+    font-size: 12px;
+	top: -16px;
+	transition: 0.3s;
+	color:#697e28;
+}
+/* ----ここまで---- */
+
+/* 新規登録ボタン */
+.button{
+    font-size: 18px;
     font-family: Darumadrop One;
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
+/* ログインボタン */
+.button_1{
+    font-size: 18px;
+    font-family: Darumadrop One;
+    margin: 20px;
+	left: 40%;
+	width: 100px;
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
 }
