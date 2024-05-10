@@ -1,98 +1,67 @@
-// HTML コードの確認用
-const updateHTMLCode = () => {
-  const container = document.getElementById('my-container');
-  document.getElementById('html-code').innerText = html_beautify(
-    container.innerHTML, {
-      indent_size: 2,
-      end_with_newline: true,
-      preserve_newlines: false,
-      max_preserve_newlines: 0,
-      wrap_line_length: 0,
-      wrap_attributes_indent_size: 0,
-      unformatted: ['b', 'em']
-    }
-  );
-}
+document.addEventListener("DOMContentLoaded", function() {
+  // ドラッグ＆ドロップ領域外のクリックイベントを無効化
+  const uploadWrapper = document.querySelector('.upload-wrapper');
+  uploadWrapper.addEventListener('click', function(event) {
+      event.stopPropagation();
+  });
 
-// ファイル選択ボタン, ドラッグ＆ドロップ領域のクリックでファイル選択ダイアログ
-document.querySelectorAll('#file-select-button, #drag-and-drop-area').forEach((ele) => {
-    ele.addEventListener('click', () => {
-      document.getElementById('file-select-input').click();
-    });
+  // ファイル選択時の処理と隠れたファイル入力への設定
+  const fileInput = document.querySelector('#torokupic');
+  const hiddenFileInput = document.createElement('input');
+  hiddenFileInput.type = 'file';
+  hiddenFileInput.classList.add('hidden');
+  hiddenFileInput.addEventListener('change', function(event) {
+      const files = event.target.files;
+      if (files.length > 0) {
+          previewAndInsert(files);
+      }
   });
-  
-  // ファイル選択後
-  document.getElementById('file-select-input').addEventListener('change', (event) => {
-    const files = event.target.files;
-    if (files.length > 0) {
-      previewAndInsert(files);
-    }
-    event.target.files = null;
-    event.target.value = null;
+  fileInput.addEventListener('change', function(event) {
+      hiddenFileInput.files = event.target.files;
   });
-  
-  const dragAndDropArea = document.getElementById('drag-and-drop-area');
-  
-  // ドラッグ中
-  dragAndDropArea.addEventListener('dragover', (event) => {
-    dragAndDropArea.classList.add('active');
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'copy';
+
+  // フォーム送信時の処理
+  const uploadForm = document.getElementById('uploadForm');
+  uploadForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      formData.delete('pic'); // フォームデータから pic フィールドを削除
+      const file = hiddenFileInput.files[0];
+      if (file) {
+          formData.append('pic', file); // 隠れたファイル入力からファイルを追加
+      }
+      fetch(this.action, {
+          method: 'POST',
+          body: formData
+      }).then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.text();
+      }).then(data => {
+          console.log(data);
+          // フォーム送信後の処理を追加
+      }).catch(error => {
+          console.error('There was an error!', error);
+      });
   });
-  
-  // マウスがドラッグ＆ドロップ領域外に出たとき
-  dragAndDropArea.addEventListener('dragleave', (event) => {
-    dragAndDropArea.classList.remove('active');
-  });
-  
-  // ドロップ時
-  dragAndDropArea.addEventListener('drop', (event) => {
-    event.preventDefault();
-    dragAndDropArea.classList.remove('active');
-    const files = event.dataTransfer.files;
-    if (files.length === 0) {
-      return;
-    }
-  
-    // 画像ファイルのみ OK
-    if (!files[0].type.match(/image\/*/)) {
-      return;
-    }
-  
-    previewAndInsert(files);
-  });
-  
-  // 画像プレビューと input 追加
-  const previewAndInsert = (files) => {
-    const file = files[0];
-  
-    const wrapper = document.createElement('div');
-  
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.classList.add('hidden');
-    // https://qiita.com/jkr_2255/items/1c30f7afefe6959506d2
-    if (files.length > 1 && typeof DataTransfer !== 'undefined') {
-      const dt = new DataTransfer();
-      dt.items.add(files[0]);
-      input.files = dt.files;
+});
+
+// preview.js
+const fileInput = document.querySelector('#torokupic');
+fileInput.addEventListener('change', (event) => {
+    const [file] = event.target.files;
+    const figureImage = document.querySelector('#figureImage');
+    const figure = document.querySelector('#figure');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            figureImage.setAttribute('src', e.target.result);
+            figure.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
     } else {
-      input.files = files;
+        figure.style.display = 'none';
     }
-    wrapper.appendChild(input);
-  
-    const img = document.createElement('img');
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      img.src = event.target.result;
-      updateHTMLCode();
-    }
-    reader.readAsDataURL(file);
-    wrapper.appendChild(img);
-  
-    document.getElementById('previews').appendChild(wrapper);
-  }
-  
-  document.body.onload = () => {
-    updateHTMLCode();
-  };
+});
