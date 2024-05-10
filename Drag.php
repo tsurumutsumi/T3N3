@@ -1,4 +1,4 @@
-<?php require 'header.php';?>
+<?php require 'top/header.php';?>
 <link rel="stylesheet" href="./css/Drag.css">
     <form action="" method="POST" enctype="multipart/form-data">
         <div class="upload-area">
@@ -8,4 +8,4 @@
         <input type="submit" id="submit-btn" value="プレビュー表示">
     </form>
 
-<?php require 'footer.php';?>
+<?php require 'top/footer.php';?>
