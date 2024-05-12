@@ -37,6 +37,14 @@ $stmt->execute([$user_id, $comment, $picture, $date]);
 if($stmt) {
     // 成功した場合の処理
     echo "投稿が成功しました。";
+
+    echo '<form action="../mypage/mypage.php" method="post">';
+    echo '<input type="submit" value="マイページへ" class="post">';
+    echo '</form>';
+
+    echo '<form action="../home.php" method="post">';
+    echo '<input type="submit" value="ホームへ" class="post">';
+    echo '</form>';
 } else {
     // 失敗した場合の処理
     echo "投稿に失敗しました。";

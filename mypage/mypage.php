@@ -52,6 +52,25 @@ ob_end_flush(); // 出力バッファリングを終了
             <p>投稿数: <?php echo $post_count; ?></p>
         </div>
     <?php endif; ?>
+    <?php
+        echo '<form action="../post/post.php" method="post">';
+        echo '<input type="submit" value="とうこうする" class="post">';
+        echo '</form>';
+
+        echo '<form action="../home.php" method="post">';
+        echo '<input type="submit" value="ホームへ" class="post">';
+        echo '</form>';
+    ?>
+        <a href="#" onclick="logoutchack()">ログアウト</a>
+        <script>
+            function logoutchack() {
+                if(confirm("ログアウトしますか？") ) {
+                    window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
+                }else {
+                    // alert("");
+                }
+            }
+        </script>
     <?php if (isset($posts)): ?>
         <h2>投稿履歴</h2>
         <div class="posts">
