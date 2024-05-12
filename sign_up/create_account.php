@@ -34,16 +34,17 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
                 <input type="file" name="pic" id="torokupic" accept="image/*" style="display: none;">
                 <figure id="figure" style="display: none">
                     <!-- 画像ファイルのプレビュー -->
-                    <figcaption></figcaption>
+                    <figcaption>画像ファイルのプレビュー</figcaption>
                     <img src="" alt="" id="figureImage" width="300px" height="300px">  
                 </figure>
             </label>
         </div>
     </div>
     <script src="../js/preview.js"></script>
+    <script src="../js/Drag.js"></script>
     <br><br>
     <button type="submit" id="submit-btn" value="さくせい">さくせい</button>
-    <script src="../js/Drag.js"></script>
+    
 </form>
 
 <?php require '../top/footer.php';?>

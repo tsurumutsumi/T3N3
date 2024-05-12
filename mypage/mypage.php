@@ -47,6 +47,7 @@ ob_end_flush(); // 出力バッファリングを終了
     <h1>マイページ</h1>
     <?php if (isset($post_count)): ?>
         <div class="profile">
+            <?php echo $_SESSION['user']['name']?>
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
             <p>投稿数: <?php echo $post_count; ?></p>
         </div>

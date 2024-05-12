@@ -11,16 +11,14 @@ if(isset($_SESSION['register']) && isset($_POST['id']) && isset($_POST['nickname
     $password = password_hash($_SESSION['register']['password'], PASSWORD_DEFAULT);
     $id = $_POST['id'];
     $nickname = $_POST['nickname'];
-
     // アップロードされたファイルの保存先ディレクトリ
     $uploadDir = '../icon_img/';
     // アップロードされたファイルの保存パス
-    // $iconPath = $uploadDir . basename($_FILES['pic']['name']);
-    // $iconPath =basename($_FILES['pic']['name']);
-    $iconPath =$_FILES['pic']['name'];
+    $iconPath = $_FILES['pic']['name'];
     // アップロードされたファイルを指定の場所に移動
-    // move_uploaded_file($_FILES['pic']['tmp_name'], $iconPath);
-    move_uploaded_file($_FILES['pic']['tmp_name'], '../icon_img/' . $iconPath);
+    move_uploaded_file($_FILES['pic']['tmp_name'], $uploadDir . $iconPath);
+
+
 
     // ユーザーテーブルにデータを挿入
     $pdo = new PDO($connect, USER, PASS);
