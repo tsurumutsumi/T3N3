@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php require '../top/db-connect.php'; ?>
+<?php require '../top/db-connect.php'; ?> 
 <?php require '../top/header.php'; ?>
  
 <!-- <label for="input">画像ファイル</label><br> -->
@@ -15,10 +15,12 @@
                 <figcaption></figcaption>
                 <img src="" alt="" id="figureImage" width="300px" height="300px">  
             </figure>
+            <p>コメント</p>
+            <input type="text" name="comment" id="comment">
         </label>
     </div>
     <input type="submit" id="submit-btn" value="投稿">
-    <!-- 本文<textarea name="explanation" cols="50" rows="3" id="writeexplanation"></textarea> -->
+    
 </form>
 <script src="../js/preview.js"></script>
  

@@ -21,7 +21,6 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
                 'icon' => $row['icon']
             ];
             // ログインできたらhome.phpに飛ばす
-            // header("Location: ../home.php");
             echo '<script>
                 window.location.replace("../home.php");
             </script>';

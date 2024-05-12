@@ -1,5 +1,8 @@
-<?php require 'top/db-connect.php'; ?>
-<?php require 'top/header.php'; ?>
+<?php 
+session_start();
+require 'top/db-connect.php';
+require 'top/header.php'; 
+?>
 <link rel="stylesheet" href="./css/home.css">
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
@@ -9,6 +12,15 @@
 <!-- ログインボタン -->
 <div class="login">
     <form action="login/login.php" method="post" >
+        <button type="image" class="icon">
+        <!-- 画像変更するならここ -->
+            <img src="img/icon.png" alt="Button Image" class="iconImg">
+        </button>
+    </form>
+</div>
+<!-- マイページボタン -->
+<div class="mypage">
+    <form action="mypage/mypage.php" method="post" >
         <button type="image" class="icon">
         <!-- 画像変更するならここ -->
             <img src="img/icon.png" alt="Button Image" class="iconImg">
@@ -32,17 +44,18 @@ $pdo=new PDO($connect,USER,PASS);
         echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
         echo '<script src="slick/slick.min.js"></script>';
         echo '<script src="js/slideshow.js"></script>';
-
+        echo '<br><br><br>';
 
         echo '<!-- ↓投稿表示部分 -->';
         echo '<!-- 全ユーザーの投稿 -->';
         echo '<div class="post_list">';
             $sql=$pdo->prepare(
-                'select comment,picture,post_date 
-                from post_history '); //全ユーザーの投稿を表示
+                'select * from post_history '); //全ユーザーの投稿を表示
             $sql->execute();
             foreach($sql as $row){
-                echo $row['comment'],$row['picture'],$row['post_date'];
+                echo $row['user_id'],$row['comment'];
+                echo '<img src="post_img/',$row['picture'],'">';
+                echo $row['post_date'],'<br>';
                 
             }
         echo '</div>';

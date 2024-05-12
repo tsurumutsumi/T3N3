@@ -17,7 +17,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
 
 ?>
 <!-- アカウント作成後はログインへ飛ばす -->
-<form id="uploadForm" action="create_account_ok.php" method="post" enctype="multipart/form-data">
+<form action="create_account_ok.php" id="uploadForm" method="post" enctype="multipart/form-data">
     <h1>アカウントさくせい</h1>
     <p>ユーザーID</p>
     <input type="text" name="id">
@@ -40,13 +40,10 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
             </label>
         </div>
     </div>
-    <!-- <script src="../js/preview.js"></script> -->
-    <script src="../js/Drag.js"></script>
+    <script src="../js/preview.js"></script>
     <br><br>
-    <input type="submit" id="submit-btn" value="さくせい">
+    <button type="submit" id="submit-btn" value="さくせい">さくせい</button>
+    <script src="../js/Drag.js"></script>
 </form>
-
-
-
 
 <?php require '../top/footer.php';?>
