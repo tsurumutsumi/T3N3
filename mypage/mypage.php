@@ -45,6 +45,9 @@ ob_end_flush(); // 出力バッファリングを終了
 ?>
 <div class="container">
     <h1>マイページ</h1>
+    <form action="profile_change.php" method="post">
+        <input type="submit" value="プロフィール編集" class="post">
+    </form>
     <?php if (isset($post_count)): ?>
         <div class="profile">
             <?php echo $_SESSION['user']['name']?>
@@ -52,15 +55,13 @@ ob_end_flush(); // 出力バッファリングを終了
             <p>投稿数: <?php echo $post_count; ?></p>
         </div>
     <?php endif; ?>
-    <?php
-        echo '<form action="../post/post.php" method="post">';
-        echo '<input type="submit" value="とうこうする" class="post">';
-        echo '</form>';
+    <form action="../post/post.php" method="post">
+        <input type="submit" value="とうこうする" class="post">
+    </form>
 
-        echo '<form action="../home.php" method="post">';
-        echo '<input type="submit" value="ホームへ" class="post">';
-        echo '</form>';
-    ?>
+    <form action="../home.php" method="post">
+        <input type="submit" value="ホームへ" class="post">
+    </form>
         <a href="#" onclick="logoutchack()">ログアウト</a>
         <script>
             function logoutchack() {
