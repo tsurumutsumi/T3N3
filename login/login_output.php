@@ -3,12 +3,13 @@ session_start();
 ob_start();
 require '../top/db-connect.php';
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/login.css">';
 
 if(isset($_POST['mail']) && isset($_POST['password'])) {
     $pdo = new PDO($connect, USER, PASS);
     $sql = $pdo->prepare('SELECT * FROM user_management WHERE mail=?');
     $sql->execute([$_POST['mail']]);
-    
+    echo '<h1>ログイン</h1>';
     if($sql->rowCount() > 0) {
         $row = $sql->fetch(PDO::FETCH_ASSOC);
         // データベースから取得したハッシュ化されたパスワードと入力されたパスワードを比較する
@@ -26,10 +27,15 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
             </script>';
             exit;
         } else {
-            echo 'パスワードが違います。';
+            echo '<p class="text">パスワードがちがいます。</p>';
+            // 戻るボタン追加
+            echo '<a href="https://aso2201167.sub.jp/src1/login/login.php" class="no_login">ログインへもどる</a>';
         }
     } else {
-        echo 'メールアドレスが見つかりません。';
+        echo '<p class="text">メールアドレスがみつかりません。</p>';
+        // 戻るボタン追加
+        echo '<a href="https://aso2201167.sub.jp/src1/login/login.php" class="no_login">ログインへもどる</a>';
+
     }
 }
 ob_end_flush(); // バッファリング終了
