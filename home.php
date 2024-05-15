@@ -9,23 +9,20 @@ require 'top/header.php';
 
 
 
-<!-- ログインボタン -->
-<div class="login">
-    <form action="login/login.php" method="post" >
-        <button type="image" class="icon">
-        <!-- 画像変更するならここ -->
-            <img src="img/icon.png" alt="Button Image" class="iconImg">
-        </button>
-    </form>
-</div>
-<!-- マイページボタン -->
-<div class="mypage">
-    <form action="mypage/mypage.php" method="post" >
-        <button type="image" class="icon">
-        <!-- 画像変更するならここ -->
-            <img src="img/icon.png" alt="Button Image" class="iconImg">
-        </button>
-    </form>
+<div class="button">
+    <!-- マイページボタン -->
+    <div class="mypage">
+        <form action="mypage/mypage.php" method="post" >
+            <button type="image" class="icon">
+            <!-- 画像変更するならここ -->
+                <img src="img/icon.png" alt="Button Image" class="iconImg">
+            </button>
+        </form>
+    </div>
+    <!-- ログインボタン -->
+    <div class="login">
+        <input type="submit" onclick="location.href='./login/login.php'" value="ログイン" class="button_1">
+    </div>
 </div>
 
 <?php
@@ -54,7 +51,7 @@ $pdo=new PDO($connect,USER,PASS);
             $sql->execute();
             foreach($sql as $row){
                 echo $row['user_id'],$row['comment'];
-                echo '<img src="post_img/',$row['picture'],'">';
+                echo '<img src="img/',$row['picture'],'">';
                 echo $row['post_date'],'<br>';
                 
             }

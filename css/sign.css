@@ -3,36 +3,37 @@
     src: url("/font/DragonQuestFC.ttf");}
 
 body{
-    background-color: #a0c238;
+    background-color: #f2cf01;
     font-family: DragonQuestFC;
 }
+
 /* 新規登録ボタンの位置 */
-.sign{
-    text-align: right;
+.return{
+    text-align: left;
 	margin-bottom: 10px;
 }
 
-/* ログイン情報入力の部分 */
+/* 仮登録情報入力の部分 */
 .back{
 	margin: auto;
 	width: 800px;
-	background-color: #d6e0bac0;
+	background-color: #f6ebac;
 	border: 1px solid black;
 	/* padding: 0 60px; */
 }
 
-/* ログインの文字変更はここ */
+/* 文字変更はここ */
 h1{
     font-size: 60px;
 	text-align: center;
 }
-/* エラーメッセージ */
-.text{
+p{
     font-size: 25px;
     text-align: center;
 }
-p{
-	text-align: center;
+.link{
+    font-size: 25px;
+    text-align: center;
 }
 
 /* メールアドレス入力部分 */
@@ -71,7 +72,7 @@ p{
 	width: 0;
 	height: 2px;
 	transition: 0.4s;
-	background-color: #a0c238;
+	background-color: #f2cf01;
 }
 /* 下線と文字の動きと色を付ける下線の長さ */
 .ml:focus ~ .focus_line,
@@ -93,13 +94,13 @@ p{
 	font-size: 25px;
 }
 .ml:focus ~ label,.iptxt.ml ~ label{
-	/* ラベルが移動するときのフォントサイズ */
     font-size: 18px;
 	top: -16px;
 	transition: 0.3s;
-	color:#697e28;
+	color:#c4a705;
 }
 /* ----ここまで---- */
+
 
 /* パスワード入力部分 */
 /* ----テキストボックス（外）---- */
@@ -139,7 +140,7 @@ p{
 	width: 0;
 	height: 2px;
 	transition: 0.4s;
-	background-color: #a0c238;
+	background-color: #f2cf01;
 }
 /* 下線と文字の動きと色を付ける下線の長さ */
 .pw:focus ~ .focus_line,
@@ -161,15 +162,15 @@ p{
 	font-size: 25px;
 }
 .pw:focus ~ label,.ippass.pw ~ label{
-	/* ラベルが移動するときのフォントサイズ */
     font-size: 18px;
 	top: -16px;
 	transition: 0.3s;
-	color:#697e28;
+	color:#c4a705;
 }
 /* ----ここまで---- */
 
-/* 新規登録ボタン */
+
+/* 戻るボタン */
 .button{
     font-size: 20px;
     font-family: DragonQuestFC;
@@ -184,7 +185,7 @@ p{
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
 }
-/* ログインボタン */
+/* 送信ボタン */
 .button_1{
     font-size: 20px;
     font-family: DragonQuestFC;
@@ -195,23 +196,6 @@ p{
 	display: inline-block;
 	font-weight: bold;
 	padding: 8px 10px 5px 10px;
-	text-decoration: none;
-	color: #080808;
-	background: #bfbebe;
-	border-bottom: solid 4px #5e5d5c;
-	border-radius: 15px 15px 0 0;
-	transition: .4s;
-}
-/* 戻るボタン */
-.no_login{
-    font-size: 20px;
-	font-family: DragonQuestFC;
-    margin: 25px;
-	left: 45%;
-	width: 100px;
-	position: relative;
-	display: inline-block;
-	font-weight: bold;
 	text-decoration: none;
 	color: #080808;
 	background: #bfbebe;

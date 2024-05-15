@@ -3,6 +3,9 @@ session_start();
 ob_start(); // 出力バッファリングを開始
 require '../top/db-connect.php';
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/mypage.css">';
+
+
 
 $pdo=new PDO($connect,USER,PASS);
 // ユーザー情報を取得する
@@ -45,23 +48,24 @@ ob_end_flush(); // 出力バッファリングを終了
 ?>
 <div class="container">
     <h1>マイページ</h1>
-    <form action="profile_change.php" method="post">
-        <input type="submit" value="プロフィール編集" class="post">
-    </form>
     <?php if (isset($post_count)): ?>
         <div class="profile">
             <?php echo $_SESSION['user']['name']?>
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
-            <p>投稿数: <?php echo $post_count; ?></p>
+            <p>とうこうすう: <?php echo $post_count; ?></p>
         </div>
     <?php endif; ?>
-    <form action="../post/post.php" method="post">
-        <input type="submit" value="とうこうする" class="post">
-    </form>
+    <div class="button">
+    <?php
+        echo '<form action="../post/post.php" method="post">';
+        echo '<input type="submit" value="とうこうする" class="post">';
+        echo '</form>';
 
-    <form action="../home.php" method="post">
-        <input type="submit" value="ホームへ" class="post">
-    </form>
+        echo '<form action="../home.php" method="post">';
+        echo '<input type="submit" value="ホームへ" class="post_2">';
+        echo '</form>';
+    ?>
+    </div>
         <a href="#" onclick="logoutchack()">ログアウト</a>
         <script>
             function logoutchack() {
@@ -73,7 +77,7 @@ ob_end_flush(); // 出力バッファリングを終了
             }
         </script>
     <?php if (isset($posts)): ?>
-        <h2>投稿履歴</h2>
+        <h2>とうこうりれき</h2>
         <div class="posts">
         <?php foreach($posts as $post): ?>
             <div class="post">

@@ -1,0 +1,46 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "DragonQuestFC";
+    src: url("/font/DragonQuestFC.ttf");}
+
+body{
+    background-color: #56a764;
+    font-family: DragonQuestFC;
+}
+h1{
+    font-size: 60px;
+	text-align: center;
+}
+.button{
+    display: flex;
+    margin: 20px;
+}
+/* 投稿ボタン */
+.post{
+        font-size: 20px;
+        font-family: DragonQuestFC;
+        position: relative;
+        display: inline-block;
+        font-weight: bold;
+        padding: 8px 10px 5px 10px;
+        text-decoration: none;
+        color: #080808;
+        background: #bfbebe;
+        border-bottom: solid 4px #5e5d5c;
+        border-radius: 15px 15px 0 0;
+        transition: .4s;
+}
+/* ホームボタン */
+.post_2{
+    font-size: 20px;
+    font-family: DragonQuestFC;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+}

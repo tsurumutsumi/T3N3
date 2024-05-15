@@ -27,14 +27,14 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
             </script>';
             exit;
         } else {
-            echo '<p class="text">パスワードがちがいます。</p>';
+            echo '<p class="text">パスコードがちがいます。</p>';
             // 戻るボタン追加
-            echo '<a href="https://aso2201167.sub.jp/src1/login/login.php" class="no_login">ログインへもどる</a>';
+            echo '<a href="https://aso2201167.sub.jp/src1/login/login.php" class="no_login"><p>もどる<p></a>';
         }
     } else {
         echo '<p class="text">メールアドレスがみつかりません。</p>';
         // 戻るボタン追加
-        echo '<a href="https://aso2201167.sub.jp/src1/login/login.php" class="no_login">ログインへもどる</a>';
+        echo '<a href="https://aso2201167.sub.jp/src1/login/login.php" class="no_login"><p>もどる</p></a>';
 
     }
 }
