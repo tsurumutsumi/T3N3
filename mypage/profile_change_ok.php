@@ -3,20 +3,43 @@ session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
 
-$pdo=new PDO($connect, USER, PASS);
-$sql=$pdo->prepare('update user_management set user_id,user_name=?,password=?,mail=?,icon=?');
-if(empty($_POST['name'])){
-    echo 'ユーザー名を入力してください。';
-}else if(empty($_POST['id'])){
-    echo 'ユーザーIDを入力してください。';
-}else if(empty($_POST['mail'])){
-    echo 'メールアドレスを入力してください。';
-}else if(empty($_POST['pass'])){
-    echo 'パスワードを入力してください。';
+if(isset($_SESSION['user'])) {
+    $pdo = new PDO($connect, USER, PASS);
 
-}else if($sql->execute($_POST['id'],$_POST['name'],$_POST['pass'],$_POST['mail'],$_POST['icon'])){
-    echo '更新に成功しました。';
-}else{
-    echo '更新に失敗しました。';
+    // フォームから送信されたデータを受け取る
+    $icon = $_POST['icon'];
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $mail = $_POST['mail'];
+    $new_pass = $_POST['pass'];
+
+    // パスワードが入力されている場合はハッシュ化
+    if (!empty($new_pass)) {
+        $hashed_pass = password_hash($new_pass, PASSWORD_DEFAULT);
+    } else {
+        // 入力されていない場合は既存のパスワードを使用
+        $hashed_pass = $_SESSION['user']['pass'];
+    }
+
+    // プリペアドステートメントを使用してデータベースを更新
+    $sql = $pdo->prepare('UPDATE user_management SET icon=?, user_name=?, mail=?, password=? WHERE user_id=?');
+    $success = $sql->execute([$icon, $name, $mail, $hashed_pass, $id]);
+
+    if ($success) {
+        // セッション情報を更新
+        $_SESSION['user']['icon'] = $icon;
+        $_SESSION['user']['name'] = $name;
+        $_SESSION['user']['mail'] = $mail;
+        $_SESSION['user']['pass'] = $hashed_pass;
+
+        echo '<p>プロフィールが更新されました。</p>';
+    } else {
+        echo '<p>プロフィールの更新に失敗しました。</p>';
+    }
+} else {
+    echo '<p>セッションが見つかりません。ログインしてください。</p>';
 }
+
+echo '<a href="../home.php">ホームへ</a>';
+require '../top/footer.php';
 ?>

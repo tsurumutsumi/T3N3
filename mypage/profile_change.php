@@ -13,7 +13,8 @@ require '../top/header.php';
             echo 'ユーザーID<input type="text" name="id" value="',$_SESSION['user']['id'], '">';    
             echo 'ユーザー名<input type="text" name="name" value="',$_SESSION['user']['name'], '">';
             echo 'メールアドレス<input type="text" name="mail" value="',$_SESSION['user']['mail'], '">';
-            echo 'パスワード<input type="password" name="pass" value="',$_SESSION['user']['pass'], '">';
+            // echo 'パスワード<input type="password" name="pass" value="',$_SESSION['user']['pass'], '">';
+            echo '新しいパスワード<input type="password" name="pass"><br>';
             echo '<br><input type="submit" value="こうしん">';
         echo '</form>';
     }else{
