@@ -1,10 +1,10 @@
 /* ダウンロードしたフォント */
-@font-face {font-family: "DragonQuestFC";
-    src: url("/font/DragonQuestFC.ttf");}
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
     background-color: #f2cf01;
-    font-family: DragonQuestFC;
+    font-family: "ノスタルドット（M+）";
 }
 
 /* 新規登録ボタンの位置 */
@@ -173,7 +173,7 @@ p{
 /* 戻るボタン */
 .button{
     font-size: 20px;
-    font-family: DragonQuestFC;
+    font-family: "ノスタルドット（M+）";
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -188,7 +188,7 @@ p{
 /* 送信ボタン */
 .button_1{
     font-size: 20px;
-    font-family: DragonQuestFC;
+    font-family: "ノスタルドット（M+）";
     margin: 20px;
 	left: 40%;
 	width: 100px;

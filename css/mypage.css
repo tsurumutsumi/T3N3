@@ -1,10 +1,10 @@
 /* ダウンロードしたフォント */
-@font-face {font-family: "DragonQuestFC";
-    src: url("/font/DragonQuestFC.ttf");}
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
     background-color: #56a764;
-    font-family: DragonQuestFC;
+    font-family: "ノスタルドット（M+）";
 }
 h1{
     font-size: 60px;
@@ -17,7 +17,7 @@ h1{
 /* 投稿ボタン */
 .post{
         font-size: 20px;
-        font-family: DragonQuestFC;
+        font-family: "ノスタルドット（M+）";
         position: relative;
         display: inline-block;
         font-weight: bold;
@@ -32,7 +32,7 @@ h1{
 /* ホームボタン */
 .post_2{
     font-size: 20px;
-    font-family: DragonQuestFC;
+    font-family: "ノスタルドット（M+）";
     position: relative;
     display: inline-block;
     font-weight: bold;
