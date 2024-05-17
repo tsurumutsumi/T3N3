@@ -46,18 +46,30 @@ $pdo=new PDO($connect,USER,PASS);
         echo '<!-- ↓投稿表示部分 -->';
         echo '<!-- 全ユーザーの投稿 -->';
         echo '<div class="post_list">';
-            $sql=$pdo->prepare(
-                'select * from post_history '); //全ユーザーの投稿を表示
-            $sql->execute();
-            foreach($sql as $row){
-                echo $row['user_id'],$row['comment'];
-                echo '<img src="img/',$row['picture'],'">';
-                echo $row['post_date'],'<br>';
-                
-            }
-        echo '</div>';
-?>
+        $sql = $pdo->prepare('select * from post_history');//全ユーザーの投稿を表示
+        $sql->execute();
+        $image_count = 0;
 
+        foreach ($sql as $row) {
+            if ($image_count % 3 == 0) {
+                if ($image_count != 0) {
+                    echo '</div>'; // 前の行を閉じる
+                }
+                echo '<div class="image_row">'; // 新しい行を開始
+            }
+            echo '<div class="post">';
+            echo $row['user_id'], $row['comment'], '<br>';
+            echo '<img src="img/', $row['picture'], '"><br>';
+            echo $row['post_date'], '<br>';
+            echo '</div>';
+
+            $image_count++;
+        }
+        if ($image_count % 3 != 0) {
+            echo '</div>'; // 最後の行を閉じる
+        }
+echo '</div>';
+?>
 
 <?php require 'top/footer.php'; ?>
 
