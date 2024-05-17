@@ -50,7 +50,8 @@ ob_end_flush(); // 出力バッファリングを終了
     <h1>マイページ</h1>
     <?php if (isset($post_count)): ?>
         <div class="profile">
-            <?php echo $_SESSION['user']['name']?>
+            <!-- 変更(5/17) -->
+            <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
             <p>bio:<?php echo $_SESSION['user']['bio']; ?></p>
             <p>とうこうすう: <?php echo $post_count; ?></p>
@@ -78,7 +79,8 @@ ob_end_flush(); // 出力バッファリングを終了
             }
         </script>
     <?php if (isset($posts)): ?>
-        <h2>とうこうりれき</h2>
+        <!-- 変更(5/17) -->
+        <p>とうこうりれき</p>
         <div class="posts">
         <?php foreach($posts as $post): ?>
             <div class="post">
