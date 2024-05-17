@@ -17,7 +17,8 @@
         </div>
         <div class="ippass">
             <input type="password" name="password" placeholder="" class="pw">
-            <label>パスコード</label>
+            <!-- 変更(5/17) -->
+            <label>パスワード</label>
             <span class="focus_line"></span>
         </div>
         <input type="submit" value="ログイン" class="button_1">
