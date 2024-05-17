@@ -3,12 +3,13 @@
     src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #56a764;
+    background-color: #008000;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
 }
 h1{
     font-size: 60px;
 	text-align: center;
+    text-shadow: 0px 2px #c4eac2;/*追加(5/17)*/
 }
 .button{
     display: flex;
@@ -16,7 +17,7 @@ h1{
 }
 /* 投稿ボタン */
 .post{
-        font-size: 20px;
+        font-size: 18px;/*変更(5/17)*/
         font-family: "ノスタルドット（M+）";
         position: relative;
         display: inline-block;
@@ -31,7 +32,7 @@ h1{
 }
 /* ホームボタン */
 .post_2{
-    font-size: 20px;
+    font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     position: relative;
     display: inline-block;
