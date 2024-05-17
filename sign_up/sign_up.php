@@ -4,6 +4,8 @@ require '../top/db-connect.php';
 require '../top/header.php';?>
 <link rel="stylesheet" href="../css/sign.css">
 
+<!-- 追加(5/17) -->
+<p class="title">SPT</p>
 <!-- 仮登録 -->
 <div class="back">
     <form action="sign_up_ok.php" method="post">

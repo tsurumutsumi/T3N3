@@ -18,6 +18,8 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
 }
 
 ?>
+<!-- 追加(5/17) -->
+<p class="title">SPT</p>
 <!-- アカウント作成後はログインへ飛ばす -->
 <div class="back">
 <form id="uploadForm" action="create_account_ok.php" method="post" enctype="multipart/form-data">

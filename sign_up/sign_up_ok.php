@@ -5,6 +5,8 @@ require '../top/header.php';
 ?>
 <link rel="stylesheet" href="../css/sign.css">
 
+<!-- 追加(5/17) -->
+<p class="title">SPT</p>
 <!-- アカウント作成後はログインへ飛ばす -->
 <!-- 仮登録 -->
 <div class="back">
@@ -17,7 +19,8 @@ require '../top/header.php';
         </div>
         <div class="ippass">
             <input type="password" name="password" placeholder="" class="pw">
-            <label>パスコード</label>
+            <!-- 変更(5/17) -->
+            <label>パスワード</label>
             <span class="focus_line"></span>
         </div>
         <input type="submit" value="さくせい" class="button_1">
