@@ -5,6 +5,7 @@
 <div class="sign">
     <input type="submit" onclick="location.href='../sign_up/tentative_register.php'" value="しんきとうろく" class="button">
 </div>
+<p class="title">SPT</p><!--追加(5/17) -->
 <!-- ログイン -->
 <div class="back">
     <form action="login_output.php" method="post" >
