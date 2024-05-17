@@ -14,6 +14,7 @@ require '../top/header.php';
             echo 'ユーザー名<input type="text" name="name" value="',$_SESSION['user']['name'], '">';
             echo 'メールアドレス<input type="text" name="mail" value="',$_SESSION['user']['mail'], '">';
             // echo 'パスワード<input type="password" name="pass" value="',$_SESSION['user']['pass'], '">';
+            echo 'bio<input type="text" name="bio" value="',$_SESSION['user']['bio'], '">';
             echo '新しいパスワード<input type="password" name="pass"><br>';
             echo '<br><input type="submit" value="こうしん">';
         echo '</form>';

@@ -11,6 +11,7 @@ if(isset($_SESSION['user'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $mail = $_POST['mail'];
+    $bio = $_POST['bio'];
     $new_pass = $_POST['pass'];
 
     // パスワードが入力されている場合はハッシュ化
@@ -22,14 +23,15 @@ if(isset($_SESSION['user'])) {
     }
 
     // プリペアドステートメントを使用してデータベースを更新
-    $sql = $pdo->prepare('UPDATE user_management SET icon=?, user_name=?, mail=?, password=? WHERE user_id=?');
-    $success = $sql->execute([$icon, $name, $mail, $hashed_pass, $id]);
+    $sql = $pdo->prepare('UPDATE user_management SET icon=?, user_name=?, mail=?,self_introduction=?, password=? WHERE user_id=?');
+    $success = $sql->execute([$icon, $name, $mail, $bio,$hashed_pass, $id]);
 
     if ($success) {
         // セッション情報を更新
         $_SESSION['user']['icon'] = $icon;
         $_SESSION['user']['name'] = $name;
         $_SESSION['user']['mail'] = $mail;
+        $_SESSION['user']['bio'] = $bio;
         $_SESSION['user']['pass'] = $hashed_pass;
 
         echo '<p>プロフィールが更新されました。</p>';

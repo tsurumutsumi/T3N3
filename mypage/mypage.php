@@ -52,6 +52,7 @@ ob_end_flush(); // 出力バッファリングを終了
         <div class="profile">
             <?php echo $_SESSION['user']['name']?>
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
+            <p>bio:<?php echo $_SESSION['user']['bio']; ?></p>
             <p>とうこうすう: <?php echo $post_count; ?></p>
         </div>
     <?php endif; ?>
