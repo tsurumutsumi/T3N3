@@ -56,3 +56,26 @@ body{
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
 }
+/* 全体の位置 */
+.post_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 画像の位置 */
+.image_row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+/* テキスト位置 */
+.post {
+    flex: 1;
+    text-align: center;
+    margin: 5px;
+}
+/* 画像サイズ */
+.post img {
+    max-width: 100%;
+    height: auto;
+}
