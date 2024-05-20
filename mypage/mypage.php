@@ -53,10 +53,6 @@ ob_end_flush(); // 出力バッファリングを終了
             <form action="profile_change.php" method="post">
                 <input type="submit" value="編集">
             </form>
-            <?php echo $_SESSION['user']['name']?>
-            <!-- 変更(5/17) -->
-            <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
-            <!-- 変更(5/17) -->
             <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
             <p>bio:
@@ -92,7 +88,6 @@ ob_end_flush(); // 出力バッファリングを終了
                 }
             }
         </script>
-<<<<<<< HEAD
     <?php if (isset($posts)):
         echo '<h2>とうこうりれき</h2>';
         echo '<div class="posts">';
@@ -116,27 +111,4 @@ ob_end_flush(); // 出力バッファリングを終了
          endif;
 echo '</div>';
 ?>
-=======
-    <?php if (isset($posts)): ?>
-        <!-- 変更(5/17) -->
-        <p>とうこうりれき</p>
-        <div class="posts">
-        <?php foreach($posts as $post): ?>
-            <div class="post">
-                <?php if (isset($post['post_date'])): ?>
-                    <p><?php echo $post['post_date']; ?></p>
-                <?php endif; ?>
-                <?php if (isset($post['picture'])): ?>
-                    <img src="../post_img/<?php echo $post['picture']; ?>" alt="投稿画像">
-                <?php endif; ?>
-                <?php if (isset($post['comment'])): ?>
-                    <p><?php echo $post['comment']; ?></p>
-                <?php endif; ?>
-            </div>
-        <?php endforeach; ?>
-        </div>
-    <?php endif; ?>
-</div>
-
->>>>>>> 3c847c0258037393427d614c07052a55655b5c29
 <?php require '../top/footer.php';?>
