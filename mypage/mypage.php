@@ -50,9 +50,25 @@ ob_end_flush(); // 出力バッファリングを終了
     <h1>マイページ</h1>
     <?php if (isset($post_count)): ?>
         <div class="profile">
+<<<<<<< HEAD
+            <form action="profile_change.php" method="post">
+                <input type="submit" value="編集">
+            </form>
             <?php echo $_SESSION['user']['name']?>
+=======
+            <!-- 変更(5/17) -->
+            <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
+>>>>>>> 3c847c0258037393427d614c07052a55655b5c29
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
-            <p>bio:<?php echo $_SESSION['user']['bio']; ?></p>
+            <p>bio:
+                <?php 
+                    if(!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])){
+                        echo '記載なし';
+                    }else{
+                        echo $_SESSION['user']['bio']; 
+                    }
+                ?>
+            </p>
             <p>とうこうすう: <?php echo $post_count; ?></p>
         </div>
     <?php endif; ?>
@@ -77,8 +93,34 @@ ob_end_flush(); // 出力バッファリングを終了
                 }
             }
         </script>
+<<<<<<< HEAD
+    <?php if (isset($posts)):
+        echo '<h2>とうこうりれき</h2>';
+        echo '<div class="posts">';
+        foreach($posts as $post):
+            echo '<div class="post">';
+                if (isset($post['post_date'])):
+                    echo '<p>',$post['post_date'],'</p>';
+                endif;
+                if (isset($post['picture'])):
+                    echo '<img src="../post_img/' . $post['picture'] . '" alt="投稿画像">';
+                endif;
+                if (isset($post['comment'])):
+                    echo '<p>',$post['comment'],'</p>';
+                endif;
+                echo '<form action="../post/post_delete.php" method="post">';
+                    echo '<input type="submit" value="削除">';
+                echo '</form>';
+            echo '</div>';
+        endforeach;
+        echo '</div>';
+         endif;
+echo '</div>';
+?>
+=======
     <?php if (isset($posts)): ?>
-        <h2>とうこうりれき</h2>
+        <!-- 変更(5/17) -->
+        <p>とうこうりれき</p>
         <div class="posts">
         <?php foreach($posts as $post): ?>
             <div class="post">
@@ -97,4 +139,5 @@ ob_end_flush(); // 出力バッファリングを終了
     <?php endif; ?>
 </div>
 
+>>>>>>> 3c847c0258037393427d614c07052a55655b5c29
 <?php require '../top/footer.php';?>

@@ -3,8 +3,9 @@
     src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #f2cf01;
+    background-color: #ffff2d;
     font-family: "ノスタルドット（M+）";
+	border-bottom: #696969 8px dashed;/*追加(5/17)*/
 }
 
 /* 新規登録ボタンの位置 */
@@ -18,14 +19,27 @@ body{
 	margin: auto;
 	width: 800px;
 	background-color: #f6ebac;
-	border: 1px solid black;
-	/* padding: 0 60px; */
+	border: 8px double #696969;/*変更(5/17)*/
+	/* 追加(5/17) */
+	border-radius: 5px;
+	box-shadow: 0px 6px;
 }
 
 /* 文字変更はここ */
 h1{
-    font-size: 60px;
+    font-size: 45px;/*変更(5/17)*/
 	text-align: center;
+}
+/* 追加(5/17) */
+.title{
+    font-size: 80px;
+	text-align: center;	
+	text-shadow: 0px 5px #696969;
+	margin: 15px;
+	/* 文字の間隔 */
+	letter-spacing: 0.2em;
+	/* 文字の太さ */
+	font-weight: bold;
 }
 p{
     font-size: 25px;
@@ -46,11 +60,12 @@ p{
 }
 /* 入力する文字 */
 .iptxt input[type='text']{
-    font: 24px/28px sans-serif;
+    font: 20px sans-serif;/*変更(5/17)*/
 	box-sizing: border-box;
 	width: 100%;
 	letter-spacing: 1px;
-	padding-left: 4em;
+	/* 入力する文字の開始位置 */
+	padding-left: 8em;/*変更(5/17)*/
 }
 .iptxt input[type='text']:focus{
     outline: none;
@@ -59,7 +74,6 @@ p{
 .ml{
 	/* ラベルと線の幅 */
     padding: 4px 0;
-	/* margin-right: 50px; */
 	border: 0;
 	border-bottom: 1px solid #1b2538;
 	background-color: transparent;
@@ -83,18 +97,17 @@ p{
 /* ラベル */
 .ml ~ label{
     position: absolute;
-	/* z-index: -1; */
 	top: 4px;
 	left: 0;
-	/* width: 50%; */
 	transition: 0.3s;
 	letter-spacing: 0.5px;
 	color: black;
 	/* ラベルのフォントサイズ */
-	font-size: 25px;
+	font-size: 20px;/*変更(5/17)*/
 }
 .ml:focus ~ label,.iptxt.ml ~ label{
-    font-size: 18px;
+	/* ラベルが移動するときのフォントサイズ */
+    font-size: 15px;/*変更(5/17)*/
 	top: -16px;
 	transition: 0.3s;
 	color:#c4a705;
@@ -112,11 +125,12 @@ p{
 }
 /* 入力する文字 */
 .ippass input[type='password']{
-    font: 24px/28px sans-serif;
+    font: 20px sans-serif;/*変更(5/17)*/
 	box-sizing: border-box;
 	width: 100%;
 	letter-spacing: 1px;
-	padding-left: 4em;
+	/* 入力する文字の開始位置 */
+	padding-left: 8em;/*変更(5/17)*/
 }
 .ippass input[type='password']:focus{
     outline: none;
@@ -127,7 +141,6 @@ p{
     padding: 4px 0px 4px 96px;
 	width: 640px;
 	height: 36.8px;
-	/* margin-right: 50px; */
 	border: 0;
 	border-bottom: 1px solid #1b2538;
 	background-color: transparent;
@@ -151,18 +164,17 @@ p{
 /* ラベル */
 .pw ~ label{
     position: absolute;
-	/* z-index: -1; */
 	top: 4px;
 	left: 0;
-	/* width: 50%; */
 	transition: 0.3s;
 	letter-spacing: 0.5px;
 	color: black;
 	/* ラベルのフォントサイズ */
-	font-size: 25px;
+	font-size: 20px;/*変更(5/17)*/
 }
 .pw:focus ~ label,.ippass.pw ~ label{
-    font-size: 18px;
+	/* ラベルが移動するときのフォントサイズ */
+	font-size: 15px;/*変更(5/17)*/
 	top: -16px;
 	transition: 0.3s;
 	color:#c4a705;
@@ -172,7 +184,7 @@ p{
 
 /* 戻るボタン */
 .button{
-    font-size: 20px;
+    font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
 	position: relative;
 	display: inline-block;
@@ -187,11 +199,11 @@ p{
 }
 /* 送信ボタン */
 .button_1{
-    font-size: 20px;
+    font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
-	left: 40%;
-	width: 100px;
+	left: 37%;/*変更(5/17)*/
+	width: 160px;/*変更(5/17)*/
 	position: relative;
 	display: inline-block;
 	font-weight: bold;

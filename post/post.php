@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <?php require '../top/db-connect.php'; ?> 
-<?php require '../top/header.php'; ?>
+<?php require '../top/header.php'; ?> 
  
 <!-- <label for="input">画像ファイル</label><br> -->
 <form action="post_ok.php" method="POST" enctype="multipart/form-data">
