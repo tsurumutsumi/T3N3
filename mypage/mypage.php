@@ -51,10 +51,15 @@ ob_end_flush(); // 出力バッファリングを終了
     <?php if (isset($post_count)): ?>
         <div class="profile">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <form action="profile_change.php" method="post">
                 <input type="submit" value="編集">
             </form>
             <?php echo $_SESSION['user']['name']?>
+=======
+            <!-- 変更(5/17) -->
+            <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
+>>>>>>> 3c847c0258037393427d614c07052a55655b5c29
 =======
             <!-- 変更(5/17) -->
             <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
