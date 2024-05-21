@@ -1,0 +1,47 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-color: #008000;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+}
+h1{
+    font-size: 60px;
+	text-align: center;
+    text-shadow: 0px 2px #c4eac2;/*追加(5/17)*/
+}
+.button{
+    display: flex;
+    margin: 20px;
+}
+/* 投稿ボタン */
+.post{
+        font-size: 18px;/*変更(5/17)*/
+        font-family: "ノスタルドット（M+）";
+        position: relative;
+        display: inline-block;
+        font-weight: bold;
+        padding: 8px 10px 5px 10px;
+        text-decoration: none;
+        color: #080808;
+        background: #bfbebe;
+        border-bottom: solid 4px #5e5d5c;
+        border-radius: 15px 15px 0 0;
+        transition: .4s;
+}
+/* ホームボタン */
+.post_2{
+    font-size: 18px;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+}

@@ -9,17 +9,22 @@ if(isset($_SESSION['register']) && isset($_POST['id']) && isset($_POST['nickname
     $mail = $_SESSION['register']['mail'];
     // パスワードをハッシュ化
     $password = password_hash($_SESSION['register']['password'], PASSWORD_DEFAULT);
-
-    // フォームからユーザーIDとニックネームを取得
     $id = $_POST['id'];
     $nickname = $_POST['nickname'];
+    // アップロードされたファイルの保存先ディレクトリ
+    $uploadDir = '../icon_img/';
+    // アップロードされたファイルの保存パス
+    $iconPath = $_FILES['pic']['name'];
+    // アップロードされたファイルを指定の場所に移動
+    move_uploaded_file($_FILES['pic']['tmp_name'], $uploadDir . $iconPath);
+
+
 
     // ユーザーテーブルにデータを挿入
     $pdo = new PDO($connect, USER, PASS);
-    $stmt = $pdo->prepare("INSERT INTO user_management (user_id, user_name, mail, password) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$id, $nickname, $mail, $password]);
+    $stmt = $pdo->prepare("INSERT INTO user_management (user_id, user_name, mail, password, icon) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$id, $nickname, $mail, $password, $iconPath]); // 保存されたファイルのパスをデータベースに保存
 
-    // セッションの登録情報を削除
     unset($_SESSION['register']);
 
     // 登録が完了したらログインページにリダイレクト

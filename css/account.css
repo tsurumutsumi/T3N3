@@ -1,0 +1,192 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+
+	/* 変更(5/17) */
+body{
+	background-color: #ffff2d;
+	font-family: "ノスタルドット（M+）";
+	border-bottom: #696969 8px dashed;
+}
+/* 文字変更はここ */
+h1{
+    font-size: 45px;/* 変更(5/17) */
+	text-align: center;
+}
+	/* 追加(5/17) */
+.title{
+    font-size: 80px;
+	text-align: center;
+	text-shadow: 0px 5px #696969;	
+	margin: 15px;
+	/* 文字の間隔 */
+	letter-spacing: 0.2em;
+	/* 文字の太さ */
+	font-weight: bold;
+}
+.icon{
+    font-size: 30px;
+    text-align: center;
+}
+
+/* アカウント情報入力の部分 */
+.back{
+	margin: auto;
+	width: 800px;
+	background-color: #f6ebac;
+	/* 変更＋追加(5/17) */
+	border: 8px double #696969;
+	border-radius: 5px;
+	box-shadow: 0px 6px;
+}
+
+/* メールアドレス入力部分 */
+/* ----テキストボックス（外）---- */
+.ipid{
+    position: relative;
+	width: 80%;
+	/* 下線の位置 */
+	margin: 40px 80px;
+}
+/* 入力する文字 */
+.ipid input[type='text']{
+    font: 20px sans-serif;/* 変更(5/17) */
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	/* 入力する文字の開始位置 */
+	padding-left: 8em;/* 変更(5/17) */
+}
+.ipid input[type='text']:focus{
+    outline: none;
+}
+/* テキストボックス（中） */
+.id{
+	/* ラベルと線の幅 */
+    padding: 4px 0;
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+
+.id ~ .focus_line{
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #f2cf01;
+}
+/* 下線と文字の動きと色を付ける下線の長さ */
+.id:focus ~ .focus_line,
+.ipid.id ~ .focus_line {
+    width: 100%;
+	transition: 0.4s;
+}
+/* ラベル */
+.id ~ label{
+    position: absolute;
+	top: 4px;
+	left: 0;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: black;
+	/* ラベルのフォントサイズ */
+	font-size: 20px;/*変更(5/17)*/
+}
+.id:focus ~ label,.ipid.id ~ label{
+	/* ラベルが移動するときのフォントサイズ */
+	font-size: 15px;/*変更(5/17)*/
+	top: -16px;
+	transition: 0.3s;
+	color:#c4a705;
+}
+/* ----ここまで---- */
+
+
+/* パスワード入力部分 */
+/* ----テキストボックス（外）---- */
+.ipname{
+    position: relative;
+	width: 80%;
+	/* 下線の位置 */
+	margin: 40px 80px;
+}
+/* 入力する文字 */
+.ipname input[type='password']{
+    font: 20px sans-serif;/*変更(5/17)*/
+	box-sizing: border-box;
+	width: 100%;
+	letter-spacing: 1px;
+	/* 入力する文字の開始位置 */
+	padding-left: 8em;/*変更(5/17)*/
+}
+.ipname input[type='password']:focus{
+    outline: none;
+}
+/* テキストボックス（中） */
+.name{
+	/* ラベルと線の幅 */
+	font-size: 24px;
+    padding: 4px 0px 4px 96px;
+	width: 640px;
+	height: 36.8px;
+	border: 0;
+	border-bottom: 1px solid #1b2538;
+	background-color: transparent;
+}
+
+.name ~ .focus_line{
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	width: 0;
+	height: 2px;
+	transition: 0.4s;
+	background-color: #f2cf01;
+}
+/* 下線と文字の動きと色を付ける下線の長さ */
+.name:focus ~ .focus_line,
+.ipname.name ~ .focus_line {
+    width: 100%;
+	transition: 0.4s;
+}
+/* ラベル */
+.name ~ label{
+    position: absolute;
+	top: 4px;
+	left: 0;
+	transition: 0.3s;
+	letter-spacing: 0.5px;
+	color: black;
+	/* ラベルのフォントサイズ */
+	font-size: 20px;/*変更(5/17)*/
+}
+.name:focus ~ label,.ipname.name ~ label{
+	/* ラベルが移動するときのフォントサイズ */
+    font-size: 15px;/*変更(5/17)*/
+	top: -16px;
+	transition: 0.3s;
+	color:#c4a705;
+}
+/* ----ここまで---- */
+/* 送信ボタン */
+.button_1{
+    font-size: 18px;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+    margin: 20px;
+	left: 40%;
+	width: 100px;
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
