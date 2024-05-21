@@ -23,9 +23,22 @@ if(isset($_FILES['pic']) && $_FILES['pic']['error'] === UPLOAD_ERR_OK) {
 
     $uploadFile = $uploadDir . basename($_FILES['pic']['name']); // 画像ファイルのパス
     // 画像ファイルを移動
-    if(move_uploaded_file($_FILES['pic']['tmp_name'], $uploadFile)) {
-        $picture = basename($_FILES['pic']['name']); // ファイル名のみを設定
-    }
+    var_dump('test');
+    var_dump('1'.$_FILES['pic']['tmp_name']);
+    var_dump('2'.$_FILES['pic']['name']);
+    var_dump('3'.basename($_FILES['pic']['name']));
+    var_dump('4'.move_uploaded_file($_FILES['pic']['tmp_name'], $uploadFile));
+    var_dump('5'.$uploadFile);
+
+    move_uploaded_file($_FILES['pic']['tmp_name'], $uploadFile);
+    $picture = basename($_FILES['pic']['name']); // ファイル名のみを設定
+
+    // if(move_uploaded_file($_FILES['pic']['tmp_name'], $uploadFile)) {
+
+    //     var_dump();
+    //     $picture = basename($_FILES['pic']['name']); // ファイル名のみを設定
+    // }
+    exit;
 }
  
 // データベースへの挿入文の準備と実行
