@@ -1,8 +1,5 @@
 <?php
-function check_follow($follow_user,$follower_user){
-  $dsn='mysql:dbname=shop;host=localhost;charset=utf8';
-  $user='root';
-  $password='';
+require '../top/db-connect.php';
   $dbh=new PDO($dsn,$user,$password);
   $sql = "SELECT follow_id,follower_id
           FROM relation
