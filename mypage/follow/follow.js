@@ -1,4 +1,4 @@
-<?php
+
 $(document).on('click','.follow_btn',function(e){
     e.stopPropagation();
     var $this = $(this),
@@ -16,4 +16,3 @@ $(document).on('click','.follow_btn',function(e){
       location.reload();
     });
   });
-  ?>

@@ -15,7 +15,7 @@ require 'top/header.php';
         <form action="mypage/mypage.php" method="post" >
             <button type="image" class="icon">
             <!-- 画像変更するならここ -->
-                <img src="img/icon.png" alt="Button Image" class="iconImg">
+            <img src="icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
             </button>
         </form>
     </div>
