@@ -49,17 +49,19 @@ $stmt->execute([$user_id, $comment, $picture, $date]);
 // 成功または失敗に応じた処理
 if($stmt) {
     // 成功した場合の処理
-    echo "投稿が成功しました。";
-
+    // 変更(5/22)
+    echo "<p>投稿が成功しました。</p>";
+    echo '<div class="Okbutton">';
     echo '<form action="../mypage/mypage.php" method="post">';
-    echo '<input type="submit" value="マイページへ" class="post">';
+    echo '<input type="submit" value="マイページへ" class="post" class="mybutton">';
     echo '</form>';
 
     echo '<form action="../home.php" method="post">';
-    echo '<input type="submit" value="ホームへ" class="post">';
+    echo '<input type="submit" value="ホームへ" class="post" class="homebutton">';
     echo '</form>';
+    echo '</div>';
 } else {
     // 失敗した場合の処理
-    echo "投稿に失敗しました。";
+    echo "<p>投稿に失敗しました。</p>";
 }
 ?>
