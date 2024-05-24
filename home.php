@@ -7,7 +7,11 @@ require 'top/header.php';
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
 
-
+<?php
+    if(isset($_SESSION['user']['id'])) {
+        echo $_SESSION['user']['name'],'としてログイン中です';
+    }
+?>
 
 <div class="button">
     <!-- マイページボタン -->
@@ -15,7 +19,13 @@ require 'top/header.php';
         <form action="mypage/mypage.php" method="post" >
             <button type="image" class="icon">
             <!-- 画像変更するならここ -->
-            <img src="icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
+            <?php 
+                    if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
+                        echo '<img src=icon_img/icon.png alt="アイコン">';
+                    }else{
+                        echo '<img src=icon_img/',$_SESSION['user']['icon'],'alt="アイコン">'; 
+                    }
+            ?>
             </button>
         </form>
     </div>
