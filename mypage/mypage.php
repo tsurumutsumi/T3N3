@@ -47,7 +47,6 @@ $user = $sql->fetch(PDO::FETCH_ASSOC);
 ob_end_flush(); // 出力バッファリングを終了
 ?>
 <div class="container">
-    <h1>マイページ</h1>
     <?php if (isset($post_count)): ?>
         <div class="profile">
             <form action="profile_change.php" method="post">
