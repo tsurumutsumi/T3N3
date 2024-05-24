@@ -1,3 +1,7 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
 body{
     background-color: #9460a0;
     /* 画像の場所 */
