@@ -23,7 +23,7 @@ require 'top/header.php';
                     if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
                         echo '<img src=icon_img/icon.png alt="アイコン">';
                     }else{
-                        echo '<img src=icon_img/',$_SESSION['user']['icon'],'alt="アイコン">'; 
+                        echo '<img src=icon_img/',$_SESSION['user']['icon'],' alt="アイコン">'; 
                     }
             ?>
             </button>
