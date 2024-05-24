@@ -1,0 +1,100 @@
+/* 追加(5/21) */
+
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-color: #de9610;
+    font-family: "ノスタルドット（M+）";
+    border-bottom: #696969 8px dashed;/*追加(5/21)*/
+    text-align: center;
+}
+p{
+    font-family: "ノスタルドット（M+）";
+    font-size: 20px;
+}
+h1{
+    font-size: 45px;
+	/* text-align: center; */
+}
+textarea{
+    background-color: black;
+    font-family: "ノスタルドット（M+）";
+    color:white;
+    font-size: 20px;
+    border: 5px solid white;
+}
+/* 戻るボタンの位置(5/22) */
+.return{
+    text-align: left;
+	/* margin-bottom: 10px; */
+}
+/* 投稿成功したときの各画面に戻るボタン */
+.Okbutton{
+    display: flex;
+    margin: 20px;
+}
+/* 投稿ボタン */
+.button{
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    margin: 20px;
+    width: 100px;
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
+/* 各ボタン追加(5/22) */
+/* 戻るボタン */
+.button_1{
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
+/* マイページボタン */
+.mybutton{
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+}
+/* ホームボタン */
+.homebutton{
+font-size: 18px;
+font-family: "ノスタルドット（M+）";
+position: relative;
+display: inline-block;
+font-weight: bold;
+padding: 8px 10px 5px 10px;
+text-decoration: none;
+color: #080808;
+background: #bfbebe;
+border-bottom: solid 4px #5e5d5c;
+border-radius: 15px 15px 0 0;
+transition: .4s;
+}
