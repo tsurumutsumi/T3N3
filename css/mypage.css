@@ -11,27 +11,29 @@ h1{
 	text-align: center;
     text-shadow: 0px 2px #c4eac2;/*追加(5/17)*/
 }
+/* アイコンの写真大きさ */
+.icon{
+    max-width: 100px;  /* 最大幅を100ピクセルに設定 */
+    height: auto;      /* 高さを自動調整 */
+    background-color: #498d49;
+    border-radius: 50%;
+}
+/* ログアウト */
+.logout{
+    text-align: right;
+    margin-bottom: 10px;
+}
+/* ログアウト文字 */
+.loglink{
+    color: white;
+}
 .button{
     display: flex;
     margin: 20px;
 }
 /* 投稿ボタン */
-.post{
-        font-size: 18px;/*変更(5/17)*/
-        font-family: "ノスタルドット（M+）";
-        position: relative;
-        display: inline-block;
-        font-weight: bold;
-        padding: 8px 10px 5px 10px;
-        text-decoration: none;
-        color: #080808;
-        background: #bfbebe;
-        border-bottom: solid 4px #5e5d5c;
-        border-radius: 15px 15px 0 0;
-        transition: .4s;
-}
-/* ホームボタン */
-.post_2{
+/* 名前変更(5/17) */
+.button_1{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -44,4 +46,20 @@ h1{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
+}
+/* ホームボタン */
+/* 名前変更(5/17) */
+.button_2{
+font-size: 18px;/*変更(5/17)*/
+font-family: "ノスタルドット（M+）";
+position: relative;
+display: inline-block;
+font-weight: bold;
+padding: 8px 10px 5px 10px;
+text-decoration: none;
+color: #080808;
+background: #bfbebe;
+border-bottom: solid 4px #5e5d5c;
+border-radius: 15px 15px 0 0;
+transition: .4s;
 }

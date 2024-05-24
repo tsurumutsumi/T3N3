@@ -1,0 +1,31 @@
+/*追加(5/20)*/
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-color: #0074bf;
+    font-family: "ノスタルドット（M+）";
+	border-bottom: #696969 8px dashed;
+}
+.back{
+	margin: auto;
+	width: 800px;
+	background-color: #8dc8ef;
+	border: 8px double #696969;
+	border-radius: 5px;
+	box-shadow: 0px 6px;
+}
+/* ログアウトの文字変更はここ */
+h1{
+    font-size: 45px;
+	text-align: center;
+}
+p{
+    font-size: 25px;
+	text-align: center;
+}
+.link{
+    font-size: 25px;
+    text-align: center;
+}
