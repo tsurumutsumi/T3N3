@@ -1,15 +1,23 @@
 <?php
 session_start();
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/logout.css">';
 
+echo '<div class="back">';
+    echo '<h1>ログアウト</h1>';
 // ログアウト処理
 if(isset($_SESSION['user'])) {
     unset($_SESSION['user']);
-    echo '<br><h2>ログアウトしました。</h2><br>'; 
+    echo '<br><p>ログアウトしました。</p><br>'; 
+    echo '<div class="link">';
+    echo '<a href="../home.php">ホームへ</a>';
+    echo '</div>';
 } else {
-    echo '<br><h2>すでにログアウトしています。</h2><br>';
+    echo '<br><p>すでにログアウトしています。</p><br>';
+    echo '<div class="link">';
+    echo '<a href="../home.php">ホームへ</a>';
+    echo '</div>';
 }
-
-echo '<a href="../home.php">ホームへ</a>';
+echo '</div>';
 require '../top/footer.php';
 ?>
