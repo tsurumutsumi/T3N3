@@ -60,6 +60,8 @@ $sql = $pdo->prepare('SELECT ph.*, (SELECT COUNT(*) FROM likes WHERE post_id = p
 $sql->execute();
 $image_count = 0;
 
+$image_count = 0; // 変数が宣言されていない場合の初期化
+
 foreach ($sql as $row) {
     if ($image_count % 3 == 0) {
         if ($image_count != 0) {
@@ -68,13 +70,21 @@ foreach ($sql as $row) {
         echo '<div class="image_row">'; // 新しい行を開始
     }
     echo '<div class="post">';
-    echo $row['user_id'], $row['comment'], '<br>';
-    echo '<img src="img/', $row['picture'], '"><br>';
-    echo $row['post_date'], '<br>';
+    echo htmlspecialchars($row['user_id']), htmlspecialchars($row['comment']), '<br>';
+    
+    // 画像があるかどうかチェック
+    if (!empty($row['picture'])) {
+        $imagePath = 'img/' . htmlspecialchars($row['picture']);
+    } else {
+        $imagePath = 'img/no_img.png';
+    }
+    echo '<img src="', $imagePath, '"><br>';
+    
+    echo htmlspecialchars($row['post_date']), '<br>';
 
     // Likeボタンを追加
-    echo '<button class="like-button" data-post-id="', $row['post_id'], '">いいね</button>';
-    echo '<span class="like-count">', $row['like_count'], '</span>';
+    echo '<button class="like-button" data-post-id="', htmlspecialchars($row['post_id']), '">いいね</button>';
+    echo '<span class="like-count">', htmlspecialchars($row['like_count']), '</span>';
 
     echo '</div>';
 
@@ -83,7 +93,7 @@ foreach ($sql as $row) {
 if ($image_count % 3 != 0) {
     echo '</div>'; // 最後の行を閉じる
 }
-echo '</div>';
+
 ?>
 
 <script>
