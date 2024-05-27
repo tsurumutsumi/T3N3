@@ -10,6 +10,8 @@ require 'top/header.php';
 <?php
     if(isset($_SESSION['user']['id'])) {
         echo $_SESSION['user']['name'],'としてログイン中です';
+    }else{
+        echo 'ログインしていません';
     }
 ?>
 
