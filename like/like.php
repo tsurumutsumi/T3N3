@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'top/db-connect.php';
+require '../top/db-connect.php';
 
 if (!isset($_SESSION['user']['id'])) {
     echo json_encode(['success' => false, 'message' => 'ログインが必要です。']);
