@@ -5,11 +5,9 @@ require '../top/db-connect.php';
 require '../top/header.php';
 echo '<link rel="stylesheet" href="../css/mypage.css">';
 
-
-
-$pdo=new PDO($connect,USER,PASS);
+$pdo = new PDO($connect, USER, PASS);
 // ユーザー情報を取得する
-if(isset($_SESSION['user']['id'])) {
+if (isset($_SESSION['user']['id'])) {
     $user_id = $_SESSION['user']['id'];
     
     // ユーザーのアイコンを取得する
@@ -26,23 +24,11 @@ if(isset($_SESSION['user']['id'])) {
     $stmt = $pdo->prepare("SELECT * FROM post_history WHERE user_id = ?");
     $stmt->execute([$user_id]);
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // 新しいクエリを追加する行
-    $stmt = $pdo->prepare("SELECT post_date, picture, comment FROM post_history WHERE user_id = ?");
-    $stmt->execute([$user_id]);
-    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 else {
-    // ログインしていない場合はリダイレクト
-    // header("Location: ../login/login.php");
-    // exit;
     echo 'ログインしてください（仮）';
     echo '<form action="../login/login.php" method="post"><button type="submit">ログイン</button></form>';
 }
-//var_dump($post_count);
-$pdo= new PDO($connect,USER,PASS);
-$sql=$pdo->query('select user_id,user_name,icon from user_management');
-$user = $sql->fetch(PDO::FETCH_ASSOC);
 
 ob_end_flush(); // 出力バッファリングを終了
 ?>
@@ -52,13 +38,13 @@ ob_end_flush(); // 出力バッファリングを終了
             <form action="profile_change.php" method="post">
                 <input type="submit" value="編集">
             </form>
-            <?php echo '<h2>'.$_SESSION['user']['name'].'</h2>'?>
+            <?php echo '<h2>' . $_SESSION['user']['name'] . '</h2>' ?>
             <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
             <p>bio:
                 <?php 
-                    if(!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])){
+                    if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
                         echo '記載なし';
-                    }else{
+                    } else {
                         echo $_SESSION['user']['bio']; 
                     }
                 ?>
@@ -77,37 +63,69 @@ ob_end_flush(); // 出力バッファリングを終了
         echo '</form>';
     ?>
     </div>
-        <a href="#" onclick="logoutchack()">ログアウト</a>
-        <script>
-            function logoutchack() {
-                if(confirm("ログアウトしますか？") ) {
-                    window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
-                }else {
-                    // alert("");
-                }
+    <a href="#" onclick="logoutchack()">ログアウト</a>
+    <script>
+        function logoutchack() {
+            if (confirm("ログアウトしますか？") ) {
+                window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
             }
-        </script>
+        }
+        function deletePost(postId) {
+        if (confirm("本当にこの投稿を削除しますか？")) {
+            console.log("Deleting post ID: " + postId); // デバッグログ
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../post/post_delete_ajax.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    console.log("AJAX request completed with status: " + xhr.status); // デバッグログ
+                    if (xhr.status === 200) {
+                        try {
+                            console.log("Response received: " + xhr.responseText); // デバッグログ
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                alert("投稿が削除されました。");
+                                document.getElementById('post-' + postId).remove();
+                            } else {
+                                alert("投稿の削除に失敗しました。");
+                            }
+                        } catch (e) {
+                            console.error("Failed to parse JSON response: " + e); // デバッグログ
+                            console.error("Response received: " + xhr.responseText); // デバッグログ
+                            alert("サーバーのレスポンスが不正です。");
+                        }
+                    } else {
+                        console.error("AJAX request failed with status: " + xhr.status); // デバッグログ
+                        alert("サーバーとの通信に失敗しました。");
+                    }
+                }
+            };
+
+            xhr.send("post_id=" + postId);
+        }
+        }
+    </script>
     <?php if (isset($posts)):
         echo '<h2>とうこうりれき</h2>';
         echo '<div class="posts">';
-        foreach($posts as $post):
-            echo '<div class="post">';
+        foreach ($posts as $post):
+            echo '<div class="post" id="post-' . $post['post_id'] . '">';
                 if (isset($post['post_date'])):
-                    echo '<p>',$post['post_date'],'</p>';
+                    echo '<p>', $post['post_date'], '</p>';
                 endif;
                 if (isset($post['picture'])):
                     echo '<img src="../post_img/' . $post['picture'] . '" alt="投稿画像">';
                 endif;
                 if (isset($post['comment'])):
-                    echo '<p>',$post['comment'],'</p>';
+                    echo '<p>', $post['comment'], '</p>';
                 endif;
-                echo '<form action="../post/post_delete.php" method="post">';
-                    echo '<input type="submit" value="削除">';
-                echo '</form>';
+                echo '<button onclick="deletePost(' . $post['post_id'] . ')">削除</button>';
             echo '</div>';
         endforeach;
         echo '</div>';
-         endif;
+    endif;
 echo '</div>';
 ?>
-<?php require '../top/footer.php';?>
+<?php require '../top/footer.php'; ?>
