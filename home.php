@@ -61,6 +61,11 @@ $pdo=new PDO($connect,USER,PASS);
         $image_count = 0;
 
         foreach ($sql as $row) {
+            // いいね数を取得するクエリ
+            $like_sql = $pdo->prepare('SELECT COUNT(*) AS like_count FROM likes WHERE post_id = ?');
+            $like_sql->execute([$row['post_id']]);
+            $like_count = $like_sql->fetch(PDO::FETCH_ASSOC)['like_count'];
+
             if ($image_count % 3 == 0) {
                 if ($image_count != 0) {
                     echo '</div>'; // 前の行を閉じる
@@ -71,6 +76,8 @@ $pdo=new PDO($connect,USER,PASS);
             echo $row['user_id'], $row['comment'], '<br>';
             echo '<img src="img/', $row['picture'], '"><br>';
             echo $row['post_date'], '<br>';
+            echo '<button class="like-button" data-post-id="', $row['post_id'], '">いいね</button>';
+            echo '<span class="like-count">', $like_count, '</span>';
             echo '</div>';
 
             $image_count++;
@@ -81,5 +88,46 @@ $pdo=new PDO($connect,USER,PASS);
 echo '</div>';
 ?>
 
-<?php require 'top/footer.php'; ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', function() {
+                var postId = this.getAttribute('data-post-id');
+                var action = this.textContent === 'いいね' ? 'like' : 'unlike';
 
+                console.log('Button clicked');  // デバッグ用
+                console.log('Post ID:', postId);  // デバッグ用
+                console.log('Action:', action);  // デバッグ用
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "like.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        console.log('Response received:', xhr.responseText);  // デバッグ用
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            var likeCountSpan = button.nextElementSibling;
+                            var likeCount = parseInt(likeCountSpan.textContent);
+                            if (action === 'like') {
+                                button.textContent = 'いいねを取り消す';
+                                likeCountSpan.textContent = likeCount + 1;
+                            } else {
+                                button.textContent = 'いいね';
+                                likeCountSpan.textContent = likeCount - 1;
+                            }
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                };
+
+                xhr.send("post_id=" + postId + "&action=" + action);
+            });
+        });
+    });
+</script>
+
+
+<?php require 'top/footer.php'; ?>

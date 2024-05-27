@@ -2,7 +2,7 @@
 <?php require '../top/db-connect.php'; ?> 
 <?php require '../top/header.php'; ?> 
 <link rel="stylesheet" href="../css/post.css">
- 
+
 <!-- 追加(5/22) -->
 <!-- 戻るボタン -->
 <div class="return">
@@ -24,11 +24,9 @@
         <!-- 場所移動＋変更(5/20) -->
         <p>コメント</p>
         <textarea rows="5" cols="40" name="comment" id="comment"></textarea>
-    </div>
     <br>
     <input type="submit" id="submit-btn" value="投稿" class="button">    
 </form>
 <script src="../js/preview.js"></script>
- 
- 
+
 <?php require '../top/footer.php'; ?>

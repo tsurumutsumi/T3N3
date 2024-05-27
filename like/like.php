@@ -1,33 +1,40 @@
 <?php
 session_start();
-require '../top/db-connect.php';
-
-header('Content-Type: application/json');
+require 'top/db-connect.php';
 
 if (!isset($_SESSION['user']['id'])) {
-    echo json_encode(['success' => false, 'message' => 'ログインしてください。']);
+    echo json_encode(['success' => false, 'message' => 'ログインが必要です。']);
     exit;
 }
 
 $user_id = $_SESSION['user']['id'];
 $post_id = $_POST['post_id'];
-$action = $_POST['action']; // 'like' or 'unlike'
+$action = $_POST['action'];
 
 $pdo = new PDO($connect, USER, PASS);
 
-if ($action === 'like') {
-    // いいねを追加
-    $stmt = $pdo->prepare("INSERT INTO likes (user_id, post_id) VALUES (?, ?)");
-    $success = $stmt->execute([$user_id, $post_id]);
-} else if ($action === 'unlike') {
-    // いいねを削除
-    $stmt = $pdo->prepare("DELETE FROM likes WHERE user_id = ? AND post_id = ?");
-    $success = $stmt->execute([$user_id, $post_id]);
-}
-
-if ($success) {
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => '操作に失敗しました。']);
+try {
+    if ($action === 'like') {
+        // いいねを追加する
+        $stmt = $pdo->prepare('INSERT INTO likes (user_id, post_id) VALUES (?, ?)');
+        if ($stmt->execute([$user_id, $post_id])) {
+            echo json_encode(['success' => true]);
+        } else {
+            throw new Exception('データベースエラーが発生しました。');
+        }
+    } elseif ($action === 'unlike') {
+        // いいねを削除する
+        $stmt = $pdo->prepare('DELETE FROM likes WHERE user_id = ? AND post_id = ?');
+        if ($stmt->execute([$user_id, $post_id])) {
+            echo json_encode(['success' => true]);
+        } else {
+            throw new Exception('データベースエラーが発生しました。');
+        }
+    } else {
+        throw new Exception('不正なアクションです。');
+    }
+} catch (Exception $e) {
+    error_log($e->getMessage());
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 ?>
