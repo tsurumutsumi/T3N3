@@ -3,7 +3,14 @@
     src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #9460a0;
+    /* background-color: #9460a0; */
+    background-image: 
+                    url(../img/maptile_sogen_hana_02.png),
+                    url(../img/maptile_sogen_02.png);
+    background-size: 150px;
+    background-repeat: repeat-x,
+                        repeat;
+    font-family: "ノスタルドット（M+）";
     /* 画像の場所 */
     position: relative;
     
@@ -46,7 +53,6 @@ body{
 }
 /* アイコンの大きさ、色 */
 .icon{
-    background-color: #9460a0;
     width:50px;
     height: 50px;
     border: none;
