@@ -4,6 +4,7 @@
 
 body{
 	background-image: url(../img/maptile_sabaku.png);
+	background-size: 150px;
     font-family: "ノスタルドット（M+）";
 }
 
@@ -183,6 +184,7 @@ p{
 
 /* 戻るボタン */
 .button{
+	width: 150px;
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
 	position: relative;
@@ -202,7 +204,7 @@ p{
     font-family: "ノスタルドット（M+）";
     margin: 20px;
 	left: 37%;/*変更(5/17)*/
-	width: 160px;/*変更(5/17)*/
+	width: 150px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
