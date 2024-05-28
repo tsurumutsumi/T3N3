@@ -4,9 +4,8 @@
     src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #0074bf;
+	background-image: url(../img/maptile_umi_01.png);
     font-family: "ノスタルドット（M+）";
-	border-bottom: #696969 8px dashed;
 }
 .back{
 	margin: auto;
