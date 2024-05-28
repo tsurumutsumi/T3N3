@@ -26,8 +26,8 @@ if (isset($_SESSION['user']['id'])) {
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 else {
-    echo 'ログインしてください（仮）';
-    echo '<form action="../login/login.php" method="post"><button type="submit">ログイン</button></form>';
+    echo 'ホーム画面に戻り、ログインしてください';
+    // echo '<form action="../login/login.php" method="post"><button type="submit">ログイン</button></form>';
 }
 
 ob_end_flush(); // 出力バッファリングを終了
@@ -36,10 +36,10 @@ ob_end_flush(); // 出力バッファリングを終了
     <?php if (isset($post_count)): ?>
         <div class="profile">
             <form action="profile_change.php" method="post">
-                <input type="submit" value="編集">
+                <input type="submit" value="編集" class="button_3">
             </form>
             <?php echo '<h2>' . $_SESSION['user']['name'] . '</h2>' ?>
-            <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン">
+            <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン" class="iconImg"> 
             <p>bio:
                 <?php 
                     if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
@@ -52,14 +52,14 @@ ob_end_flush(); // 出力バッファリングを終了
             <p>とうこうすう: <?php echo $post_count; ?></p>
         </div>
     <?php endif; ?>
-    <div class="button">
+    <div class="mybutton">
     <?php
         echo '<form action="../post/post.php" method="post">';
-        echo '<input type="submit" value="とうこうする" class="post">';
+        echo '<input type="submit" value="とうこうする" class="button_1">';
         echo '</form>';
 
         echo '<form action="../home.php" method="post">';
-        echo '<input type="submit" value="ホームへ" class="post_2">';
+        echo '<input type="submit" value="ホームへ" class="button_2">';
         echo '</form>';
     ?>
     </div>
