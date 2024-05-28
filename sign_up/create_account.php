@@ -36,40 +36,43 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
         <span class="focus_line"></span>
     </div>
 
-    <p class="icon">アイコンせってい</p>
+    <!-- <p class="icon">アイコンせってい</p>
     <div class="upload-wrapper">
         <div class="upload-area" id="uploadArea">
             <label class="file_select">しゃしんをえらぶ
                 <i class="fas fa-cloud-upload-alt"></i>
-                <!-- <p>Drag and drop a file or click</p> -->
+                <p>Drag and drop a file or click</p>
                 <input type="file" name="pic" id="torokupic" accept="image/*" style="display: none;">
                 <figure id="figure" style="display: none">
-                    <!-- 画像ファイルのプレビュー -->
+                    画像ファイルのプレビュー
                     <figcaption></figcaption>
                     <img src="" alt="" id="figureImage" width="300px" height="300px">  
                 </figure>
             </label>
         </div>
-    </div>
+    </div> -->
     <h1>プロフィールアイコンを選択</h1>
-    <form action="submit_icon.php" method="post">
-        <?php
-        $iconDir = 'icon_img/';
+    <?php
+        $iconDir = '../icon_img/';
+        // 出力したい画像のファイル名
+        $specifiedImages = ['bunnygirl.png', 'devil.png', 'hime_child.png', 'hime.png', 'kishi.png',
+         'madoshi.png', 'maid.png', 'murabito_man.png', 'murabito_woman.png', 'ningyo.png', 'oji.png', 
+         'osama.png', 'shinigami.png', 'shituji.png', 'sister.png', 'skeleton.png', 'tenshi.png', 'tozoku.png', 
+         'yosei.png', 'yusha.png']; // ここに出力したい画像のファイル名を指定してください
         $icons = scandir($iconDir);
         foreach ($icons as $icon) {
-            if ($icon !== '.' && $icon !== '..') {
+            if ($icon !== '.' && $icon !== '..' && in_array($icon, $specifiedImages)) {
                 echo '<div class="icon-option">';
-                    echo '<label>';
-                        echo '<input type="radio" name="icon" value="' . $iconDir . $icon . '">';
-                        echo '<img src="' . $iconDir . $icon . '" alt="アイコン">';
-                    echo '</label>';
+                echo '<label>';
+                echo '<input type="radio" name="icon" value="' . $iconDir . $icon . '">';
+                echo '<img src="' . $iconDir . $icon . '" alt="アイコン">';
+                echo '</label>';
                 echo '</div>';
             }
         }
-        ?>
+    ?>
+
         <br>
-        <input type="submit" value="選択">
-    </form>
     <script src="../js/preview.js"></script>
     <script src="../js/Drag.js"></script>
     <br><br>
