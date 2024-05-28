@@ -51,20 +51,20 @@ echo '<div class="slideshow">';
 if ($topPost) {
     $topPostImagePath = !empty($topPost['picture']) ? 'img/' . htmlspecialchars($topPost['picture']) : 'img/no_img.png';
     echo '<div class="slide">';
-    echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
-    echo '<div class="slide-info">';
-    echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
-    echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
-    echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
-    echo '</div>';
+        echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
+        echo '<div class="slide-info">';
+            echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
+            echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
+            echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
+        echo '</div>';
     echo '</div>';
 }
 
 // 固定の画像を表示
-echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
-echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
-echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
-echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';

@@ -41,7 +41,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
         <div class="upload-area" id="uploadArea">
             <label class="file_select">しゃしんをえらぶ
                 <i class="fas fa-cloud-upload-alt"></i>
-                <p>Drag and drop a file or click</p>
+                <!-- <p>Drag and drop a file or click</p> -->
                 <input type="file" name="pic" id="torokupic" accept="image/*" style="display: none;">
                 <figure id="figure" style="display: none">
                     <!-- 画像ファイルのプレビュー -->
