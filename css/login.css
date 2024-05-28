@@ -3,9 +3,12 @@
     src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #66cc00;/*変更(5/17)*/
+	background-image:url(../img/maptile_sogen_hana_01.png),
+					 url(../img/maptile_sogen_01.png);
+	background-size: 150px;
+	background-repeat: repeat-x,
+					   repeat;
     font-family: "ノスタルドット（M+）";
-	border-bottom: #696969 8px dashed;/*追加(5/17)*/
 }
 /* 新規登録ボタンの位置 */
 .sign{
@@ -13,6 +16,19 @@ body{
 	margin-bottom: 10px;
 }
 
+.log_button{
+	display: flex;
+    margin: 20px;
+}
+/* 最後のみ右に */
+.log_button>div:last-of-type{
+	margin-left: auto;
+}
+/* 戻るボタン */
+.return{
+	text-align: left;
+	margin-bottom: 10px;
+}
 /* ログイン情報入力の部分 */
 .back{
 	margin: auto;
@@ -31,9 +47,13 @@ h1{
 }
 /* 追加(5/17) */
 .title{
-    font-size: 80px;
+	color: #434343;
+    font-size: 100px;
 	text-align: center;	
-	text-shadow: 0px 5px #696969;
+	text-shadow: 0px px white;
+	text-shadow: 
+	3px 3px 3px #fff, -3px -3px 3px #fff,
+	-3px 3px 3px #fff,  3px -3px 3px #fff;;
 	margin: 15px;
 	/* 文字の間隔 */
 	letter-spacing: 0.2em;
