@@ -3,17 +3,39 @@
     src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    /* background-color: #9460a0; */
-    background-image: 
-                    url(../img/maptile_sogen_hana_02.png),
-                    url(../img/maptile_sogen_02.png);
-    background-size: 150px;
-    background-repeat: repeat-x,
-                        repeat;
     font-family: "ノスタルドット（M+）";
-    /* 画像の場所 */
     position: relative;
-    
+    margin: 0;
+    padding: 0;
+    background-image: url(../img/maptile_sogen_02.png);
+    background-size: 150px;
+    background-repeat: repeat;
+}
+/* ヘッダー部分 */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* ヘッダー部分の高さ */
+    background-image: url(../img/maptile_sogen_hana_02.png);
+    background-size: 150px;
+    background-repeat: repeat-x;
+    z-index: -1;
+}
+/* フッター部分 */
+body::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; 
+    background-image: url(../img/maptile_sogen_hana_02.png);
+    background-size: 150px;
+    background-repeat: repeat-x;
+    z-index: -1;
 }
 /* スライドショー */
 .slideshow {
@@ -53,20 +75,21 @@ body{
 }
 /* アイコンの大きさ、色 */
 .icon{
-    width:50px;
-    height: 50px;
-    border: none;
+    width:150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: transparent;
 }
 /* 画像の大きさ */
 .iconImg{
-    z-index:20;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 150px;
+    height: 150px;
 }
 /* ログインボタン */
 .button_1{
-    width: 95px;/*変更(5/17)*/
+    margin: 10px;
+	width: 150px;
+    height: 50px;/* 5/28 */
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
 	position: relative;
