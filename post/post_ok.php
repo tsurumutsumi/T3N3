@@ -4,6 +4,8 @@ session_start();
 // データベース接続
 require '../top/db-connect.php';
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/post.css">';
+
 $pdo = new PDO($connect, USER, PASS);
 
 // フォームから送信されたデータの受け取り
@@ -43,11 +45,11 @@ if($success) {
     echo "<p>投稿が成功しました。</p>";
     echo '<div class="Okbutton">';
     echo '<form action="../mypage/mypage.php" method="post">';
-    echo '<input type="submit" value="マイページへ" class="post" class="mybutton">';
+    echo '<input type="submit" value="マイページへ" class="mybutton">';
     echo '</form>';
 
     echo '<form action="../home.php" method="post">';
-    echo '<input type="submit" value="ホームへ" class="post" class="homebutton">';
+    echo '<input type="submit" value="ホームへ" class="homebutton">';
     echo '</form>';
     echo '</div>';
 } else {
