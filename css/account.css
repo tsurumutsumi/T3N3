@@ -7,6 +7,7 @@ body{
 	background-image: url(../img/maptile_sabaku.png);
 	/* background-color: #ffff2d; */
 	font-family: "ノスタルドット（M+）";
+	text-align: center;
 	/* border-bottom: #696969 8px dashed; */
 }
 /* 文字変更はここ */
@@ -181,7 +182,6 @@ h1{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
-	left: 40%;
 	width: 100px;
 	position: relative;
 	display: inline-block;
