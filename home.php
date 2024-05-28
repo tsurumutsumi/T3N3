@@ -23,7 +23,7 @@ require 'top/header.php';
             <!-- 画像変更するならここ -->
             <?php 
                     if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
-                        echo '<img src="icon_img/icon.png" alt="アイコン">';
+                        echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
                     }else{
                         echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン">'; 
                     }
