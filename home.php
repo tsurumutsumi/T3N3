@@ -9,7 +9,7 @@ require 'top/header.php';
 
 <?php
     if(isset($_SESSION['user']['id'])) {
-        echo $_SESSION['user']['name'],'としてログイン中です';
+        echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
     }else{
         echo 'ログインしていません';
     }
@@ -25,7 +25,7 @@ require 'top/header.php';
                     if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
                         echo '<img src="icon_img/icon.png" alt="アイコン">';
                     }else{
-                        echo '<img src="icon_img/',$_SESSION['user']['icon'],'" alt="アイコン">'; 
+                        echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン">'; 
                     }
             ?>
             </button>
@@ -41,7 +41,7 @@ require 'top/header.php';
 $pdo = new PDO($connect, USER, PASS);
 
 // 最もいいね数が多い投稿を取得
-$topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph LEFT JOIN likes l ON ph.post_id = l.post_id LEFT JOIN user_management u ON ph.user_id = u.id GROUP BY ph.post_id ORDER BY like_count DESC, RAND() LIMIT 1');
+$topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph LEFT JOIN likes l ON ph.post_id = l.post_id LEFT JOIN user_management u ON ph.user_id = u.user_id GROUP BY ph.post_id ORDER BY like_count DESC, RAND() LIMIT 1');
 $topPostSql->execute();
 $topPost = $topPostSql->fetch();
 
@@ -53,9 +53,9 @@ if ($topPost) {
     echo '<div class="slide">';
     echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
     echo '<div class="slide-info">';
-    echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name']), '</p>';
-    echo '<p>いいね数: ', htmlspecialchars($topPost['like_count']), '</p>';
-    echo '<p>コメント: ', htmlspecialchars($topPost['comment']), '</p>';
+    echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
+    echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
+    echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
     echo '</div>';
     echo '</div>';
 }
@@ -87,17 +87,17 @@ foreach ($sql as $row) {
         echo '<div class="image_row">'; // 新しい行を開始
     }
     echo '<div class="post">';
-    echo htmlspecialchars($row['user_id']), htmlspecialchars($row['comment']), '<br>';
+    echo htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '<br>';
     
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '"><br>';
     
-    echo htmlspecialchars($row['post_date']), '<br>';
+    echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
     // Likeボタンを追加
-    echo '<button class="like-button" data-post-id="', htmlspecialchars($row['post_id']), '">いいね</button>';
-    echo '<span class="like-count">', htmlspecialchars($row['like_count']), '</span>';
+    echo '<button class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '">いいね</button>';
+    echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
 
     echo '</div>';
 
