@@ -2,7 +2,14 @@
 session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/mypage_change.css">';
+?>
+<!-- 戻るボタン  -->
+<div class="return">
+    <input type="submit" onclick="location.href='../mypage/mypage.php'" value="戻る" class="button_1">
+</div>
 
+<?php
     $pdo=new PDO($connect, USER, PASS);
 
     $sql=$pdo->prepare('select * from user_management where user_id=?');
@@ -12,28 +19,50 @@ require '../top/header.php';
     
         // echo 'アイコン<input type="file" name="icon" value="',$_SESSION['user']['icon'], '">'; 
         ?>
-        <label class="torokupic">ファイルを選択する
-        <i class="fas fa-cloud-upload-alt"></i>
-        <p>Drag and drop a file or click</p>
-        <input type="file" name="icon" id="torokupic" value="<?php echo $_SESSION['user']['icon']; ?>" accept="image/*" style="display: none;">
-    
-        <figure id="figure" style="display: none">
-            <!-- 画像ファイルのプレビュー -->
-            <figcaption></figcaption>
-            <img src="" alt="" id="figureImage" width="300px" height="300px">  
-        </figure>
-        </label>
+        <div class="icon_img">
+            <label class="torokupic">ファイルを選択する
+            <input type="file" name="icon" id="torokupic" value="<?php echo $_SESSION['user']['icon']; ?>" accept="image/*" style="display: none;">
+        
+            <figure id="figure" style="display: none">
+                <!-- 画像ファイルのプレビュー -->
+                <figcaption></figcaption>
+                <img src="" alt="" id="figureImage" width="300px" height="300px">  
+            </figure>
+            </label>
+        </div>
         <script src="../js/preview.js"></script>
         <?php
-        echo 'ユーザーID<input type="text" name="id" value="', $_SESSION['user']['id'], '">';
-        echo 'ユーザー名<input type="text" name="name" value="', $_SESSION['user']['name'], '">';
-        echo 'メールアドレス<input type="text" name="mail" value="', $_SESSION['user']['mail'], '">';
+            echo '<div class="ipid">';
+                echo '<input type="text" name="id" class="id" value="', $_SESSION['user']['id'], '">';
+                echo '<label>ユーザーID</label>';
+                echo '<span class="focus_line"></span>';
+            echo '</div>';
+
+            echo '<div class="ipname">';
+                echo '<input type="text" name="name" class="name" value="', $_SESSION['user']['name'], '">';
+                echo '<label>ユーザー名</label>';
+                echo '<span class="focus_line"></span>';
+            echo '</div>';
+
+            echo '<div class="ipmail">';
+                echo '<input type="text" name="mail" class="mail" value="', $_SESSION['user']['mail'], '">';
+                echo '<label>メールアドレス</label>';
+                echo '<span class="focus_line"></span>';
+            echo '</div>';
     
-        $bio = isset($_SESSION['user']['bio']) && !empty($_SESSION['user']['bio']) ? $_SESSION['user']['bio'] : '';
-        echo 'bio<input type="text" name="bio" value="', $bio, '">';
-        
-        echo '新しいパスワード<input type="password" name="pass"><br>';
-        echo '<br><input type="submit" value="こうしん">';
+            $bio = isset($_SESSION['user']['bio']) && !empty($_SESSION['user']['bio']) ? $_SESSION['user']['bio'] : '';
+            echo '<div class="ipbio">';
+                echo '<input type="text" name="bio" class="bio" value="', $bio, '">';
+                echo '<label>bio</label>';
+                echo '<span class="focus_line"></span>';
+            echo '</div>';  
+
+            echo '<div class="ippw">';
+                echo '<input type="password" name="pass" class="pass"><br>';
+                echo '<label>新しいパスワード</label>';
+                echo '<span class="focus_line"></span>';
+            echo '</div>';
+            echo '<br><input type="submit" value="こうしん" class="button">';
     
         echo '</form>';
     } else {
