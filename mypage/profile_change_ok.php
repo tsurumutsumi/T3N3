@@ -2,6 +2,8 @@
 session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/mypage_change.css">';
+
 
 if(isset($_SESSION['user'])) {
     $pdo = new PDO($connect, USER, PASS);
