@@ -201,6 +201,7 @@ p{
 
 /* 新規登録ボタン */
 .button{
+	width: 150px;
     font-size: 18px;/*変更(5/17)*/
 	font-family: "ノスタルドット（M+）";
 	position: relative;
@@ -220,7 +221,7 @@ p{
     font-family: "ノスタルドット（M+）";
     margin: 20px;
 	left: 40%;
-	width: 100px;
+	width: 150px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -238,7 +239,7 @@ p{
     font-family: "ノスタルドット（M+）";
     margin: 25px;
 	left: 45%;
-	width: 100px;
+	width: 150px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
