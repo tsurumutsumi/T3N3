@@ -3,9 +3,8 @@
     src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #ffff2d;
+	background-image: url(../img/maptile_sabaku.png);
     font-family: "ノスタルドット（M+）";
-	border-bottom: #696969 8px dashed;/*追加(5/17)*/
 }
 
 /* 新規登録ボタンの位置 */
@@ -32,7 +31,7 @@ h1{
 }
 /* 追加(5/17) */
 .title{
-    font-size: 80px;
+    font-size: 100px;
 	text-align: center;	
 	text-shadow: 0px 5px #696969;
 	margin: 15px;

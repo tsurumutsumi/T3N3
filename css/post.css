@@ -5,9 +5,8 @@
     src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #de9610;
+    background-image: url(../img/maptile_yogan.png);
     font-family: "ノスタルドット（M+）";
-    border-bottom: #696969 8px dashed;/*追加(5/21)*/
     text-align: center;
 }
 p{
