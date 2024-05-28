@@ -51,6 +51,25 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
             </label>
         </div>
     </div>
+    <h1>プロフィールアイコンを選択</h1>
+    <form action="submit_icon.php" method="post">
+        <?php
+        $iconDir = 'icon_img/';
+        $icons = scandir($iconDir);
+        foreach ($icons as $icon) {
+            if ($icon !== '.' && $icon !== '..') {
+                echo '<div class="icon-option">';
+                    echo '<label>';
+                        echo '<input type="radio" name="icon" value="' . $iconDir . $icon . '">';
+                        echo '<img src="' . $iconDir . $icon . '" alt="アイコン">';
+                    echo '</label>';
+                echo '</div>';
+            }
+        }
+        ?>
+        <br>
+        <input type="submit" value="選択">
+    </form>
     <script src="../js/preview.js"></script>
     <script src="../js/Drag.js"></script>
     <br><br>
