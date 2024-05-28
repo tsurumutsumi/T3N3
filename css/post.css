@@ -33,13 +33,14 @@ textarea{
 .Okbutton{
     display: flex;
     margin: 20px;
+    justify-content: center;
 }
 /* 投稿ボタン */
 .button{
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     margin: 20px;
-    width: 100px;
+	width: 150px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -54,6 +55,7 @@ textarea{
 /* 各ボタン追加(5/22) */
 /* 戻るボタン */
 .button_1{
+    width: 150px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
 	position: relative;
@@ -69,6 +71,8 @@ textarea{
 }
 /* マイページボタン */
 .mybutton{
+    margin: 10px;
+	width: 150px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -84,16 +88,18 @@ textarea{
 }
 /* ホームボタン */
 .homebutton{
-font-size: 18px;
-font-family: "ノスタルドット（M+）";
-position: relative;
-display: inline-block;
-font-weight: bold;
-padding: 8px 10px 5px 10px;
-text-decoration: none;
-color: #080808;
-background: #bfbebe;
-border-bottom: solid 4px #5e5d5c;
-border-radius: 15px 15px 0 0;
-transition: .4s;
+    margin: 10px;
+	width: 150px;
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
 }
