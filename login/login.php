@@ -5,11 +5,13 @@
 ?>
 <link rel="stylesheet" href="../css/login.css">
 <!-- 新規登録ボタン -->
-<div class="return">
-    <input type="submit" onclick="location.href='../home.php'" value="マイページへ" class="button">
-</div>
-<div class="sign">
-    <input type="submit" onclick="location.href='../sign_up/tentative_register.php'" value="しんきとうろく" class="button">
+<div class="log_button">
+    <div class="return">
+        <input type="submit" onclick="location.href='../home.php'" value="マイページへ" class="button">
+    </div>
+    <div class="sign">
+        <input type="submit" onclick="location.href='../sign_up/tentative_register.php'" value="しんきとうろく" class="button">
+    </div>
 </div>
 <p class="title">SPT</p><!--追加(5/17) -->
 <!-- ログイン -->
