@@ -23,9 +23,9 @@ require 'top/header.php';
             <!-- 画像変更するならここ -->
             <?php 
                     if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
-                        echo '<img src=icon_img/icon.png alt="アイコン">';
+                        echo '<img src="icon_img/icon.png" alt="アイコン">';
                     }else{
-                        echo '<img src=icon_img/',$_SESSION['user']['icon'],' alt="アイコン">'; 
+                        echo '<img src="icon_img/',$_SESSION['user']['icon'],'" alt="アイコン">'; 
                     }
             ?>
             </button>
@@ -40,14 +40,31 @@ require 'top/header.php';
 <?php
 $pdo = new PDO($connect, USER, PASS);
 
+// 最もいいね数が多い投稿を取得
+$topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph LEFT JOIN likes l ON ph.post_id = l.post_id LEFT JOIN user_management u ON ph.user_id = u.id GROUP BY ph.post_id ORDER BY like_count DESC, RAND() LIMIT 1');
+$topPostSql->execute();
+$topPost = $topPostSql->fetch();
+
 echo '<!-- スライド部分は人気の投稿、自分のチャットなどを表示予定 -->';
 echo '<div class="slideshow">';
-echo '<!-- imagesフォルダ内にある画像を表示  -->';
-echo '<!-- ここに4行追加 -->';
-echo '<img src="img/kikou.png">';
-echo '<img src="img/teitetsu.png">';
-echo '<img src="img/taiiku_boushi_tate.png">';
-echo '<img src="img/undoukai_pyramid.png">';
+
+if ($topPost) {
+    $topPostImagePath = !empty($topPost['picture']) ? 'img/' . htmlspecialchars($topPost['picture']) : 'img/no_img.png';
+    echo '<div class="slide">';
+    echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
+    echo '<div class="slide-info">';
+    echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name']), '</p>';
+    echo '<p>いいね数: ', htmlspecialchars($topPost['like_count']), '</p>';
+    echo '<p>コメント: ', htmlspecialchars($topPost['comment']), '</p>';
+    echo '</div>';
+    echo '</div>';
+}
+
+// 固定の画像を表示
+echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
@@ -62,8 +79,6 @@ $sql = $pdo->prepare('SELECT ph.*, (SELECT COUNT(*) FROM likes WHERE post_id = p
 $sql->execute();
 $image_count = 0;
 
-$image_count = 0; // 変数が宣言されていない場合の初期化
-
 foreach ($sql as $row) {
     if ($image_count % 3 == 0) {
         if ($image_count != 0) {
@@ -75,11 +90,7 @@ foreach ($sql as $row) {
     echo htmlspecialchars($row['user_id']), htmlspecialchars($row['comment']), '<br>';
     
     // 画像があるかどうかチェック
-    if (!empty($row['picture'])) {
-        $imagePath = 'img/' . htmlspecialchars($row['picture']);
-    } else {
-        $imagePath = 'img/no_img.png';
-    }
+    $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '"><br>';
     
     echo htmlspecialchars($row['post_date']), '<br>';
