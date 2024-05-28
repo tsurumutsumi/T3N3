@@ -8,7 +8,7 @@ $pdo = new PDO($connect, USER, PASS);
 
 // フォームから送信されたデータの受け取り
 $user_id = $_SESSION['user']['id']; // ユーザーID
-$comment = $_POST['comment']; // コメント
+$comment = isset($_POST['comment']) ? $_POST['comment'] : ''; // コメントが存在しない場合は空文字に設定
 $date = date("Y-m-d H:i:s"); // 現在の日時
 
 // 画像ファイルの処理 
@@ -27,6 +27,9 @@ if(isset($_FILES['pic']) && $_FILES['pic']['error'] === UPLOAD_ERR_OK) {
     } else {
         echo "<p>画像のアップロードに失敗しました。</p>";
     }
+} else {
+    // 画像が選択されていない場合はデフォルト画像を設定
+    $picture = 'no_img.png';
 }
 
 // データベースへの挿入文の準備と実行
