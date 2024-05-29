@@ -7,7 +7,13 @@ require 'top/header.php';
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
 
-
+<?php
+    if(isset($_SESSION['user']['id'])) {
+        echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
+    }else{
+        echo 'ログインしていません';
+    }
+?>
 
 <div class="button">
     <!-- マイページボタン -->
@@ -15,7 +21,13 @@ require 'top/header.php';
         <form action="mypage/mypage.php" method="post" >
             <button type="image" class="icon">
             <!-- 画像変更するならここ -->
-                <img src="img/icon.png" alt="Button Image" class="iconImg">
+            <?php 
+                    if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
+                        echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
+                    }else{
+                        echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン">'; 
+                    }
+            ?>
             </button>
         </form>
     </div>
@@ -26,50 +38,116 @@ require 'top/header.php';
 </div>
 
 <?php
-$pdo=new PDO($connect,USER,PASS);
+$pdo = new PDO($connect, USER, PASS);
 
-    echo '<!-- スライド部分は人気の投稿、自分のチャットなどを表示予定 -->';
-    echo '<div class="slideshow">';
-        echo '<!-- imagesフォルダ内にある画像を表示  -->';
-        echo '<!-- ここに4行追加 -->';
-            echo '<img src="img/kikou.png">';
-            echo '<img src="img/teitetsu.png">';
-            echo '<img src="img/taiiku_boushi_tate.png">';
-            echo '<img src="img/undoukai_pyramid.png">';
+// 最もいいね数が多い投稿を取得
+$topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph LEFT JOIN likes l ON ph.post_id = l.post_id LEFT JOIN user_management u ON ph.user_id = u.user_id GROUP BY ph.post_id ORDER BY like_count DESC, RAND() LIMIT 1');
+$topPostSql->execute();
+$topPost = $topPostSql->fetch();
+
+echo '<!-- スライド部分は人気の投稿、自分のチャットなどを表示予定 -->';
+echo '<div class="slideshow">';
+
+if ($topPost) {
+    $topPostImagePath = !empty($topPost['picture']) ? 'img/' . htmlspecialchars($topPost['picture']) : 'img/no_img.png';
+    echo '<div class="slide">';
+        echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
+        echo '<div class="slide-info">';
+            echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
+            echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
+            echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
+        echo '</div>';
     echo '</div>';
-        echo '<script src="js/jquery-3.7.0.min.js"></script>';
-        echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
-        echo '<script src="slick/slick.min.js"></script>';
-        echo '<script src="js/slideshow.js"></script>';
-        echo '<br><br><br>';
+}
 
-        echo '<!-- ↓投稿表示部分 -->';
-        echo '<!-- 全ユーザーの投稿 -->';
-        echo '<div class="post_list">';
-        $sql = $pdo->prepare('select * from post_history');//全ユーザーの投稿を表示
-        $sql->execute();
-        $image_count = 0;
-
-        foreach ($sql as $row) {
-            if ($image_count % 3 == 0) {
-                if ($image_count != 0) {
-                    echo '</div>'; // 前の行を閉じる
-                }
-                echo '<div class="image_row">'; // 新しい行を開始
-            }
-            echo '<div class="post">';
-            echo $row['user_id'], $row['comment'], '<br>';
-            echo '<img src="img/', $row['picture'], '"><br>';
-            echo $row['post_date'], '<br>';
-            echo '</div>';
-
-            $image_count++;
-        }
-        if ($image_count % 3 != 0) {
-            echo '</div>'; // 最後の行を閉じる
-        }
+// 固定の画像を表示
+    echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
+echo '<script src="js/jquery-3.7.0.min.js"></script>';
+echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
+echo '<script src="slick/slick.min.js"></script>';
+echo '<script src="js/slideshow.js"></script>';
+echo '<br><br><br>';
+
+echo '<!-- ↓投稿表示部分 -->';
+echo '<!-- 全ユーザーの投稿 -->';
+echo '<div class="post_list">';
+$sql = $pdo->prepare('SELECT ph.*, (SELECT COUNT(*) FROM likes WHERE post_id = ph.post_id) AS like_count FROM post_history ph');
+$sql->execute();
+$image_count = 0;
+
+foreach ($sql as $row) {
+    if ($image_count % 3 == 0) {
+        if ($image_count != 0) {
+            echo '</div>'; // 前の行を閉じる
+        }
+        echo '<div class="image_row">'; // 新しい行を開始
+    }
+    echo '<div class="post">';
+    echo htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '<br>';
+    
+    // 画像があるかどうかチェック
+    $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
+    echo '<img src="', $imagePath, '"><br>';
+    
+    echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
+
+    // Likeボタンを追加
+    echo '<button class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '">いいね</button>';
+    echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
+
+    echo '</div>';
+
+    $image_count++;
+}
+if ($image_count % 3 != 0) {
+    echo '</div>'; // 最後の行を閉じる
+}
+
 ?>
 
-<?php require 'top/footer.php'; ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', function() {
+            var postId = this.getAttribute('data-post-id');
+            var action = this.textContent === 'いいね' ? 'like' : 'unlike';
 
+            console.log('Button clicked');  // デバッグ用
+            console.log('Post ID:', postId);  // デバッグ用
+            console.log('Action:', action);  // デバッグ用
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "like/like.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log('Response received:', xhr.responseText);  // デバッグ用
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        var likeCountSpan = button.nextElementSibling;
+                        var likeCount = parseInt(likeCountSpan.textContent);
+                        if (action === 'like') {
+                            button.textContent = 'いいねを取り消す';
+                            likeCountSpan.textContent = likeCount + 1;
+                        } else {
+                            button.textContent = 'いいね';
+                            likeCountSpan.textContent = likeCount - 1;
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            xhr.send("post_id=" + postId + "&action=" + action);
+        });
+    });
+});
+</script>
+
+<?php require 'top/footer.php'; ?>

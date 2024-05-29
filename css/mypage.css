@@ -1,37 +1,46 @@
 /* ダウンロードしたフォント */
 @font-face {font-family: "ノスタルドット（M+）";
-    src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 body{
-    background-color: #008000;/*変更(5/17)*/
+    background-image: url(../img/maptile_mizu.png);
+	background-size: 150px;
     font-family: "ノスタルドット（M+）";
 }
+
 h1{
     font-size: 60px;
 	text-align: center;
     text-shadow: 0px 2px #c4eac2;/*追加(5/17)*/
 }
-.button{
+/* 画像の大きさ */
+.iconImg{
+    width: 150px;
+    height: 150px;
+	border-radius: 50%;
+	border:1px solid black;
+}
+/* ログアウト */
+.logout{
+    text-align: right;
+    margin-bottom: 10px;
+}
+/* ログアウト文字 */
+.loglink{
+    color: white;
+}
+/* 投稿とホームをflexで調整 */
+.mybutton{
     display: flex;
     margin: 20px;
 }
-/* 投稿ボタン */
-.post{
-        font-size: 18px;/*変更(5/17)*/
-        font-family: "ノスタルドット（M+）";
-        position: relative;
-        display: inline-block;
-        font-weight: bold;
-        padding: 8px 10px 5px 10px;
-        text-decoration: none;
-        color: #080808;
-        background: #bfbebe;
-        border-bottom: solid 4px #5e5d5c;
-        border-radius: 15px 15px 0 0;
-        transition: .4s;
+.button{
+    margin: auto;
 }
-/* ホームボタン */
-.post_2{
+/* 投稿ボタン */
+/* 名前変更(5/17) */
+.button_1{
+	width: 150px;
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -44,4 +53,55 @@ h1{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
+}
+/* ホームボタン */
+/* 名前変更(5/17) */
+.button_2{
+	width: 150px;
+	font-size: 18px;/*変更(5/17)*/
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
+/* プロフィール編集ボタン */
+.button_3{
+	width: 150px;
+    font-size: 18px;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+}
+
+/* デフォルトアイコンのとこ */
+.icon-option {
+	display: inline-block;
+	margin: 10px;
+	text-align: center;
+}
+.icon-option img {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ccc;
+}
+.icon-option input[type="radio"] {
+	display: none;
+}
+.icon-option input[type="radio"]:checked + img {
+	border: 2px solid #f00;
 }

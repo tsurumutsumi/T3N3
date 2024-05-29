@@ -1,15 +1,15 @@
 <?php
+echo '<link rel="stylesheet" href="../css/logout.css">';
 session_start();
-require '../top/header.php';
-
-// ログアウト処理
-if(isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
     unset($_SESSION['user']);
-    echo '<br><h2>ログアウトしました。</h2><br>'; 
+    echo '<script type="text/javascript">';
+    echo 'alert("ログアウトしました");';
+    echo 'window.location.href = "../home.php";';
+    echo '</script>';
+    exit();
 } else {
-    echo '<br><h2>すでにログアウトしています。</h2><br>';
+    header('Location: ../home.php');
+    exit();
 }
-
-echo '<a href="../home.php">ホームへ</a>';
-require '../top/footer.php';
 ?>

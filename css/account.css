@@ -1,13 +1,14 @@
 /* ダウンロードしたフォント */
 @font-face {font-family: "ノスタルドット（M+）";
-    src: url("/font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
 
 
-	/* 変更(5/17) */
 body{
-	background-color: #ffff2d;
+	background-image: url(../img/maptile_sabaku.png);
+	/* background-color: #ffff2d; */
 	font-family: "ノスタルドット（M+）";
-	border-bottom: #696969 8px dashed;
+	text-align: center;
+	/* border-bottom: #696969 8px dashed; */
 }
 /* 文字変更はここ */
 h1{
@@ -25,11 +26,15 @@ h1{
 	/* 文字の太さ */
 	font-weight: bold;
 }
+/* アイコンの写真大きさ */
 .icon{
     font-size: 30px;
     text-align: center;
 }
 
+.icon_img{
+	text-align: center;
+}
 /* アカウント情報入力の部分 */
 .back{
 	margin: auto;
@@ -115,7 +120,7 @@ h1{
 	margin: 40px 80px;
 }
 /* 入力する文字 */
-.ipname input[type='password']{
+.ipname input[type='text']{
     font: 20px sans-serif;/*変更(5/17)*/
 	box-sizing: border-box;
 	width: 100%;
@@ -123,7 +128,7 @@ h1{
 	/* 入力する文字の開始位置 */
 	padding-left: 8em;/*変更(5/17)*/
 }
-.ipname input[type='password']:focus{
+.ipname input[type='text']:focus{
     outline: none;
 }
 /* テキストボックス（中） */
@@ -177,7 +182,6 @@ h1{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
-	left: 40%;
 	width: 100px;
 	position: relative;
 	display: inline-block;
