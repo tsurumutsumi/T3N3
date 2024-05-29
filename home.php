@@ -75,8 +75,13 @@ echo '<br><br><br>';
 echo '<!-- ↓投稿表示部分 -->';
 echo '<!-- 全ユーザーの投稿 -->';
 echo '<div class="post_list">';
-$sql = $pdo->prepare('SELECT ph.*, (SELECT COUNT(*) FROM likes WHERE post_id = ph.post_id) AS like_count FROM post_history ph');
+$sql = $pdo->prepare('
+    SELECT ph.*, u.icon, (SELECT COUNT(*) FROM likes WHERE post_id = ph.post_id) AS like_count
+    FROM post_history ph
+    LEFT JOIN user_management u ON ph.user_id = u.user_id
+');
 $sql->execute();
+
 $image_count = 0;
 
 foreach ($sql as $row) {
@@ -87,15 +92,20 @@ foreach ($sql as $row) {
         echo '<div class="image_row">'; // 新しい行を開始
     }
     echo '<div class="post">';
+
+    // アイコン表示 (user_management.icon フィールドを使用するように更新)
+    $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
+    echo '<img src="', $iconPath, '" width=100px height=100px>';
+
     echo htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '<br>';
-    
+
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '"><br>';
-    
+
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
-    // Likeボタンを追加
+    // いいねボタンを追加
     echo '<button class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '">いいね</button>';
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
 
@@ -106,7 +116,6 @@ foreach ($sql as $row) {
 if ($image_count % 3 != 0) {
     echo '</div>'; // 最後の行を閉じる
 }
-
 ?>
 
 <script>
