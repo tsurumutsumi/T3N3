@@ -35,8 +35,8 @@ body{
 /* 画像の大きさ */
 .iconImg{
     margin: 20px;
-    width: 100px;
-    height: 100px;
+	width: 90px;
+	height: auto;/* 高さは自動 */
 	/* border-radius: 50%; */
 	border:5px double black;
     padding: 5px;
