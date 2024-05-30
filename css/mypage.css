@@ -39,6 +39,7 @@ body{
     height: 100px;
 	/* border-radius: 50%; */
 	border:5px double black;
+    padding: 5px;
     background-color: #67d0dcc0;
 }
 /* ログアウト */
