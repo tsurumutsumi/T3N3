@@ -360,6 +360,7 @@ body{
     margin: 20px;
     left: 40%;
 	width: 150px;
+	height: 50px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -374,6 +375,7 @@ body{
 /* 戻るボタン */
 .button_1{
 	width: 150px;
+	height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
 	position: relative;
