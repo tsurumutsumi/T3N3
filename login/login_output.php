@@ -19,7 +19,8 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
                 'name' => $row['user_name'],
                 'pass' => $row['password'],
                 'mail' => $row['mail'],
-                'icon' => $row['icon']
+                'icon' => $row['icon'],
+                'bio'  => $row['self_introduction']
             ];
             // ログインできたらhome.phpに飛ばす
             echo '<script>

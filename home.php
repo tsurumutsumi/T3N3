@@ -41,7 +41,9 @@ require 'top/header.php';
 $pdo = new PDO($connect, USER, PASS);
 
 // 最もいいね数が多い投稿を取得
-$topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph LEFT JOIN likes l ON ph.post_id = l.post_id LEFT JOIN user_management u ON ph.user_id = u.user_id GROUP BY ph.post_id ORDER BY like_count DESC, RAND() LIMIT 1');
+$topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph 
+                            LEFT JOIN likes l ON ph.post_id = l.post_id LEFT JOIN user_management u ON ph.user_id = u.user_id GROUP BY ph.post_id 
+                            ORDER BY like_count DESC, RAND() LIMIT 1');
 $topPostSql->execute();
 $topPost = $topPostSql->fetch();
 
@@ -93,11 +95,14 @@ foreach ($sql as $row) {
     }
     echo '<div class="post">';
 
-    // アイコン表示 (user_management.icon フィールドを使用するように更新)
+    // アイコン
+    echo '<a href="mypage/mypage.php?user_id=', htmlspecialchars($row['user_id']), '">';
     $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
     echo '<img src="', $iconPath, '" width=100px height=100px>';
+    
+    echo htmlspecialchars($row['user_id'] ?? '不明');
+    echo '</a>';
 
-    echo htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '<br>';
 
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
