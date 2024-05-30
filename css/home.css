@@ -80,7 +80,8 @@ body::after {
     top: 10px;
     width:100px;
     height: 100px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
+    border:5px double black;
     background-color: #d6e0bac0;
 }
 /* アイコンの画像の大きさ */
