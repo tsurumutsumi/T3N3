@@ -7,39 +7,74 @@ body{
 	background-size: 150px;
     font-family: "ノスタルドット（M+）";
 }
-
-h1{
-    font-size: 60px;
-	text-align: center;
-    text-shadow: 0px 2px #c4eac2;/*追加(5/17)*/
+.history_title{
+    text-align: center;
+    font-size: 25px;
+}
+/* ユーザー名 */
+.head_2{
+    font-size: 25px;
+    /* position: relative; */
+    /* left: 30px;
+    margin: 20px; */
+}
+.profile{
+    display: flex;
+}
+/* 投稿数・bio・フォロー・フォロワーを囲む */
+.text{
+    color: #fff;
+    padding: 15px;
+    border: 5px solid #fff;
+    background-color: #080808;
+    display: inline-block;
+    /* border-radius: 10px; */
+    margin: 20px;
 }
 /* 画像の大きさ */
 .iconImg{
-    width: 150px;
-    height: 150px;
-	border-radius: 50%;
-	border:1px solid black;
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+	/* border-radius: 50%; */
+	border:5px double black;
+    background-color: #67d0dcc0;
 }
 /* ログアウト */
 .logout{
-    text-align: right;
-    margin-bottom: 10px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: #000;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    /* text-align: right;
+    margin-bottom: 10px; */
 }
 /* ログアウト文字 */
-.loglink{
-    color: white;
+.logout_link{
+    position: relative;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    bottom: -25px;
+    right: -13px;
 }
 /* 投稿とホームをflexで調整 */
-.mybutton{
+.head{
     display: flex;
-    margin: 20px;
+    /* justify-content: flex-end; */
+    /* margin: 20px; */
 }
-.button{
-    margin: auto;
+.head>div:nth-of-type(2){
+    margin-right: auto;
 }
+
 /* 投稿ボタン */
 /* 名前変更(5/17) */
 .button_1{
+    margin: 20px;
 	width: 150px;
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
@@ -57,6 +92,7 @@ h1{
 /* ホームボタン */
 /* 名前変更(5/17) */
 .button_2{
+    margin: 20px;
 	width: 150px;
 	font-size: 18px;/*変更(5/17)*/
 	font-family: "ノスタルドット（M+）";
@@ -73,6 +109,24 @@ h1{
 }
 /* プロフィール編集ボタン */
 .button_3{
+    margin: 20px;
+	width: 150px;
+    font-size: 18px;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+}
+/* チャットボタン */
+.button_4{
+    margin: 20px;
 	width: 150px;
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
