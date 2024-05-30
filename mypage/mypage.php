@@ -46,22 +46,29 @@ ob_end_flush(); // 出力バッファリングを終了
             </div>
             <div class="head_3">
                 <form action="../home.php" method="post">
-                    <input type="submit" value="HOME" class="button_2">
+                    <input type="submit" value="HOME" class="head_button">
                 </form>
             </div>
             <div class="head_4">
                 <form action="profile_change.php" method="post">
-                        <input type="submit" value="UPDATE" class="button_3">
+                        <input type="submit" value="UPDATE" class="head_button">
                 </form>
             </div>
             <div class="head_5">
                 <form action="../post/post.php" method="post">
-                    <input type="submit" value="N³EW POST" class="button_1">
+                    <input type="submit" value="N³EW POST" class="head_button">
                 </form>
             </div>
+            <!-- 形のみです -->
             <div class="head_6">
                 <form action="../talk/talk.php" method="post">
-                    <input type="submit" value="T³ALK" class="button_4">
+                    <input type="submit" value="T³ALK" class="head_button">
+                </form>
+            </div>
+            <!-- 形のみです(いいねした投稿を表示) -->
+            <div class="head_7">
+                <form action="../good/good.php" method="post">
+                    <input type="submit" value="GOOD" class="head_button">
                 </form>
             </div>
         </div>
