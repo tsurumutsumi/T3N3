@@ -32,9 +32,16 @@ require 'top/header.php';
         </form>
     </div>
     <!-- ログインボタン -->
-    <div class="login">
-        <input type="submit" onclick="location.href='./login/login.php'" value="ログイン" class="button_1">
-    </div>
+    <?php
+    if (!isset($_SESSION['user']['id'])) {
+        echo '<div class="login">';
+        echo '<input type="submit" onclick="location.href=\'./login/login.php\'" value="ログイン" class="button_1">';
+        echo '</div>';
+    } else {
+        // ログインしている場合の処理
+    }
+    ?>
+
 </div>
 
 <?php
