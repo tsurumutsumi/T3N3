@@ -37,7 +37,7 @@ h1{
 /* アイコン画像の大きさ */
 .icon_img{
 	width: 90px;
-	height: 90px;
+	height: auto;/* 高さは自動 */
 }
 /* label{
 	border-radius: 10px;
