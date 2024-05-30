@@ -12,11 +12,12 @@ body{
     font-size: 25px;
 }
 /* ユーザー名 */
-.head_2{
+.user_name{
     font-size: 25px;
-    /* position: relative; */
-    /* left: 30px;
-    margin: 20px; */
+    position: relative;
+    top: 40px;
+    left: 20px;
+    
 }
 .profile{
     display: flex;
