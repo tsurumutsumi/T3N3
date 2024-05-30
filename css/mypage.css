@@ -73,9 +73,9 @@ body{
     margin-right: auto;
 }
 
-/* 投稿ボタン */
-/* 名前変更(5/17) */
-.button_1{
+/* ボタンデザイン(デザイン変わらないので一つにまとめる) */
+/* 名前変更(5/30) */
+.head_button{
     margin: 20px;
 	width: 150px;
     font-size: 18px;/*変更(5/17)*/
@@ -92,11 +92,10 @@ body{
     transition: .4s;
 }
 /* ホームボタン */
-/* 名前変更(5/17) */
-.button_2{
+/* .button_2{
     margin: 20px;
 	width: 150px;
-	font-size: 18px;/*変更(5/17)*/
+	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
 	position: relative;
 	display: inline-block;
@@ -108,12 +107,12 @@ body{
 	border-bottom: solid 4px #5e5d5c;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
-}
+} */
 /* プロフィール編集ボタン */
-.button_3{
+/* .button_3{
     margin: 20px;
 	width: 150px;
-    font-size: 18px;/*変更(5/17)*/
+    font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
     display: inline-block;
@@ -125,12 +124,12 @@ body{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
-}
+} */
 /* チャットボタン */
-.button_4{
+/* .button_4{
     margin: 20px;
 	width: 150px;
-    font-size: 18px;/*変更(5/17)*/
+    font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
     display: inline-block;
@@ -142,7 +141,7 @@ body{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
-}
+} */
 
 /* デフォルトアイコンのとこ */
 .icon-option {
