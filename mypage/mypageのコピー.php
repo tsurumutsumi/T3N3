@@ -37,55 +37,40 @@ ob_end_flush(); // 出力バッファリングを終了
 ?>
 <div class="container">
     <?php if (isset($post_count)): ?>
-        <div class="head">
-            <div class="head_1">
-                <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン" class="iconImg">
-            </div>
-            <div clacc="head_2">
-                <?php echo '<p class="user_name">' . $_SESSION['user']['name'] . '</p>' ?>
-            </div>
-            <div class="head_3">
-                <form action="../home.php" method="post">
-                    <input type="submit" value="HOME" class="button_2">
-                </form>
-            </div>
-            <div class="head_4">
-                <form action="profile_change.php" method="post">
-                        <input type="submit" value="UPDATE" class="button_3">
-                </form>
-            </div>
-            <div class="head_5">
-                <form action="../post/post.php" method="post">
-                    <input type="submit" value="N³EW POST" class="button_1">
-                </form>
-            </div>
-            <div class="head_6">
-                <form action="../talk/talk.php" method="post">
-                    <input type="submit" value="T³ALK" class="button_4">
-                </form>
-            </div>
-        </div>
         <div class="profile">
-            <!-- <div class="information"> -->
-                <!-- bio: -->
-                    <?php 
-                        if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
-                            echo '<div class="text"><span>bio:</span>NONE</div>';
-                        } else {
-                            echo '<div class="text"><span>bio:</span>'.$_SESSION['user']['bio'].'</div>'; 
-                        }
-                    ?>
-                <div class="text"><span>POST:</span><?php echo $post_count; ?></div>
-                <div class="text"><span>FOLLOW：</span>12</div>
-                <div class="text"><span>FOLLOWER：10</div>
+            <form action="profile_change.php" method="post">
+                <input type="submit" value="編集" class="button_3">
+            </form>
+            <?php echo '<h2>' . $_SESSION['user']['name'] . '</h2>' ?>
+            <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン" class="iconImg"> 
+            <p>bio:
+                <?php 
+                    if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
+                        echo '記載なし';
+                    } else {
+                        echo $_SESSION['user']['bio']; 
+                    }
+                ?>
+            </p>
+            <p>とうこうすう: <?php echo $post_count; ?></p>
         </div>
-        <!-- </div> -->
     <?php endif; ?>
-    <!-- <a href="#" onclick="logoutchack()">ログアウト</a> -->
+    <div class="mybutton">
+    <?php
+        echo '<form action="../post/post.php" method="post">';
+        echo '<input type="submit" value="とうこうする" class="button_1">';
+        echo '</form>';
+
+        echo '<form action="../home.php" method="post">';
+        echo '<input type="submit" value="ホームへ" class="button_2">';
+        echo '</form>';
+    ?>
+    </div>
+    <a href="#" onclick="logoutchack()">ログアウト</a>
     <script>
         function logoutchack() {
             if (confirm("ログアウトしますか？") ) {
-                window.location.href = "https://aso2201167.sub.jp/src4/logout/logout_output.php";
+                window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
             }
         }
         function deletePost(postId) {
@@ -126,9 +111,7 @@ ob_end_flush(); // 出力バッファリングを終了
         }
     </script>
     <?php if (isset($posts)):
-        echo '<div class="history_title">';
-            echo '<p>POST HISTORY...</p>';
-        echo '</div>';
+        echo '<h2>とうこうりれき</h2>';
         echo '<div class="posts">';
         foreach ($posts as $post):
             echo '<div class="post" id="post-' . $post['post_id'] . '">';
@@ -148,7 +131,4 @@ ob_end_flush(); // 出力バッファリングを終了
     endif;
 echo '</div>';
 ?>
-<div class="logout">
-    <a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>
-</div>
 <?php require '../top/footer.php'; ?>

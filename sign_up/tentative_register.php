@@ -12,13 +12,13 @@ require '../top/header.php';?>
 <!-- 仮登録 -->
 <div class="back">
     <form action="sign_up.php" method="post">
-        <h1>かりとうろく</h1>
+        <h1>仮登録</h1>
         <div class="iptxt">
             <input type="text" name="mail" placeholder="" class="ml">
             <label>メールアドレス</label>
             <span class="focus_line"></span>
         </div>
-        <input type="submit" value="メールそうしん" class="button_1">
+        <input type="submit" value="メール送信" class="button_1">
     </form>
 </div>
 <?php require '../top/footer.php';?>

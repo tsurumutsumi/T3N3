@@ -9,7 +9,9 @@ if (isset($_SESSION['user'])) {
     echo '</script>';
     exit();
 } else {
-    header('Location: ../home.php');
+    echo '<script type="text/javascript">';
+    echo 'window.location.href = "../home.php";';
+    echo '</script>';
     exit();
 }
 ?>

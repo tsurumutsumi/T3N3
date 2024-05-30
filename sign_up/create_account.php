@@ -67,7 +67,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
                 echo '<input type="radio" name="icon" value="' . $iconDir . $icon . '">';
                 echo '<img src="' . $iconDir . $icon . '" alt="アイコン">';
                 echo '</label>';
-                echo '</div>';
+                echo '</div>'; 
             }
         }
     ?>

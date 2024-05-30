@@ -11,7 +11,7 @@ require '../top/header.php';
 <!-- 仮登録 -->
 <div class="back">
     <form action="create_account.php" method="post">
-        <h1>アカウントさくせい</h1>
+        <h1>アカウント作成</h1>
         <div class="iptxt">
             <input type="text" name="mail" placeholder="" class="ml">
             <label>メールアドレス</label>
