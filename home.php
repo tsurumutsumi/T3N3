@@ -25,7 +25,7 @@ require 'top/header.php';
                     if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
                         echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
                     }else{
-                        echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン">'; 
+                        echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン" class="iconImg">'; 
                     }
             ?>
             </button>
