@@ -18,7 +18,6 @@ if (isset($_SESSION['user']['id'])) {
 <div class="button">
     <!-- マイページボタン -->
     <div class="mypage">
-<<<<<<< HEAD
         <form action="mypage/mypage.php" method="post" >
             <button type="image" class="icon">
             <!-- 画像変更するならここ -->
@@ -29,18 +28,6 @@ if (isset($_SESSION['user']['id'])) {
                         echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン" class="iconImg">'; 
                     }
             ?>
-=======
-        <form action="mypage/mypage.php" method="post">
-            <button type="submit" class="icon">
-                <!-- 画像変更するならここ -->
-                <?php
-                if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
-                    echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
-                } else {
-                    echo '<img src="icon_img/', htmlspecialchars($_SESSION['user']['icon']), '" alt="アイコン">';
-                }
-                ?>
->>>>>>> 3e93bfc9d7686157e607e1ec0413b95807188d5b
             </button>
         </form>
     </div>
