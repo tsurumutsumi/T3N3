@@ -41,6 +41,7 @@ textarea{
     font-family: "ノスタルドット（M+）";
     margin: 20px;
 	width: 150px;
+    height: 50px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -56,6 +57,7 @@ textarea{
 /* 戻るボタン */
 .button_1{
     width: 150px;
+    height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
 	position: relative;
@@ -73,6 +75,7 @@ textarea{
 .mybutton{
     margin: 10px;
 	width: 150px;
+    height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -90,6 +93,7 @@ textarea{
 .homebutton{
     margin: 10px;
 	width: 150px;
+    height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
