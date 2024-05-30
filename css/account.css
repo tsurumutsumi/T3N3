@@ -26,15 +26,24 @@ h1{
 	/* 文字の太さ */
 	font-weight: bold;
 }
-/* アイコンの写真大きさ */
-.icon{
-    font-size: 30px;
-    text-align: center;
+/* アイコンの配置 */
+.icon-option{
+	display: inline-block;
+	border-radius: 10px;
+	border: #000;
+	margin: 10px;
+	/* flex-wrap: wrap; */
 }
-
+/* アイコン画像の大きさ */
 .icon_img{
-	text-align: center;
+	width: 90px;
+	height: 90px;
 }
+/* label{
+	border-radius: 10px;
+	border: #000;
+	margin: 10px;
+} */
 /* アカウント情報入力の部分 */
 .back{
 	margin: auto;
