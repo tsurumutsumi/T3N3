@@ -85,7 +85,7 @@ ob_end_flush(); // 出力バッファリングを終了
     <script>
         function logoutchack() {
             if (confirm("ログアウトしますか？") ) {
-                window.location.href = "https://aso2201167.sub.jp/src4/logout/logout_output.php";
+                window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
             }
         }
         function deletePost(postId) {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require 'top/db-connect.php';
 require 'top/header.php'; 
@@ -8,26 +8,26 @@ require 'top/header.php';
 <link rel="stylesheet" href="slick/slick-theme.css">
 
 <?php
-    if(isset($_SESSION['user']['id'])) {
-        echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
-    }else{
-        echo 'ログインしていません';
-    }
+if (isset($_SESSION['user']['id'])) {
+    echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
+} else {
+    echo 'ログインしていません';
+}
 ?>
 
 <div class="button">
     <!-- マイページボタン -->
     <div class="mypage">
-        <form action="mypage/mypage.php" method="post" >
-            <button type="image" class="icon">
-            <!-- 画像変更するならここ -->
-            <?php 
-                    if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
-                        echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
-                    }else{
-                        echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン">'; 
-                    }
-            ?>
+        <form action="mypage/mypage.php" method="post">
+            <button type="submit" class="icon">
+                <!-- 画像変更するならここ -->
+                <?php
+                if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
+                    echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
+                } else {
+                    echo '<img src="icon_img/', htmlspecialchars($_SESSION['user']['icon']), '" alt="アイコン">';
+                }
+                ?>
             </button>
         </form>
     </div>
@@ -41,7 +41,6 @@ require 'top/header.php';
         // ログインしている場合の処理
     }
     ?>
-
 </div>
 
 <?php
@@ -60,20 +59,20 @@ echo '<div class="slideshow">';
 if ($topPost) {
     $topPostImagePath = !empty($topPost['picture']) ? 'img/' . htmlspecialchars($topPost['picture']) : 'img/no_img.png';
     echo '<div class="slide">';
-        echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
-        echo '<div class="slide-info">';
-            echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
-            echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
-            echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
-        echo '</div>';
+    echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
+    echo '<div class="slide-info">';
+    echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
+    echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
+    echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
+    echo '</div>';
     echo '</div>';
 }
 
 // 固定の画像を表示
-    echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
-    echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
-    echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
-    echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
+echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
@@ -102,18 +101,18 @@ foreach ($sql as $row) {
     }
     echo '<div class="post">';
 
-    // アイコン
-    echo '<a href="mypage/mypage.php?user_id=', htmlspecialchars($row['user_id']), '">';
+    // 投稿主のマイページへとばす
+    echo '<a href="mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
     $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
-    echo '<img src="', $iconPath, '" width=100px height=100px>';
-    
+    echo '<img src="' . $iconPath . '" width="100px" height="100px">';
     echo htmlspecialchars($row['user_id'] ?? '不明');
     echo '</a>';
 
-
     // 画像があるかどうかチェック
-    $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
+    $imagePath = !empty($row['picture']) ? 'post_img/' . htmlspecialchars($row['picture']) : 'post_img/no_img.png';
     echo '<img src="', $imagePath, '"><br>';
+
+    echo htmlspecialchars($row['comment'] ?? '記載なし'), '<br>';
 
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 

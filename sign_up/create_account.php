@@ -58,7 +58,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
         $specifiedImages = ['bunnygirl.png', 'devil.png', 'hime_child.png', 'hime.png', 'kishi.png',
          'madoshi.png', 'maid.png', 'murabito_man.png', 'murabito_woman.png', 'ningyo.png', 'oji.png', 
          'osama.png', 'shinigami.png', 'shituji.png', 'sister.png', 'skeleton.png', 'tenshi.png', 'tozoku.png', 
-         'yosei.png', 'yusha.png']; // ここに出力したい画像のファイル名を指定してください
+         'yosei.png']; // ここに出力したい画像のファイル名を指定してください
         $icons = scandir($iconDir);
         foreach ($icons as $icon) {
             if ($icon !== '.' && $icon !== '..' && in_array($icon, $specifiedImages)) {
