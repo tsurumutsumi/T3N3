@@ -186,12 +186,11 @@ h1{
 	color:#c4a705;
 }
 /* ----ここまで---- */
-/* 送信ボタン */
-.button_1{
+.create_button{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
-	width: 150px;
+	width: 100px;
 	height: 50px;
 	position: relative;
 	display: inline-block;
@@ -203,4 +202,9 @@ h1{
 	border-bottom: solid 4px #5e5d5c;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
+	overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.create_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }
