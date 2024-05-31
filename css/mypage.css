@@ -77,9 +77,9 @@ body{
     margin-right: auto;
 }
 
-/* ボタンデザイン(デザイン変わらないので一つにまとめる) */
-/* 名前変更(5/30) */
-.head_button{
+/* ボタン統一解除(5/31) */
+/* 投稿ボタン */
+.post_button{
     margin: 20px;
 	width: 150px;
     font-size: 18px;/*変更(5/17)*/
@@ -94,9 +94,15 @@ body{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
+	overflow: hidden; /* オーバーフローを隠す */
 }
+/* ボタンのホバースタイル */
+.post_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
 /* ホームボタン */
-/* .button_2{
+.home_button{
     margin: 20px;
 	width: 150px;
 	font-size: 18px;
@@ -111,9 +117,15 @@ body{
 	border-bottom: solid 4px #5e5d5c;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
-} */
+	overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.home_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
 /* プロフィール編集ボタン */
-/* .button_3{
+.update_button{
     margin: 20px;
 	width: 150px;
     font-size: 18px;
@@ -128,9 +140,15 @@ body{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
-} */
+    overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.update_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
 /* チャットボタン */
-/* .button_4{
+.talk_button{
     margin: 20px;
 	width: 150px;
     font-size: 18px;
@@ -145,7 +163,35 @@ body{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
-} */
+    overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.talk_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* いいね一覧ボタン */
+.good_button{
+    margin: 20px;
+	width: 150px;
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border-bottom: solid 4px #5e5d5c;
+    border-radius: 15px 15px 0 0;
+    transition: .4s;
+    overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.good_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
 
 /* デフォルトアイコンのとこ */
 .icon-option {
