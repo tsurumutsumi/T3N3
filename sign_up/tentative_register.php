@@ -2,10 +2,13 @@
 // session_start();
 require '../top/db-connect.php';
 require '../top/header.php';?>
+
+<script src="../js/login.js"></script>
 <link rel="stylesheet" href="../css/sign.css">
+
 <!-- 戻るボタン -->
-<div class="return">
-    <input type="submit" onclick="location.href='../login/login.php'" value="ログインへ" class="button">
+<div class="return" id="button_1">
+    <button type="submit" onclick="location.href='../login/login.php'" class="return_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">戻る</button>
 </div>
 <!-- 追加(5/17) -->
 <p class="title">SPT</p>
@@ -18,7 +21,7 @@ require '../top/header.php';?>
             <label>メールアドレス</label>
             <span class="focus_line"></span>
         </div>
-        <input type="submit" value="メール送信" class="button_1">
+            <button type="submit" class="send_button" data-hover="▶">メール送信</button>
     </form>
 </div>
 <?php require '../top/footer.php';?>
