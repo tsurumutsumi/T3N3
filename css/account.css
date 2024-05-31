@@ -37,7 +37,7 @@ h1{
 /* アイコン画像の大きさ */
 .icon_img{
 	width: 90px;
-	height: 90px;
+	height: auto;/* 高さは自動 */
 }
 /* label{
 	border-radius: 10px;
@@ -191,7 +191,8 @@ h1{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
-	width: 100px;
+	width: 150px;
+	height: 50px;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;

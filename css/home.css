@@ -78,8 +78,9 @@ body::after {
     position: relative;
     left: 10px;
     top: 10px;
-    width:100px;
-    height: 100px;
+    width: 118px;
+    height: auto; /* 高さは自動 */
+    padding: 5px 0px;
     /* border-radius: 50%; */
     border:5px double black;
     background-color: #d6e0bac0;
@@ -87,10 +88,8 @@ body::after {
 /* アイコンの画像の大きさ */
 .iconImg{
     position: relative;
-    left: -7px;
-    top: -2px;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: auto; /* 高さは自動 */
 }
 /* ログインボタン */
 .button_1{
