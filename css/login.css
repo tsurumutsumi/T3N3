@@ -199,8 +199,8 @@ p{
 }
 /* ----ここまで---- */
 
-/* 新規登録ボタン */
-.button{
+/* 戻るボタン */
+.return_button{
 	width: 150px;
 	height: 50px;
     font-size: 18px;/*変更(5/17)*/
@@ -212,12 +212,29 @@ p{
 	text-decoration: none;
 	color: #080808;
 	background: #bfbebe;
-	border-bottom: solid 4px #5e5d5c;
+	border-bottom: solid 4px #8f8e8e;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
 }
 /* ログインボタン */
-.button_1{
+.sign_button{
+	width: 150px;
+	height: 50px;
+    font-size: 18px;/*変更(5/17)*/
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #8f8e8e;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
+/* ログインボタン */
+.login_button{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
@@ -231,25 +248,12 @@ p{
 	text-decoration: none;
 	color: #080808;
 	background: #bfbebe;
-	border-bottom: solid 4px #5e5d5c;
+	border-bottom: solid 4px #8f8e8e;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
+	overflow: hidden; /* オーバーフローを隠す */
 }
-/* 戻るボタン */
-.no_login{
-    font-size: 18px;
-    font-family: "ノスタルドット（M+）";
-    margin: 25px;
-	left: 45%;
-	width: 150px;
-	height: 50px;
-	position: relative;
-	display: inline-block;
-	font-weight: bold;
-	text-decoration: none;
-	color: #080808;
-	background: #bfbebe;
-	border-bottom: solid 4px #5e5d5c;
-	border-radius: 15px 15px 0 0;
-	transition: .4s;
+/* ボタンのホバースタイル */
+.login_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }
