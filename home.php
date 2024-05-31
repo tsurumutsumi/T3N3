@@ -7,26 +7,19 @@ require 'top/header.php';
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
 
-<?php
-if (isset($_SESSION['user']['id'])) {
-    echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
-} else {
-    echo 'ログインしていません';
-}
-?>
-
 <div class="button">
     <!-- マイページボタン -->
     <div class="mypage">
         <form action="mypage/mypage.php" method="post" >
             <button type="image" class="icon">
-            <!-- 画像変更するならここ -->
             <?php 
-                    if(!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])){
+                    if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
                         echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
-                    }else{
-                        echo '<img src="icon_img/',htmlspecialchars($_SESSION['user']['icon']),'" alt="アイコン" class="iconImg">'; 
-                    }
+                    } else {
+                        $file_info = pathinfo($_SESSION['user']['icon']);
+                        $file_name = $file_info['filename'];
+                        echo '<img src="icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
+                    }      
             ?>
             </button>
         </form>
@@ -42,6 +35,14 @@ if (isset($_SESSION['user']['id'])) {
     }
     ?>
 </div>
+
+<?php
+if (isset($_SESSION['user']['id'])) {
+    echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
+} else {
+    echo 'ログインしていません';
+}
+?>
 
 <?php
 $pdo = new PDO($connect, USER, PASS);
