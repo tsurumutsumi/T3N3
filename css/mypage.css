@@ -19,6 +19,10 @@ body{
     left: 20px;
     
 }
+/* 投稿数やフォロー数の値のみ大きく */
+.value{
+    font-size: 25px;
+}
 .profile{
     display: flex;
 }
