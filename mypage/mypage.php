@@ -27,9 +27,9 @@ if (isset($_SESSION['user']['id'])) {
 }
 else {
     echo 'ホーム画面に戻り、ログインしてください';
-    echo '<form action="../home.php" method="post">';
-        echo '<input type="submit" value="ホームへ" class="button_2">';
-    echo '</form>';
+        echo '<form action="../home.php" method="post">';
+            echo '<button type="submit" class="home_button" data-hover="▶">HOME</button>';
+        echo '</form>';
     // echo '<form action="../login/login.php" method="post"><button type="submit">ログイン</button></form>';
 }
 
