@@ -6,6 +6,8 @@ require 'top/header.php';
 <link rel="stylesheet" href="./css/home.css">
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
+<script src="./js/home.js"></script>
+
 
 <div class="button">
     <!-- マイページボタン -->
@@ -27,8 +29,8 @@ require 'top/header.php';
     <!-- ログインボタン -->
     <?php
     if (!isset($_SESSION['user']['id'])) {
-        echo '<div class="login">';
-        echo '<input type="submit" onclick="location.href=\'./login/login.php\'" value="ログイン" class="button_1">';
+        echo '<div class="login" id="button_1">';
+        echo '<button type="submit" onclick="location.href=\'./login/login.php\'" class="login_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">ログイン</button>';
         echo '</div>';
     } else {
         // ログインしている場合の処理

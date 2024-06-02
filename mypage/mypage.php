@@ -27,9 +27,9 @@ if (isset($_SESSION['user']['id'])) {
 }
 else {
     echo 'ホーム画面に戻り、ログインしてください';
-    echo '<form action="../home.php" method="post">';
-        echo '<input type="submit" value="ホームへ" class="button_2">';
-    echo '</form>';
+        echo '<form action="../home.php" method="post">';
+            echo '<button type="submit" class="home_button" data-hover="▶">HOME</button>';
+        echo '</form>';
     // echo '<form action="../login/login.php" method="post"><button type="submit">ログイン</button></form>';
 }
 
@@ -46,29 +46,29 @@ ob_end_flush(); // 出力バッファリングを終了
             </div>
             <div class="head_3">
                 <form action="../home.php" method="post">
-                    <input type="submit" value="HOME" class="head_button">
+                    <button type="submit" class="home_button" data-hover="▶">HOME</button>
                 </form>
             </div>
             <div class="head_4">
                 <form action="profile_change.php" method="post">
-                        <input type="submit" value="UPDATE" class="head_button">
+                    <button type="submit" class="update_button" data-hover="▶">UPDATE</button>
                 </form>
             </div>
             <div class="head_5">
                 <form action="../post/post.php" method="post">
-                    <input type="submit" value="N³EW POST" class="head_button">
+                    <button type="submit" class="post_button" data-hover="▶">N³EW POST</button>
                 </form>
             </div>
             <!-- 形のみです -->
             <div class="head_6">
                 <form action="../talk/talk.php" method="post">
-                    <input type="submit" value="T³ALK" class="head_button">
+                    <button type="submit" class="talk_button" data-hover="▶">T³ALK</button>
                 </form>
             </div>
             <!-- 形のみです(いいねした投稿を表示) -->
             <div class="head_7">
                 <form action="../good/good.php" method="post">
-                    <input type="submit" value="GOOD" class="head_button">
+                    <button type="submit" class="good_button" data-hover="▶">GOOD</button>
                 </form>
             </div>
         </div>
@@ -77,14 +77,14 @@ ob_end_flush(); // 出力バッファリングを終了
                 <!-- bio: -->
                     <?php 
                         if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
-                            echo '<div class="text"><span>bio:</span>NONE</div>';
+                            echo '<div class="text">bio：<span class="value">NONE</span></div>';
                         } else {
-                            echo '<div class="text"><span>bio:</span>'.$_SESSION['user']['bio'].'</div>'; 
+                            echo '<div class="text">bio：<span class="value">'.$_SESSION['user']['bio'].'</span></div>'; 
                         }
                     ?>
-                <div class="text"><span>POST:</span><?php echo $post_count; ?></div>
-                <div class="text"><span>FOLLOW：</span>12</div>
-                <div class="text"><span>FOLLOWER：10</div>
+                <div class="text">POST：<span class="value"><?php echo $post_count; ?></span></div>
+                <div class="text">FOLLOW：<span class="value">12</span></div>
+                <div class="text">FOLLOWER：<span class="value">10</span></div>
         </div>
         <!-- </div> -->
     <?php endif; ?>

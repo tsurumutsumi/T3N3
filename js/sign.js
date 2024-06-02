@@ -10,4 +10,4 @@ function changeText(button, isHovering) {
         button.textContent = "戻る";
       } 
     }
-}
+  }

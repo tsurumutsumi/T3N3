@@ -92,7 +92,7 @@ body::after {
     height: auto; /* 高さは自動 */
 }
 /* ログインボタン */
-.button_1{
+.login_button{
     margin: 10px;
 	width: 150px;
     height: 50px;/* 5/28 */

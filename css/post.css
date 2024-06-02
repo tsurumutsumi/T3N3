@@ -35,8 +35,9 @@ textarea{
     margin: 20px;
     justify-content: center;
 }
+
 /* 投稿ボタン */
-.button{
+.post_button{
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     margin: 20px;
@@ -52,10 +53,15 @@ textarea{
 	border-bottom: solid 4px #5e5d5c;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
+    overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.send_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }
 /* 各ボタン追加(5/22) */
 /* 戻るボタン */
-.button_1{
+.return_button{
     width: 150px;
     height: 50px;
     font-size: 18px;
@@ -72,7 +78,7 @@ textarea{
 	transition: .4s;
 }
 /* マイページボタン */
-.mybutton{
+.mypage_button{
     margin: 10px;
 	width: 150px;
     height: 50px;
@@ -88,9 +94,15 @@ textarea{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
+    overflow: hidden; /* オーバーフローを隠す */
 }
+/* ボタンのホバースタイル */
+.mypage_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
 /* ホームボタン */
-.homebutton{
+.home_button{
     margin: 10px;
 	width: 150px;
     height: 50px;
@@ -106,4 +118,9 @@ textarea{
     border-bottom: solid 4px #5e5d5c;
     border-radius: 15px 15px 0 0;
     transition: .4s;
+    overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.home_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }

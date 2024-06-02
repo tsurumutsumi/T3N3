@@ -183,7 +183,7 @@ p{
 
 
 /* 戻るボタン */
-.button{
+.return_button{
 	width: 150px;
 	height: 50px;
     font-size: 18px;/*変更(5/17)*/
@@ -200,7 +200,7 @@ p{
 	transition: .4s;
 }
 /* 送信ボタン */
-.button_1{
+.send_button{
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     margin: 20px;
@@ -217,4 +217,34 @@ p{
 	border-bottom: solid 4px #5e5d5c;
 	border-radius: 15px 15px 0 0;
 	transition: .4s;
+	overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.send_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* 作成ボタン(sign_up_ok.php) */
+.create_button{
+    font-size: 18px;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+    margin: 20px;
+	left: 37%;/*変更(5/17)*/
+	width: 150px;
+	height: 50px;
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+	overflow: hidden; /* オーバーフローを隠す */
+}
+/* ボタンのホバースタイル */
+.create_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }

@@ -6,9 +6,11 @@ echo '<link rel="stylesheet" href="../css/mypage_change.css">';
 echo '<link rel="stylesheet" href="../css/account.css">';
 
 ?>
+<script src="../js/profile_change.js"></script>
+
 <!-- 戻るボタン  -->
-<div class="return">
-    <input type="submit" onclick="location.href='../mypage/mypage.php'" value="戻る" class="button_1">
+<div class="return" id="button_1">
+    <button type="submit" onclick="location.href='../mypage/mypage.php'" class="return_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">戻る</button>
 </div>
 
 <?php
@@ -84,7 +86,7 @@ echo '<link rel="stylesheet" href="../css/account.css">';
                     echo '<label>新しいパスワード</label>';
                     echo '<span class="focus_line"></span>';
                 echo '</div>';
-                echo '<br><input type="submit" value="こうしん" class="button">';
+                echo '<button type="submit" class="update_button" date-hover="▶更新">更新</button>';
         
             echo '</form>';
         echo '</div>';

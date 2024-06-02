@@ -23,7 +23,7 @@ require '../top/header.php';
             <label>パスワード</label>
             <span class="focus_line"></span>
         </div>
-        <input type="submit" value="さくせい" class="button_1">
+        <button type="submit" class="create_button" data-hover="▶">作成</button>
     </form>
 </div>
 

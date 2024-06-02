@@ -45,11 +45,11 @@ if($success) {
     echo "<p>投稿が成功しました。</p>";
     echo '<div class="Okbutton">';
     echo '<form action="../mypage/mypage.php" method="post">';
-    echo '<input type="submit" value="マイページへ" class="mybutton">';
+    echo '<button type="submit" class="mypage_button" data-hover="▶">マイページへ</button>';
     echo '</form>';
 
     echo '<form action="../home.php" method="post">';
-    echo '<input type="submit" value="ホームへ" class="homebutton">';
+    echo '<button type="submit" class="home_button" data-hover="▶">ホームへ</button>';
     echo '</form>';
     echo '</div>';
 } else {

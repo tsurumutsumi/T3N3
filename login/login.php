@@ -4,13 +4,16 @@
     require '../top/db-connect.php'; 
 ?>
 <link rel="stylesheet" href="../css/login.css">
-<!-- 新規登録ボタン -->
+<link rel="stylesheet" href="../css/login.css">
+
 <div class="log_button">
-    <div class="return">
-        <input type="submit" onclick="location.href='../home.php'" value="戻る" class="button">
+    <!-- 戻るボタン -->
+    <div class="return" id="button_1">
+        <button onclick="location.href='../home.php'" class="return_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">戻る</button>
     </div>
-    <div class="sign">
-        <input type="submit" onclick="location.href='../sign_up/tentative_register.php'" value="新規登録" class="button">
+    <!-- 新規登録ボタン -->
+    <div class="sign" id="button_2">
+        <button type="submit" onclick="location.href='../sign_up/tentative_register.php'" class="sign_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">新規登録</button>
     </div>
 </div>
 <p class="title">SPT</p><!--追加(5/17) -->
@@ -41,7 +44,7 @@
             <label>パスワード</label>
             <span class="focus_line"></span>
         </div>
-        <input type="submit" value="ログイン" class="button_1">
+        <button type="submit" class="login_button" data-hover="▶">ログイン</button>
     </form>
 </div>
 <?php } ?>

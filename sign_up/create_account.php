@@ -23,7 +23,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
 <!-- アカウント作成後はログインへ飛ばす -->
 <div class="back">
 <form id="uploadForm" action="create_account_ok.php" method="post" enctype="multipart/form-data">
-    <h1>アカウントさくせい</h1>
+    <h1>アカウント作成</h1>
     <div class="ipid">
         <input type="text" name="id" placeholder="" class="id">
         <label>ユーザーID</label>
@@ -76,7 +76,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
     <script src="../js/preview.js"></script>
     <script src="../js/Drag.js"></script>
     <br><br>
-    <input type="submit" id="submit-btn" value="さくせい" class="button_1">
+    <button type="submit" id="submit-btn" class="create_button" data-hover="▶">作成</button>
 </div>
 </form>
 

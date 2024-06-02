@@ -1,12 +1,14 @@
 <?php session_start(); ?>
 <?php require '../top/db-connect.php'; ?> 
 <?php require '../top/header.php'; ?> 
+
+<script src="../js/post.js"></script>
 <link rel="stylesheet" href="../css/post.css">
 
 <!-- 追加(5/22) -->
 <!-- 戻るボタン -->
-<div class="return">
-    <input type="submit" onclick="location.href='../mypage/mypage.php'" value="戻る" class="button_1">
+<div class="return" id="button_1">
+    <button type="submit" onclick="location.href='../mypage/mypage.php'" class="return_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">戻る</button>
 </div>
 
 <!-- 追加(5/21) -->
@@ -25,7 +27,7 @@
         <p>コメント</p>
         <textarea rows="5" cols="40" name="comment" id="comment"></textarea>
     <br>
-    <input type="submit" id="submit-btn" value="投稿" class="button">    
+    <button type="submit" id="submit-btn" class="post_button" data-hover="▶">投稿</button>
 </form>
 <script src="../js/preview.js"></script>
 
