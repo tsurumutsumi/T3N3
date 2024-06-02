@@ -67,7 +67,7 @@ ob_end_flush(); // 出力バッファリングを終了
             </div>
             <!-- 形のみです(いいねした投稿を表示) -->
             <div class="head_7">
-                <form action="../good/good.php" method="post">
+                <form action="likes_list.php" method="post">
                     <button type="submit" class="good_button" data-hover="▶">GOOD</button>
                 </form>
             </div>
