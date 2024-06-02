@@ -3,6 +3,8 @@ session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
 echo '<link rel="stylesheet" href="../css/mypage_change.css">';
+echo '<link rel="stylesheet" href="../css/account.css">';
+
 ?>
 <!-- 戻るボタン  -->
 <div class="return">
@@ -20,17 +22,36 @@ echo '<link rel="stylesheet" href="../css/mypage_change.css">';
         
             // echo 'アイコン<input type="file" name="icon" value="',$_SESSION['user']['icon'], '">'; 
             ?>
-            <div class="icon_img">
+            <!-- <div class="icon_img">
                 <label class="torokupic">ファイルを選択する
                 <input type="file" name="icon" id="torokupic" value="<?php echo $_SESSION['user']['icon']; ?>" accept="image/*" style="display: none;">
             
                 <figure id="figure" class="icon_encircle" style="display: none">
-                    <!-- 画像ファイルのプレビュー -->
+                    画像ファイルのプレビュー
                     <figcaption></figcaption>
                     <img src="" alt="" id="figureImage" width="300px" height="300px">  
                 </figure>
                 </label>
-            </div>
+            </div> -->
+            <?php
+                $iconDir = '../icon_img/';
+                // 出力したい画像のファイル名
+                $specifiedImages = ['bunnygirl.png', 'devil.png', 'hime_child.png', 'hime.png', 'kishi.png',
+                'madoshi.png', 'maid.png', 'murabito_man.png', 'murabito_woman.png', 'ningyo.png', 'oji.png', 
+                'osama.png', 'shinigami.png', 'shituji.png', 'sister.png', 'skeleton.png', 'tenshi.png', 'tozoku.png', 
+                'yosei.png']; // ここに出力したい画像のファイル名を指定してください
+                $icons = scandir($iconDir);
+                foreach ($icons as $icon) {
+                    if ($icon !== '.' && $icon !== '..' && in_array($icon, $specifiedImages)) {
+                        echo '<div class="icon-option">';
+                        echo '<label>';
+                        echo '<input type="radio" name="icon" value="' . $iconDir . $icon . '">';
+                        echo '<img src="' . $iconDir . $icon . '" alt="アイコン" class="icon_img">';
+                        echo '</label>';
+                        echo '</div>'; 
+                    }
+                }
+            ?>
             <script src="../js/preview.js"></script>
             <?php
                 echo '<div class="ipid">';
