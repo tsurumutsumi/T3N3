@@ -7,7 +7,11 @@ if (!isset($_SESSION['user']['id'])) {
     echo 'ログインが必要です。';
     exit;
 }
-
+?>
+<div class="return" id="button_1">
+    <button type="submit" onclick="location.href='mypage.php'" class="return_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">戻る</button>
+</div>
+<?php
 $user_id = $_SESSION['user']['id'];
 $pdo = new PDO($connect, USER, PASS);
 
