@@ -88,20 +88,20 @@ body::after {
     display: flex;
     margin-right: auto;
 }
-/* アイコンのボタン*/
+/* アイコンの大きさ、色 */
 .icon{
     position: relative;
     left: 10px;
     top: 10px;
     width: 100px;
-    height: 100;
+    height: 100px;
     padding: 5px 0px;
     /* border-radius: 50%; */
     /* border:5px double black; */
     background-color: transparent;
     border: none;
 }
-/* アイコンの画像の大きさ */
+/* 画像の大きさ */
 .iconImg{
     position: relative;
     width: 90px;
@@ -132,11 +132,13 @@ body::after {
 .post_list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 /* 画像の位置 */
 .image_row {
     display: flex;
-    width: 100%;
+    /* width: 100%; */
+    width: 70%;
     justify-content: space-between;
     margin-bottom: 20px;
 }
@@ -145,9 +147,78 @@ body::after {
     flex: 1;
     text-align: center;
     margin: 5px;
+    border: double 5px;
+    border-radius: 10px;
+    background-color:#ffdec3;
 }
 /* 画像サイズ */
 .post img {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
+}
+/* アイコン */
+.icon-image{
+    position: relative;
+    left: -80px;
+    max-width: 50px;
+}
+/* ユーザー名 */
+.name{
+    position: relative;
+    top: -70px;
+}
+/* コメント */
+.comment {
+    position: relative;
+    padding: 0.5em 0.7em;
+    margin: 2em 1em;
+    background: #000000;
+    color: #ffffff;
+    font-weight: bold;
+    border: solid 3px #ffffff;
+}
+.comment:after {
+    position: absolute;
+    content: '';
+    bottom: 100%;
+    left: 30px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #000000;
+    width: 0;
+    height: 0;
+}
+.comment:before {
+    position: absolute;
+    content: '';
+    bottom: 101%;
+    left: 26px;
+    border: 19px solid transparent;
+    border-bottom: 18px solid #ffffff;
+    width: 0;
+    height: 0;
+}
+.comment p {
+    margin: 0; 
+    padding: 0;
+}
+/* いいねボタン */
+.like-button{
+    position: relative;
+    left: -40px;
+    width: 35px;
+    height: 35px;
+  }
+
+/* いいねの数 */
+.like-count{
+    position: relative;
+    left: -36px;
+}
+
+/* フォローボタン */
+.follow_button{
+    width: 35px;
+    height: 35px;
+    position: relative;
+    left: 30px;
 }
