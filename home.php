@@ -116,7 +116,7 @@ foreach ($sql as $row) {
     echo '<img src="', $imagePath, '"><br>';
 
     //コメントの表示
-    echo '<div class="comment">',htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    echo '<div class="comment">',htmlspecialchars($row['comment'] ?? ''), '</div><br>';
     //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', function() {
             var postId = this.getAttribute('data-post-id');
-            var action = this.textContent === 'いいね' ? 'like' : 'unlike';
+            var action = this.src.includes('mark_heart_gray.png') ? 'like' : 'unlike'; // 画像の状態でアクションを決定
 
             console.log('Button clicked');  // デバッグ用
             console.log('Post ID:', postId);  // デバッグ用
@@ -157,10 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         var likeCountSpan = button.nextElementSibling;
                         var likeCount = parseInt(likeCountSpan.textContent);
                         if (action === 'like') {
-                            button.textContent = 'いいねを取り消す';
+                            button.src = 'img/mark_heart_red.png'; // 画像を変更
                             likeCountSpan.textContent = likeCount + 1;
                         } else {
-                            button.textContent = 'いいね';
+                            button.src = 'img/mark_heart_gray.png'; // 画像を変更
                             likeCountSpan.textContent = likeCount - 1;
                         }
                     } else {
@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
