@@ -40,11 +40,11 @@ body{
 .iconImg{
     margin: 20px;
 	width: 90px;
-	height: auto;/* 高さは自動 */
+	height: 90px;
 	/* border-radius: 50%; */
-	border:5px double black;
+	/* border:5px double black; */
     padding: 5px;
-    background-color: #67d0dcc0;
+    /* background-color: #67d0dcc0; */
 }
 /* ログアウト */
 .logout{

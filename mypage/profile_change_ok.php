@@ -44,12 +44,14 @@ if(isset($_SESSION['user'])) {
             window.location.href = "../mypage/mypage.php";
         </script>';
     } else {
-        echo '<p>プロフィールの更新に失敗しました。</p>';
+        echo '<p class="com">プロフィールの更新に失敗しました。</p>';
     }
 } else {
-    echo '<p>セッションが見つかりません。ログインしてください。</p>';
+    echo '<p class="com">セッションが見つかりません。ログインしてください。</p>';
 }
 
-echo '<a href="../home.php">ホームへ</a>';
+echo '<p class="link">';
+    echo '<a href="../home.php">ホームへ</a>';
+echo '</p>';
 require '../top/footer.php';
 ?>
