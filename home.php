@@ -112,12 +112,12 @@ foreach ($sql as $row) {
     }
     echo '<div class="post">';
 
-    // アイコン表示 (user_management.icon フィールドを使用するように更新)
-    $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
-    echo '<img src="', $iconPath, '" width=100px height=100px class="icon-image">';
 
-    //ユーザー名表示
-    echo '<div class="name">',$row['user_id'],'</div>';
+    echo '<a href="mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
+        $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
+        echo '<img src="' . $iconPath . '" width="100px" height="100px">';
+        echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
+    echo '</a>';
 
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
