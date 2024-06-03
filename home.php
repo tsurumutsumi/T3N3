@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 require 'top/db-connect.php';
 require 'top/header.php'; 
@@ -62,20 +62,20 @@ echo '<div class="slideshow">';
 if ($topPost) {
     $topPostImagePath = !empty($topPost['picture']) ? 'img/' . htmlspecialchars($topPost['picture']) : 'img/no_img.png';
     echo '<div class="slide">';
-    echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
-    echo '<div class="slide-info">';
-    echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
-    echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
-    echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
-    echo '</div>';
+        echo '<img src="', $topPostImagePath, '" alt="最も人気のある投稿の画像">';
+        echo '<div class="slide-info">';
+            echo '<p>ユーザー名: ', htmlspecialchars($topPost['user_name'] ?? '名無し'), '</p>';
+            echo '<p>いいね数: ', htmlspecialchars($topPost['like_count'] ?? 0), '</p>';
+            echo '<p>コメント: ', htmlspecialchars($topPost['comment'] ?? ''), '</p>';
+        echo '</div>';
     echo '</div>';
 }
 
 // 固定の画像を表示
-echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
-echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
-echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
-echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
+    echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
@@ -104,24 +104,26 @@ foreach ($sql as $row) {
     }
     echo '<div class="post">';
 
-    // 投稿主のマイページへとばす
-    echo '<a href="mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
+    // アイコン表示 (user_management.icon フィールドを使用するように更新)
     $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
-    echo '<img src="' . $iconPath . '" width="100px" height="100px">';
-    echo htmlspecialchars($row['user_id'] ?? '不明');
-    echo '</a>';
+    echo '<img src="', $iconPath, '" width=100px height=100px class="icon-image">';
+
+    //ユーザー名表示
+    echo '<div class="name">',$row['user_id'],'</div>';
 
     // 画像があるかどうかチェック
-    $imagePath = !empty($row['picture']) ? 'post_img/' . htmlspecialchars($row['picture']) : 'post_img/no_img.png';
+    $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '"><br>';
 
-    echo htmlspecialchars($row['comment'] ?? '記載なし'), '<br>';
-
+    //コメントの表示
+    echo '<div class="comment">',htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
     // いいねボタンを追加
-    echo '<button class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '">いいね</button>';
+    echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="img/mark_heart_gray.png" alt="いいね">';
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
+    echo '<input type="image" src="img/hito_gray.png" class="follow_button">';
 
     echo '</div>';
 
@@ -171,6 +173,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+// いいねボタンのクリックイベントを処理
+document.querySelectorAll('.like-button').forEach(button => {
+    button.addEventListener('click', changeLikeImage);
+});
+
+// フォローボタンのクリックイベントを処理
+document.querySelectorAll('.follow_button').forEach(button => {
+    button.addEventListener('click', changeFollowImage);
+});
+});
+//いいねボタン
+function changeLikeImage(event) {
+var button = event.target;
+if (button.src.includes('mark_heart_gray.png')) {
+    button.src = 'img/mark_heart_red.png'; // 別の画像のパスに変更する
+} else {
+    button.src = 'img/mark_heart_gray.png'; // もう一度元の画像に戻す
+}
+}
+//フォローボタン
+function changeFollowImage(event) {
+var button = event.target;
+if (button.src.includes('hito_gray.png')) {
+    button.src = 'img/hito_blue.png'; // 別の画像のパスに変更する
+} else {
+    button.src = 'img/hito_gray.png'; // もう一度元の画像に戻す
+}
+}
+
 </script>
 
 <?php require 'top/footer.php'; ?>
