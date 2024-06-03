@@ -8,6 +8,17 @@ body{
     font-family: "ノスタルドット（M+）";
 }
 
+/* 更新成功or失敗のコメント */
+.com{
+	font-size: 25px;
+	text-align: center;
+}
+/* 更新後のもどるリンク */
+.link{
+	font-size: 20px;
+	text-align: center;
+}
+
 /* マイページ編集入力の部分 */
 .back{
 	margin: auto;
@@ -19,9 +30,23 @@ body{
 	box-shadow: 0px 6px;
 }
 
-/* アイコン更新 */
+/* アイコンの配置 */
+.icon-option{
+	display: inline-block;
+	border-radius: 10px;
+	border: #000;
+	margin: 10px;
+	/* flex-wrap: wrap; */
+}
+/* アイコン画像の大きさ */
 .icon_img{
-    text-align: center;
+	width: 90px;
+	height: auto;/* 高さは自動 */
+}
+
+/* アイコン囲む */
+.icon_encircle{
+	border: 1px solid #000;
 }
 
 /* 戻るボタンの位置 */
