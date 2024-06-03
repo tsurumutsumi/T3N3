@@ -70,11 +70,12 @@ body::after {
     padding: 10px;
     border-radius: 5px;
 }
-
+/* ユーザー名 */
 .user_name{
     font-size: 20px;
     position: relative;
-    top: 5px;
+    top: 40px;
+    margin: 20px;
 }
 .button{
     display: flex;
@@ -88,24 +89,24 @@ body::after {
     display: flex;
     margin-right: auto;
 }
-/* アイコンの大きさ、色 */
+/* アイコンのボタン*/
 .icon{
     position: relative;
     left: 10px;
-    top: 10px;
-    width: 100px;
-    height: 100px;
-    padding: 5px 0px;
+    top: 5px;
+    width: 90px;
+    height: 90px;
+    /* padding: 5px 0px; */
     /* border-radius: 50%; */
     /* border:5px double black; */
     background-color: transparent;
     border: none;
 }
-/* 画像の大きさ */
+
+/* アイコンの画像の大きさ */
 .iconImg{
-    position: relative;
-    width: 90px;
-    height: auto; /* 高さは自動 */
+    width: 150px;
+    height: auto;
 }
 /* ログインボタン */
 .login_button{
