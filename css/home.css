@@ -40,16 +40,26 @@ body::after {
 /* スライドショー */
 .slideshow {
     top: 40px;
-    background-color: #D9D9D9;
-    width: 600px;
+    /* background-color: #000; */
+    background-image: url(../img/haikei.jpg);
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    border: 5px solid #fff;
+    width: 800px;
+    height: 450px;
     margin: auto;
 } 
 .slideshow .slide {
     position: relative;
     text-align: center;
-    margin: 0 auto;
+    /* height: 400px;
+    width: auto; */
+    margin: 50px auto;
 }
-
+.slide img{
+    width: auto;
+    height: 350px;
+    margin: auto;
+}
 .slide-info {
     position: absolute;
     bottom: 10px;
@@ -61,6 +71,11 @@ body::after {
     border-radius: 5px;
 }
 
+.user_name{
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+}
 .button{
     display: flex;
 }

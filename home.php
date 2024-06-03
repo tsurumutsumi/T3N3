@@ -40,9 +40,9 @@ require 'top/header.php';
 
 <?php
 if (isset($_SESSION['user']['id'])) {
-    echo htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です';
+    echo '<div class="user_name">'.htmlspecialchars($_SESSION['user']['name'] ?? '名無し'), 'としてログイン中です</div>';
 } else {
-    echo 'ログインしていません';
+    echo '<div class="user_name">ログインしていません</div>';
 }
 ?>
 
