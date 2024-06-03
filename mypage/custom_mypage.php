@@ -1,0 +1,83 @@
+<?php
+ob_start(); // 出力バッファリングを開始
+require '../top/db-connect.php';
+require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/mypage.css">';
+
+$pdo = new PDO($connect, USER, PASS);
+
+// URLパラメータからユーザーIDを取得
+if (isset($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+    
+    // ユーザーのアイコンを取得する
+    $stmt = $pdo->prepare("SELECT icon FROM user_management WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $user_icon = $stmt->fetchColumn();
+
+    // ユーザーの投稿数を取得する
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS post_count FROM post_history WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $post_count = $stmt->fetch(PDO::FETCH_ASSOC)['post_count'];
+
+    // ユーザーの投稿履歴を取得する
+    $stmt = $pdo->prepare("SELECT * FROM post_history WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    echo 'ユーザーIDが指定されていません';
+    exit;
+}
+
+ob_end_flush(); // 出力バッファリングを終了
+?>
+<div class="container">
+    <?php if (isset($post_count)): ?>
+        <div class="head">
+            <div class="head_1">
+                <?php
+                    if (!empty($user_icon)) {
+                        $file_info = pathinfo($user_icon);
+                        $file_name = $file_info['filename'];
+                        echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
+                    } else {
+                        echo '<img src="../icon_img/default_icon.png" alt="デフォルトアイコン" class="iconImg">';
+                    }
+                ?>
+            </div>
+            <div class="head_2">
+                <?php echo '<p class="user_name">' . htmlspecialchars($user_id) . '</p>' ?>
+            </div>
+            <div class="head_3">
+                <form action="../home.php" method="post">
+                    <button type="submit" class="home_button" data-hover="▶">HOME</button>
+                </form>
+            </div>
+        </div>
+        <div class="profile">
+            <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
+            <div class="text">FOLLOW：<span class="value">12</span></div>
+            <div class="text">FOLLOWER：<span class="value">10</span></div>
+        </div>
+        <div class="post_list">
+            <h2>投稿一覧</h2>
+            <?php if (!empty($posts)): ?>
+                <?php foreach ($posts as $post): ?>
+                    <div class="post_item">
+                        <?php
+                            $imagePath = !empty($post['picture']) ? '../img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
+                        ?>
+                        <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
+                        <div class="post_info">
+                            <p>コメント: <?php echo htmlspecialchars($post['comment']); ?></p>
+                            <p>日付: <?php echo htmlspecialchars($post['post_date']); ?></p>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>投稿がありません。</p>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div>
+<?php require '../top/footer.php'; ?>

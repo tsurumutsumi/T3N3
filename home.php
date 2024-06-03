@@ -112,13 +112,17 @@ foreach ($sql as $row) {
     }
     echo '<div class="post">';
 
+    // 投稿主のユーザーIDを取得する
+    $post_owner_id = $row['user_id'];
 
-    echo '<a href="mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
+    // リンクを生成
+    //var_dump($row['user_id']);
+    echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
         $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
         echo '<img src="' . $iconPath . '" width="100px" height="100px">';
         echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
     echo '</a>';
-
+    
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '"><br>';
@@ -196,7 +200,17 @@ if (button.src.includes('hito_gray.png')) {
     button.src = 'img/hito_gray.png'; // もう一度元の画像に戻す
 }
 }
+function logoutchack() {
+            if (confirm("ログアウトしますか？") ) {
+                window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
+            }
+        }
 
 </script>
+<?php if(isset($_SESSION['user']['id'])){ ?>
+    <div class="logout">
+        <a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>
+    </div>
+<?php } ?>
 
 <?php require 'top/footer.php'; ?>
