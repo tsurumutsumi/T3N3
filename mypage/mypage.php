@@ -39,7 +39,11 @@ ob_end_flush(); // 出力バッファリングを終了
     <?php if (isset($post_count)): ?>
         <div class="head">
             <div class="head_1">
-                <img src="../icon_img/<?php echo $_SESSION['user']['icon']; ?>" alt="アイコン" class="iconImg">
+                <?php
+                    $file_info = pathinfo($_SESSION['user']['icon']);
+                    $file_name = $file_info['filename'];
+                    echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
+                ?>
             </div>
             <div clacc="head_2">
                 <?php echo '<p class="user_name">' . $_SESSION['user']['name'] . '</p>' ?>

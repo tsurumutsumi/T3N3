@@ -21,20 +21,7 @@ echo '<link rel="stylesheet" href="../css/account.css">';
     if ($sql->execute([$_SESSION['user']['id']])) {
         echo '<div class="back">';
             echo '<form action="profile_change_ok.php" method="post">';
-        
-            // echo 'アイコン<input type="file" name="icon" value="',$_SESSION['user']['icon'], '">'; 
             ?>
-            <!-- <div class="icon_img">
-                <label class="torokupic">ファイルを選択する
-                <input type="file" name="icon" id="torokupic" value="<?php echo $_SESSION['user']['icon']; ?>" accept="image/*" style="display: none;">
-            
-                <figure id="figure" class="icon_encircle" style="display: none">
-                    画像ファイルのプレビュー
-                    <figcaption></figcaption>
-                    <img src="" alt="" id="figureImage" width="300px" height="300px">  
-                </figure>
-                </label>
-            </div> -->
             <?php
                 $iconDir = '../icon_img/';
                 // 出力したい画像のファイル名

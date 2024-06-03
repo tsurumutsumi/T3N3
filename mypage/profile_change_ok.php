@@ -4,7 +4,6 @@ require '../top/db-connect.php';
 require '../top/header.php';
 echo '<link rel="stylesheet" href="../css/mypage_change.css">';
 
-
 if(isset($_SESSION['user'])) {
     $pdo = new PDO($connect, USER, PASS);
 
@@ -25,8 +24,8 @@ if(isset($_SESSION['user'])) {
     }
 
     // プリペアドステートメントを使用してデータベースを更新
-    $sql = $pdo->prepare('UPDATE user_management SET icon=?, user_name=?, mail=?,self_introduction=?, password=? WHERE user_id=?');
-    $success = $sql->execute([$icon, $name, $mail, $bio,$hashed_pass, $id]);
+    $sql = $pdo->prepare('UPDATE user_management SET icon=?, user_name=?, mail=?, self_introduction=?, password=? WHERE user_id=?');
+    $success = $sql->execute([$icon, $name, $mail, $bio, $hashed_pass, $id]);
 
     if ($success) {
         // セッション情報を更新
@@ -36,7 +35,10 @@ if(isset($_SESSION['user'])) {
         $_SESSION['user']['bio'] = $bio;
         $_SESSION['user']['pass'] = $hashed_pass;
 
-        echo '<p>プロフィールが更新されました。</p>';
+        echo '<script>
+            alert("プロフィールが更新されました。");
+            window.location.href = "../mypage/mypage.php";
+        </script>';
     } else {
         echo '<p>プロフィールの更新に失敗しました。</p>';
     }
