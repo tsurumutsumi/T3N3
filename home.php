@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require 'top/db-connect.php';
 require 'top/header.php'; 
@@ -48,6 +48,14 @@ if (isset($_SESSION['user']['id'])) {
 
 <?php
 $pdo = new PDO($connect, USER, PASS);
+
+// ユーザーがいいねした投稿のIDを取得
+$userLikes = [];
+if (isset($_SESSION['user']['id'])) {
+    $likeSql = $pdo->prepare('SELECT post_id FROM likes WHERE user_id = ?');
+    $likeSql->execute([$_SESSION['user']['id']]);
+    $userLikes = $likeSql->fetchAll(PDO::FETCH_COLUMN, 0);
+}
 
 // 最もいいね数が多い投稿を取得
 $topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph 
@@ -116,12 +124,13 @@ foreach ($sql as $row) {
     echo '<img src="', $imagePath, '"><br>';
 
     //コメントの表示
-    echo '<div class="comment">',htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    echo '<div class="comment">',htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '</div><br>';
     //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
-    // いいねボタンを追加
-    echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="img/mark_heart_gray.png" alt="いいね">';
+    // いいねボタンの状態を決定
+    $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
+    echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
     echo '<input type="image" src="img/hito_gray.png" class="follow_button">';
 
@@ -174,29 +183,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-
-// いいねボタンのクリックイベントを処理
-document.querySelectorAll('.like-button').forEach(button => {
-    button.addEventListener('click', changeLikeImage);
-});
-
 // フォローボタンのクリックイベントを処理
 document.querySelectorAll('.follow_button').forEach(button => {
     button.addEventListener('click', changeFollowImage);
 });
-});
-//いいねボタン
-function changeLikeImage(event) {
-var button = event.target;
-if (button.src.includes('mark_heart_gray.png')) {
-    button.src = 'img/mark_heart_red.png'; // 別の画像のパスに変更する
-} else {
-    button.src = 'img/mark_heart_gray.png'; // もう一度元の画像に戻す
-}
-}
 //フォローボタン
 function changeFollowImage(event) {
 var button = event.target;
