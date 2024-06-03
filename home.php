@@ -115,7 +115,7 @@ foreach ($sql as $row) {
 
     echo '<a href="mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
         $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
-        echo '<img src="' . $iconPath . '" width="100px" height="100px">';
+        echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
         echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
     echo '</a>';
 
