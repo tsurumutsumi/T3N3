@@ -93,12 +93,13 @@ body::after {
     position: relative;
     left: 10px;
     top: 10px;
-    width: 118px;
-    height: auto; /* 高さは自動 */
+    width: 100px;
+    height: 100;
     padding: 5px 0px;
     /* border-radius: 50%; */
-    border:5px double black;
-    background-color: #d6e0bac0;
+    /* border:5px double black; */
+    background-color: transparent;
+    border: none;
 }
 /* アイコンの画像の大きさ */
 .iconImg{
