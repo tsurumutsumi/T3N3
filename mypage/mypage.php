@@ -159,7 +159,9 @@ ob_end_flush(); // 出力バッファリングを終了
     endif;
 echo '</div>';
 ?>
-<div class="logout">
-    <a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>
-</div>
+<?php if(isset($_SESSION['user']['id'])){ ?>
+    <div class="logout">
+        <a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>
+    </div>
+<?php } ?>
 <?php require '../top/footer.php'; ?>
