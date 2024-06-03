@@ -7,8 +7,12 @@ echo '<link rel="stylesheet" href="../css/mypage_change.css">';
 if(isset($_SESSION['user'])) {
     $pdo = new PDO($connect, USER, PASS);
 
+    $iconFilename="";
     // フォームから送信されたデータを受け取る
-    $icon = $_POST['icon'];
+    if (isset($_POST['icon']) && !empty($_POST['icon'])) {
+        $iconFilename = basename($_POST['icon']); // フルパスからファイル名のみを取得
+    }
+    $icon = $iconFilename;
     $id = $_POST['id'];
     $name = $_POST['name'];
     $mail = $_POST['mail'];

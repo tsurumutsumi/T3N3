@@ -35,22 +35,6 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
         <label>ニックネーム</label>
         <span class="focus_line"></span>
     </div>
-
-    <!-- <p class="icon">アイコンせってい</p>
-    <div class="upload-wrapper">
-        <div class="upload-area" id="uploadArea">
-            <label class="file_select">しゃしんをえらぶ
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p>Drag and drop a file or click</p>
-                <input type="file" name="pic" id="torokupic" accept="image/*" style="display: none;">
-                <figure id="figure" style="display: none">
-                    画像ファイルのプレビュー
-                    <figcaption></figcaption>
-                    <img src="" alt="" id="figureImage" width="300px" height="300px">  
-                </figure>
-            </label>
-        </div>
-    </div> -->
     <h1>プロフィールアイコンを選択</h1>
     <?php
         $iconDir = '../icon_img/';
