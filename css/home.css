@@ -153,10 +153,25 @@ body::after {
     background-color:#ffdec3;
 }
 /* 画像サイズ */
-.post img {
+/* .post img {
     max-width: 70%;
     height: auto;
+} */
+
+/* 投稿された写真 */
+.post_img{
+    width: auto;
+    height: 200px;
+    border: 2px solid #000;
+    margin: 5px;
 }
+
+/* 他人のマイページに飛ぶリンク */
+a{
+    color: #000;
+    text-decoration: none;
+}
+
 /* アイコン */
 .icon-image{
     position: relative;

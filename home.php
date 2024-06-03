@@ -119,7 +119,7 @@ foreach ($sql as $row) {
     //var_dump($row['user_id']);
     echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
         $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
-        echo '<img src="' . $iconPath . '" width="100px" height="100px">';
+        echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
         echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
     echo '</a>';
     
