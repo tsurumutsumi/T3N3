@@ -25,7 +25,7 @@
         </label>
         <!-- 場所移動＋変更(5/20) -->
         <p>コメント</p>
-        <textarea rows="5" cols="40" name="comment" id="comment"></textarea>
+        <textarea rows="3" cols="30" name="comment" id="comment"></textarea>
     <br>
     <button type="submit" id="submit-btn" class="post_button" data-hover="▶">投稿</button>
 </form>
