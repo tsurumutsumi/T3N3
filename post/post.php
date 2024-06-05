@@ -20,7 +20,7 @@
             <figure id="figure" style="display: none">
                 <!-- 画像ファイルのプレビュー -->
                 <figcaption></figcaption>
-                <img src="" alt="" id="figureImage" width="300px" height="300px">  
+                <img src="" alt="" id="figureImage" width="auto" height="300px">  
             </figure>
         </label>
         <!-- 場所移動＋変更(5/20) -->
