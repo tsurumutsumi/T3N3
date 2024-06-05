@@ -5,10 +5,12 @@ require '../top/db-connect.php';
 require '../top/header.php';
 echo '<link rel="stylesheet" href="../css/login.css">';
 
+echo '<p class="title">SPT</p>';
 if(isset($_POST['mail']) && isset($_POST['password'])) {
     $pdo = new PDO($connect, USER, PASS);
     $sql = $pdo->prepare('SELECT * FROM user_management WHERE mail=?');
     $sql->execute([$_POST['mail']]);
+    echo '<div class="back">';
     echo '<h1>ログイン</h1>';
     if($sql->rowCount() > 0) {
         $row = $sql->fetch(PDO::FETCH_ASSOC);
@@ -28,16 +30,16 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
             </script>';
             exit;
         } else {
-            echo '<p class="text">パスコードがちがいます。</p>';
+            echo '<p class="text">パスワードが違います。</p>';
             // 戻るボタン追加
-            echo '<a href="https://aso2201161.vivian.jp/T3N3/login/login.php" class="no_login"><p>もどる<p></a>';
+            echo '<a href="https://aso2201161.vivian.jp/T3N3/login/login.php" class="no_login"><p>戻る<p></a>';
         }
     } else {
-        echo '<p class="text">メールアドレスがみつかりません。</p>';
+        echo '<p class="text">メールアドレスが見つかりません。</p>';
         // 戻るボタン追加
-        echo '<a href="https://aso2201161.vivian.jp/T3N3/login/login.php" class="no_login"><p>もどる</p></a>';
-
+        echo '<a href="https://aso2201161.vivian.jp/T3N3/login/login.php" class="no_login"><p>戻る</p></a>';
     }
+    echo '</div>';
 }
 ob_end_flush(); // バッファリング終了
 
