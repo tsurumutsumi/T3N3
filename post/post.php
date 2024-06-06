@@ -20,14 +20,14 @@
             <figure id="figure" style="display: none">
                 <!-- 画像ファイルのプレビュー -->
                 <figcaption></figcaption>
-                <img src="" alt="" id="figureImage" width="300px" height="300px">  
+                <img src="" alt="" id="figureImage" width="auto" height="300px">  
             </figure>
         </label>
         <!-- 場所移動＋変更(5/20) -->
         <p>コメント</p>
-        <textarea rows="5" cols="40" name="comment" id="comment"></textarea>
+        <textarea rows="3" cols="30" name="comment" id="comment"></textarea>
     <br>
-    <button type="submit" id="submit-btn" class="post_button" data-hover="▶">投稿</button>
+    <button type="submit" id="post_button" class="post_button" onmouseout="changeText(this, false);" onmouseover="changeText(this, true);">投稿</button>
 </form>
 <script src="../js/preview.js"></script>
 

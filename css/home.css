@@ -127,6 +127,20 @@ body::after {
 	transition: .4s;
 }
 
+/* ログアウト */
+.logout{
+    height: 60px;
+    width: 60px;
+    background-color: #000;
+    border-radius: 50%;
+    margin: 10px;
+}
+.logout_link{
+    position: relative;
+    top: 20px;
+    right: -7px;
+}
+
 /* ---画像の配置--- */
 
 /* 全体の位置 */
