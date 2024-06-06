@@ -41,7 +41,7 @@ ob_end_flush(); // 出力バッファリングを終了
                         $file_name = $file_info['filename'];
                         echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
                     } else {
-                        echo '<img src="../icon_img/default_icon.png" alt="デフォルトアイコン" class="iconImg">';
+                        echo '<img src="../img/no_img.png" alt="デフォルトアイコン" class="iconImg">';
                     }
                 ?>
             </div>
