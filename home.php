@@ -34,6 +34,9 @@ require 'top/header.php';
         echo '</div>';
     } else {
         // ログインしている場合の処理
+        echo '<div class="logout">';
+        echo '<a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>';
+    echo '</div>';
     }
     ?>
 </div>
@@ -207,10 +210,5 @@ function logoutchack() {
         }
 
 </script>
-<?php if(isset($_SESSION['user']['id'])){ ?>
-    <div class="logout">
-        <a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>
-    </div>
-<?php } ?>
 
 <?php require 'top/footer.php'; ?>
