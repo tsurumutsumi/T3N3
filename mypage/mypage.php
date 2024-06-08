@@ -136,32 +136,40 @@ ob_end_flush(); // 出力バッファリングを終了
         }
         }
     </script>
-    <?php if (isset($posts)):
+        <?php if (isset($posts)):
         echo '<div class="history_title">';
             echo '<p>POST HISTORY...</p>';
         echo '</div>';
-        echo '<div class="posts">';
-        foreach ($posts as $post):
-            echo '<div class="post" id="post-' . $post['post_id'] . '">';
-                if (isset($post['post_date'])):
-                    echo '<p>', $post['post_date'], '</p>';
-                endif;
-                if (isset($post['picture'])):
-                    echo '<img src="../post_img/' . $post['picture'] . '" alt="投稿画像">';
-                endif;
-                if (isset($post['comment'])):
-                    echo '<p>', $post['comment'], '</p>';
-                endif;
-                echo '<button onclick="deletePost(' . $post['post_id'] . ')">削除</button>';
-            echo '</div>';
-        endforeach;
-        echo '</div>';
-    endif;
-echo '</div>';
-?>
+        echo '<ul class="post_list">';
+                    foreach ($posts as $post):
+                        echo '<li class="post" id="post-' . $post['post_id'] . '">';
+                            echo '<div class="post-2">';
+                                echo '<div class="post-3">';
+                                    if (isset($post['post_date'])):
+                                        echo '<p>', $post['post_date'], '</p>';
+                                    endif;
+                                    if (isset($post['picture'])):
+                                        echo '<img src="../img/' . $post['picture'] . '" alt="投稿画像" class="post_img">';
+                                    endif;
+                                    if (isset($post['comment'])):
+                                        echo '<p class="post_comment">', $post['comment'], '</p>';
+                                    endif;
+                                    echo '<button onclick="deletePost(' . $post['post_id'] . ')" class="post_delete"><img src="../img/mark_batsu.png"></button>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</li>';
+                    endforeach;
+                echo '</div>';
+        endif;
+        echo '</ul>';
+    ?>
+</div>
 <?php if(isset($_SESSION['user']['id'])){ ?>
     <div class="logout">
         <a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>
     </div>
+    <div class="top">
+        <a href="#"><img src="../img/yajirushi_top.png" alt="TOP"></a>
+</div>
 <?php } ?>
 <?php require '../top/footer.php'; ?>
