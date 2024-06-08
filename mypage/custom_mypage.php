@@ -53,31 +53,41 @@ ob_end_flush(); // 出力バッファリングを終了
                     <button type="submit" class="home_button" data-hover="▶">HOME</button>
                 </form>
             </div>
+            <div class="head_6">
+                <form action="../talk/talk.php" method="post">
+                    <button type="submit" class="talk_button" data-hover="▶">T³ALK</button>
+                </form>
+            </div>
         </div>
         <div class="profile">
+            
             <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
             <div class="text">FOLLOW：<span class="value">12</span></div>
             <div class="text">FOLLOWER：<span class="value">10</span></div>
         </div>
-        <div class="post_list">
-            <h2>投稿一覧</h2>
-            <?php if (!empty($posts)): ?>
-                <?php foreach ($posts as $post): ?>
-                    <div class="post_item">
-                        <?php
-                            $imagePath = !empty($post['picture']) ? '../img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
-                        ?>
-                        <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
-                        <div class="post_info">
-                            <p>コメント: <?php echo htmlspecialchars($post['comment']); ?></p>
-                            <p>日付: <?php echo htmlspecialchars($post['post_date']); ?></p>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+        <?php if (!empty($posts)): ?>
+                <div class="history_title">
+                    <p>POST HISTORY...</p>
+                </div>
+                <ul class="post_list">
+                    <?php foreach ($posts as $post): ?>
+                        <li class="post" id="post-' . $post['post_id'] . '">
+                            <div class="post-2">
+                                <div class="post-3">
+                                    <p><?php echo htmlspecialchars($post['post_date']); ?></p>
+                                    <?php
+                                        $imagePath = !empty($post['picture']) ? '../img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
+                                    ?>
+                                    <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
+                                    <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
             <?php else: ?>
-                <p>投稿がありません。</p>
+            <p>投稿がありません。</p>
             <?php endif; ?>
-        </div>
     <?php endif; ?>
 </div>
 <?php require '../top/footer.php'; ?>

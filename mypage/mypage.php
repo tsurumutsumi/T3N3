@@ -64,11 +64,11 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <!-- 形のみです -->
-            <div class="head_6">
+            <!-- <div class="head_6">
                 <form action="../talk/talk.php" method="post">
                     <button type="submit" class="talk_button" data-hover="▶">T³ALK</button>
                 </form>
-            </div>
+            </div> -->
             <!-- 形のみです(いいねした投稿を表示) -->
             <div class="head_7">
                 <form action="likes_list.php" method="post">
