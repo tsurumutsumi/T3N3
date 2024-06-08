@@ -2,6 +2,8 @@
 session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
+echo '<link rel="stylesheet" href="../css/mypage.css">';
+echo '<script src="../js/likes_list.js"></script>';
 
 if (!isset($_SESSION['user']['id'])) {
     echo 'ログインが必要です。';
@@ -27,8 +29,6 @@ $sql->execute([$user_id]);
 
 ?>
 
-<link rel="stylesheet" href="../css/mypage.css">
-<script src="../js/mypage.js"></script>
 
 <div class="likes-list">
     <h2>いいねした投稿一覧</h2>
