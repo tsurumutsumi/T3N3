@@ -60,7 +60,13 @@ ob_end_flush(); // 出力バッファリングを終了
             </div>
         </div>
         <div class="profile">
-            
+        <?php 
+            if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
+                echo '<div class="text">bio：<span class="value">NONE</span></div>';
+            } else {
+                echo '<div class="text">bio：<span class="value">'.$_SESSION['user']['bio'].'</span></div>'; 
+            }
+        ?>
             <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
             <div class="text">FOLLOW：<span class="value">12</span></div>
             <div class="text">FOLLOWER：<span class="value">10</span></div>
