@@ -67,6 +67,34 @@ body{
     bottom: -25px;
     right: -13px;
 }
+
+/* トップリンク */
+.top{
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+}
+.top img{
+    height: 60px;
+    width: 60px;
+}
+
+/* 削除ボタン */
+.post_delete{
+    position: relative;
+    background-color: transparent;
+    border: none;
+    height: 50px;
+    width: 50px;
+    top: 25px;
+}
+.post_delete img{
+    height: 40px;
+    width: 40px;
+}
+
 /* 投稿とホームをflexで調整 */
 .head{
     display: flex;
@@ -209,4 +237,48 @@ body{
 }
 .icon-option input[type="radio"]:checked + img {
 	border: 2px solid #f00;
+}
+
+/* 投稿リスト */
+/* テキスト位置 */
+.post {
+    flex: 1;
+    text-align: center;
+    margin: 5px;
+    border: double 5px;
+    /* 上のみ丸くする */
+    border-radius: 2%;
+    background-color:#000;
+    color: #fff;
+    height: 350px;
+}
+
+/* 画像サイズ */
+.post_img {
+    /* max-width: 70%; */
+    width: auto;
+    height: 150px;
+    /* height: 200px; */
+    border: #fff;
+}
+.post_list {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);/* 投稿３つとサイズ */
+    gap: 24px 4%;/* 投稿ごとの幅 */
+    list-style: none;
+    justify-content: center;
+}
+.post-2{
+    background-color: #fff;
+}
+.post-3{
+    background-color: #000;
+}
+.post_comment{
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    border: 2px solid #fff;
+    position: relative;
+    top: 15px;
 }
