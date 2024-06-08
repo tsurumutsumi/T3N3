@@ -129,16 +129,28 @@ body::after {
 
 /* ログアウト */
 .logout{
-    height: 60px;
-    width: 60px;
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
     background-color: #000;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    margin: 10px;
+    /* text-align: right;
+    margin-bottom: 10px; */
 }
+/* ログアウト文字 */
 .logout_link{
     position: relative;
-    top: 20px;
-    right: -7px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    bottom: -25px;
+    right: -13px;
+}
+.logout_link button{
+    background-color: transparent;
+    border: none;
 }
 
 /* ---画像の配置--- */
