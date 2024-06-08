@@ -7,6 +7,13 @@ body{
 	background-size: 150px;
     font-family: "ノスタルドット（M+）";
 }
+
+/* 戻るボタン */
+.return{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
 .history_title{
     text-align: center;
     font-size: 25px;
@@ -105,7 +112,24 @@ body{
     margin-right: auto;
 }
 
-/* ボタン統一解除(5/31) */
+/* 戻るボタン */
+.return_button{
+	width: 150px;
+	height: 50px;
+    font-size: 18px;/*変更(5/17)*/
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #8f8e8e;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
+
 /* 投稿ボタン */
 .post_button{
     margin: 20px;
