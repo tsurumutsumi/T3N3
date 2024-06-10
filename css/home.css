@@ -181,26 +181,28 @@ body::after {
 }
 /* 画像の位置 */
 .image_row {
-    display: flex;
-    /* width: 100%; */
-    width: 70%;
+    /* 水平方向、垂直方向の両方に沿って要素を配置 */
+    display: grid;
+    /* width: 70%; */
+    /* グリッドレイアウトの行(rows)と列(colums)のトラックサイズをまとめて指定 */
+    /* fr⇒「fractions」の略　固定値のトラックサイズを除いた長さ(残りのサイズ) */
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
+    flex-direction:row ;
     margin-bottom: 20px;
+    /* background-color: ; */
 }
 /* テキスト位置 */
 .post-1{
-    flex: 1;
+    /* flex: 1; */
     text-align: center;
     color: #fff;
-    background-color: #000;
+    /* background-color: #000; */
     padding: 0.15rem;
     margin: 10px;
     float: right;
-    width: 320px;
+    /* width: 320px; */
     height: 580px;
-    /* width: fit-content; */
-    /* background-color:#e4f576c4; */
-    /* justify-content: space-between; */
 }
 
 .post-2{
