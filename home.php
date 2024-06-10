@@ -113,7 +113,6 @@ foreach ($sql as $row) {
         }
         echo '<div class="image_row">'; // 新しい行を開始
     }
-    echo '<div class="post">';
 
     // 投稿主のユーザーIDを取得する
     $post_owner_id = $row['user_id'];
@@ -216,5 +215,8 @@ function logoutchack() {
         }
 
 </script>
-
+</div>
+<div class="top">
+        <a href="#"><img src="img/yajirushi_top.png" alt="TOP"></a>
+</div>
 <?php require 'top/footer.php'; ?>
