@@ -117,28 +117,28 @@ foreach ($sql as $row) {
     // 投稿主のユーザーIDを取得する
     $post_owner_id = $row['user_id'];
 
-
     echo '<div class="post-1">';
     echo '<div class="post-2">';
     echo '<div class="post-3">';
-    // リンクを生成
-    //var_dump($row['user_id']);
     echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
+        // アイコン表示 (user_management.icon フィールドを使用するように更新)
         $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
         echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
+            //ユーザー名表示
         echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
     echo '</a>';
     
+
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     //コメントの表示
-    echo '<div class="comment" id="comment">',htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div><br>';
     //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
-    // いいねボタンの状態を決定
+    // いいねボタンを追加
     $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
     echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
