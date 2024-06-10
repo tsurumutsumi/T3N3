@@ -12,7 +12,7 @@
 </div>
 
 <!-- 追加(5/21) -->
-<h1>とうこう</h1>
+<h1>投稿</h1>
 <form action="post_ok.php" method="POST" enctype="multipart/form-data">
     <label class="torokupic"><p>●ファイルを選択する●</p>
             <input type="file" name="pic" id="torokupic" accept="image/*" style="display: none;">
