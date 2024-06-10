@@ -20,8 +20,13 @@ if (isset($_SESSION['user']['id'])) {
     $stmt->execute([$user_id]);
     $post_count = $stmt->fetch(PDO::FETCH_ASSOC)['post_count'];
 
-    // ユーザーの投稿履歴を取得する
-    $stmt = $pdo->prepare("SELECT * FROM post_history WHERE user_id = ?");
+    // ユーザーの投稿履歴といいね数を取得する
+    $stmt = $pdo->prepare("
+        SELECT ph.*, 
+               (SELECT COUNT(*) FROM likes WHERE likes.post_id = ph.post_id) AS like_count
+        FROM post_history ph
+        WHERE ph.user_id = ?
+    ");
     $stmt->execute([$user_id]);
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -45,7 +50,7 @@ ob_end_flush(); // 出力バッファリングを終了
                     echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
                 ?>
             </div>
-            <div clacc="head_2">
+            <div class="head_2">
                 <?php echo '<p class="user_name">' . $_SESSION['user']['name'] . '</p>' ?>
             </div>
             <div class="head_3">
@@ -60,13 +65,13 @@ ob_end_flush(); // 出力バッファリングを終了
             </div>
             <div class="head_5">
                 <form action="../post/post.php" method="post">
-                    <button type="submit" class="post_button" data-hover="▶">N³EW POST</button>
+                    <button type="submit" class="post_button" data-hover="▶">NEW POST</button>
                 </form>
             </div>
             <!-- 形のみです -->
             <!-- <div class="head_6">
                 <form action="../talk/talk.php" method="post">
-                    <button type="submit" class="talk_button" data-hover="▶">T³ALK</button>
+                    <button type="submit" class="talk_button" data-hover="▶">TALK</button>
                 </form>
             </div> -->
             <!-- 形のみです(いいねした投稿を表示) -->
@@ -154,7 +159,9 @@ ob_end_flush(); // 出力バッファリングを終了
                                     if (isset($post['comment'])):
                                         echo '<p class="post_comment">', $post['comment'], '</p>';
                                     endif;
-                                    echo '<button onclick="deletePost(' . $post['post_id'] . ')" class="post_delete"><img src="../img/mark_batsu.png"></button>';
+                                    // いいね数を表示
+                                    echo '<p class="like_count">いいね: ' . $post['like_count'];
+                                    echo '<button onclick="deletePost(' . $post['post_id'] . ')" class="post_delete"><img src="../img/mark_batsu.png"></button></p>';
                                 echo '</div>';
                             echo '</div>';
                         echo '</li>';
