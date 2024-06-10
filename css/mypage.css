@@ -74,6 +74,14 @@ body{
     bottom: -25px;
     right: -13px;
 }
+.logout_link button{
+    background-color: transparent;
+    border: none;
+}
+/* カーソルがあたった時の文字色 */
+.logout_link:hover{
+    color: #f19ca7;
+}
 
 /* トップリンク */
 .top{
