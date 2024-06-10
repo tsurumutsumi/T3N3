@@ -152,6 +152,10 @@ body::after {
     background-color: transparent;
     border: none;
 }
+/* カーソルがあたった時の文字色 */
+.logout_link:hover{
+    color: #f19ca7;
+}
 
 /* ---画像の配置--- */
 
@@ -243,6 +247,10 @@ a{
     position: relative;
     font-size: 25px;
     top: -35px;
+}
+/* カーソルがあたった時の文字色 */
+.name:hover{
+    color: #f19ca7;
 }
 /* コメント */
 .comment {
