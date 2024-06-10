@@ -73,8 +73,7 @@ echo '<link rel="stylesheet" href="../css/account.css">';
                     echo '<label>新しいパスワード</label>';
                     echo '<span class="focus_line"></span>';
                 echo '</div>';
-                echo '<button type="submit" class="update_button" date-hover="▶更新">更新</button>';
-        
+                echo '<button type="submit" id="update_button" class="update_button" onmouseout="changeText(this, false);" onmouseover="changeText(this, true);">更新</button>';        
             echo '</form>';
         echo '</div>';
     } else {
