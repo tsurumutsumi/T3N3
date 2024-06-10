@@ -118,6 +118,10 @@ foreach ($sql as $row) {
     // 投稿主のユーザーIDを取得する
     $post_owner_id = $row['user_id'];
 
+
+    echo '<div class="post-1">';
+    echo '<div class="post-2">';
+    echo '<div class="post-3">';
     // リンクを生成
     //var_dump($row['user_id']);
     echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
@@ -128,10 +132,10 @@ foreach ($sql as $row) {
     
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
-    echo '<img src="', $imagePath, '"><br>';
+    echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     //コメントの表示
-    echo '<div class="comment">',htmlspecialchars($row['user_id'] ?? '不明'), htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    echo '<div class="comment" id="comment">',htmlspecialchars($row['comment'] ?? ''), '</div><br>';
     //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
@@ -141,6 +145,8 @@ foreach ($sql as $row) {
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
     echo '<input type="image" src="img/hito_gray.png" class="follow_button">';
 
+    echo '</div>';
+    echo '</div>';
     echo '</div>';
 
     $image_count++;
