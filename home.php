@@ -117,7 +117,7 @@ foreach ($sql as $row) {
     // 投稿主のユーザーIDを取得する
     $post_owner_id = $row['user_id'];
 
-    echo '<div class="post-1">';
+    echo '<div class="post-1" style="flex-basis:320px;">';
     echo '<div class="post-2">';
     echo '<div class="post-3">';
     echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
