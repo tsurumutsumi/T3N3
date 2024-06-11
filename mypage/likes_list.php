@@ -33,41 +33,29 @@ $sql->execute([$user_id]);
 <div class="likes-list">
     <h2>いいねした投稿一覧</h2>
     <?php
-    $image_count = 0;
-
+    echo '<ul class="post_list">';
     foreach ($sql as $row) {
-        if ($image_count % 3 == 0) {
-            if ($image_count != 0) {
-                echo '</div>'; // 前の行を閉じる
-            }
-            echo '<div class="image_row">'; // 新しい行を開始
-        }
-        echo '<div class="post">';
+        echo '<li class="post">';
 
         // 投稿主のマイページへ飛ばす
-        echo '<a href="../mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
+        echo '<a href="../mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '" class="icon_image">';
         $iconPath = !empty($row['icon']) ? '../icon_img/' . htmlspecialchars($row['icon']) : '../img/no_img.png';
-        echo '<img src="' . $iconPath . '" width="100px" height="100px">';
+        echo '<img src="' . $iconPath . '" class="icon_size">';
         echo htmlspecialchars($row['user_name'] ?? '名無し');
-        echo '</a>';
+        echo '</a><br>';
 
         // 画像があるかどうかチェック
-        $imagePath = !empty($row['picture']) ? '../post_img/' . htmlspecialchars($row['picture']) : '../post_img/no_img.png';
-        echo '<img src="', $imagePath, '"><br>';
+        $imagePath = !empty($row['picture']) ? '../img/' . htmlspecialchars($row['picture']) : '../post_img/no_img.png';
+        echo '<img src="', $imagePath, '" class="post_img"><br>';
 
-        echo htmlspecialchars($row['comment'] ?? '記載なし'), '<br>';
+        echo '<p class="post_comment">',htmlspecialchars($row['comment'] ?? '記載なし'), '</p><br>';
 
         echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
         echo 'いいね日: ' . htmlspecialchars($row['like_date'] ?? '不明') . '<br>';
-
-        echo '</div>';
-
-        $image_count++;
+        echo '</li>';
     }
-    if ($image_count % 3 != 0) {
-        echo '</div>'; // 最後の行を閉じる
-    }
+    echo '</ul>';
     ?>
 </div>
 
