@@ -142,7 +142,9 @@ foreach ($sql as $row) {
     $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
     echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
-    echo '<input type="image" src="img/hito_gray.png" class="follow_button">';
+
+    // フォローボタンを追加
+    echo '<input type="image" src="img/hito_gray.png" class="follow_button" data-user-id="', htmlspecialchars($row['user_id'] ?? 0), '">';
 
     echo '</div>';
     echo '</div>';
@@ -154,7 +156,6 @@ if ($image_count % 3 != 0) {
     echo '</div>'; // 最後の行を閉じる
 }
 ?>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
@@ -193,30 +194,45 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.send("post_id=" + postId + "&action=" + action);
         });
     });
+
+    // フォローボタンのクリックイベントを処理
+    document.querySelectorAll('.follow_button').forEach(button => {
+        button.addEventListener('click', function() {
+            var followedId = this.getAttribute('data-user-id');
+            var action = this.src.includes('hito_gray.png') ? 'follow' : 'unfollow'; // 画像の状態でアクションを決定
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "follow/follow.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        if (action === 'follow') {
+                            button.src = 'img/hito_blue.png'; // フォローした後の画像
+                        } else {
+                            button.src = 'img/hito_gray.png'; // アンフォローした後の画像
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            xhr.send("followed_id=" + followedId + "&action=" + action);
+        });
+    });
 });
 
-// フォローボタンのクリックイベントを処理
-document.querySelectorAll('.follow_button').forEach(button => {
-    button.addEventListener('click', changeFollowImage);
-});
-//フォローボタン
-function changeFollowImage(event) {
-var button = event.target;
-if (button.src.includes('hito_gray.png')) {
-    button.src = 'img/hito_blue.png'; // 別の画像のパスに変更する
-} else {
-    button.src = 'img/hito_gray.png'; // もう一度元の画像に戻す
-}
-}
 function logoutchack() {
-            if (confirm("ログアウトしますか？") ) {
-                window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
-            }
-        }
-
+    if (confirm("ログアウトしますか？") ) {
+        window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
+    }
+}
 </script>
 </div>
 <div class="top">
-        <a href="#"><img src="img/yajirushi_top.png" alt="TOP"></a>
+    <a href="#"><img src="img/yajirushi_top.png" alt="TOP"></a>
 </div>
 <?php require 'top/footer.php'; ?>
