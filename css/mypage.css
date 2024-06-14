@@ -53,17 +53,33 @@ body{
     padding: 5px;
     /* background-color: #67d0dcc0; */
 }
+.icon_image{
+    position: relative;
+    left: -70px;
+    color: white;
+    text-decoration: none;
+}
+.icon_size{
+    position: relative;
+    left: -5px;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    border-radius: 10%;
+}
+a:hover{
+    color: #e9546b;
+}
 /* ログアウト */
 .logout{
     position: fixed;
-    right: 10px;
+    left: 10px;
     bottom: 10px;
     background-color: #000;
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    /* text-align: right;
-    margin-bottom: 10px; */
 }
 /* ログアウト文字 */
 .logout_link{
@@ -73,14 +89,6 @@ body{
     color: #fff;
     bottom: -25px;
     right: -13px;
-}
-.logout_link button{
-    background-color: transparent;
-    border: none;
-}
-/* カーソルがあたった時の文字色 */
-.logout_link:hover{
-    color: #f19ca7;
 }
 
 /* トップリンク */
@@ -282,7 +290,7 @@ body{
     border-radius: 2%;
     background-color:#000;
     color: #fff;
-    height: 350px;
+    height: 365px;
 }
 
 /* 画像サイズ */
