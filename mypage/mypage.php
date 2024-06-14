@@ -86,6 +86,17 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
         </div>
+        <?php
+        // ユーザーがフォローしている人数（フォロー数）を取得
+        $stmt = $pdo->prepare("SELECT COUNT(*) AS follow_count FROM follow WHERE follower_id = ?");
+        $stmt->execute([$user_id]);
+        $follow_count = $stmt->fetch(PDO::FETCH_ASSOC)['follow_count'];
+
+        // ユーザーをフォローしている人数（フォロワー数）を取得
+        $stmt = $pdo->prepare("SELECT COUNT(*) AS follower_count FROM follow WHERE following_id = ?");
+        $stmt->execute([$user_id]);
+        $follower_count = $stmt->fetch(PDO::FETCH_ASSOC)['follower_count'];
+        ?>
         <div class="profile">
             <!-- <div class="information"> -->
                 <!-- bio: -->
@@ -97,8 +108,8 @@ ob_end_flush(); // 出力バッファリングを終了
                         }
                     ?>
                 <div class="text">POST：<span class="value"><?php echo $post_count; ?></span></div>
-                <div class="text">FOLLOW：<span class="value">12</span></div>
-                <div class="text">FOLLOWER：<span class="value">10</span></div>
+                <div class="text">FOLLOW：<span class="value"><?php echo $follow_count; ?></span></div>
+                <div class="text">FOLLOWER：<span class="value"><?php echo $follower_count; ?></span></div>
         </div>
         <!-- </div> -->
     <?php endif; ?>

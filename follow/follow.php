@@ -2,28 +2,46 @@
 session_start();
 require '../top/db-connect.php';
 
+$response = ['success' => false, 'message' => ''];
+
 if (!isset($_SESSION['user']['id'])) {
-    echo json_encode(['success' => false, 'message' => 'ログインしてください']);
+    $response['message'] = 'ログインしてください';
+    echo json_encode($response);
+    exit;
+}
+
+if (!isset($_POST['action']) || !isset($_POST['followed_id'])) {
+    $response['message'] = '無効なリクエストです';
+    echo json_encode($response);
     exit;
 }
 
 $action = $_POST['action'];
-$followed_id = $_POST['user_id'];
+$followed_id = $_POST['followed_id'];
 $follower_id = $_SESSION['user']['id'];
 
-$pdo = new PDO($connect, USER, PASS);
+try {
+    $pdo = new PDO($connect, USER, PASS);
+    if ($action === 'follow') {
+        $stmt = $pdo->prepare('INSERT INTO follow (follower_id, following_id) VALUES (?, ?)');
+        $success = $stmt->execute([$follower_id, $followed_id]);
+    } elseif ($action === 'unfollow') {
+        $stmt = $pdo->prepare('DELETE FROM follow WHERE follower_id = ? AND following_id = ?');
+        $success = $stmt->execute([$follower_id, $followed_id]);
+    } else {
+        $response['message'] = '無効なアクションです';
+        echo json_encode($response);
+        exit;
+    }
 
-if ($action === 'follow') {
-    $stmt = $pdo->prepare('INSERT INTO follows (follower_id, followed_id) VALUES (?, ?)');
-    $success = $stmt->execute([$follower_id, $followed_id]);
-} elseif ($action === 'unfollow') {
-    $stmt = $pdo->prepare('DELETE FROM follows WHERE follower_id = ? AND followed_id = ?');
-    $success = $stmt->execute([$follower_id, $followed_id]);
+    if ($success) {
+        $response['success'] = true;
+    } else {
+        $response['message'] = '操作に失敗しました';
+    }
+} catch (PDOException $e) {
+    $response['message'] = 'データベースエラー: ' . $e->getMessage();
 }
 
-if ($success) {
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => '操作に失敗しました']);
-}
+echo json_encode($response);
 ?>
