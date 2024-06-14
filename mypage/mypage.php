@@ -68,6 +68,11 @@ ob_end_flush(); // 出力バッファリングを終了
                     <button type="submit" class="post_button" data-hover="▶">NEW POST</button>
                 </form>
             </div>
+            <div class="head_6">
+                <form action="../post/story_post.php" method="post">
+                    <button type="submit" class="post_button" data-hover="▶">NEW STORY</button>
+                </form>
+            </div>
             <!-- 形のみです -->
             <!-- <div class="head_6">
                 <form action="../talk/talk.php" method="post">
