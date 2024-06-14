@@ -8,21 +8,20 @@ require 'top/header.php';
 <link rel="stylesheet" href="slick/slick-theme.css">
 <script src="./js/home.js"></script>
 
-
 <div class="button">
     <!-- マイページボタン -->
     <div class="mypage">
-        <form action="mypage/mypage.php" method="post" >
+        <form action="mypage/mypage.php" method="post">
             <button type="image" class="icon">
-            <?php 
-                    if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
-                        echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
-                    } else {
-                        $file_info = pathinfo($_SESSION['user']['icon']);
-                        $file_name = $file_info['filename'];
-                        echo '<img src="icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
-                    }      
-            ?>
+                <?php 
+                if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
+                    echo '<img src="icon_img/icon.png" alt="アイコン" class="iconImg">';
+                } else {
+                    $file_info = pathinfo($_SESSION['user']['icon']);
+                    $file_name = $file_info['filename'];
+                    echo '<img src="icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
+                }
+                ?>
             </button>
         </form>
     </div>
@@ -36,7 +35,7 @@ require 'top/header.php';
         // ログインしている場合の処理
         echo '<div class="logout">';
         echo '<a href="#" onclick="logoutchack()" class="logout_link">LOGOUT</a>';
-    echo '</div>';
+        echo '</div>';
     }
     ?>
 </div>
@@ -47,9 +46,7 @@ if (isset($_SESSION['user']['id'])) {
 } else {
     echo '<div class="user_name">ログインしていません</div>';
 }
-?>
 
-<?php
 $pdo = new PDO($connect, USER, PASS);
 
 // ユーザーがいいねした投稿のIDを取得
@@ -67,6 +64,18 @@ $topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user
 $topPostSql->execute();
 $topPost = $topPostSql->fetch();
 
+// ストーリーを取得
+$storySql = 'SELECT s.*, u.user_name, u.icon 
+            FROM story_history s 
+            LEFT JOIN user_management u ON s.user_id = u.user_id 
+            WHERE s.post_date >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+            ORDER BY s.post_date DESC';
+
+$stmt = $pdo->prepare($storySql);
+$stmt->execute();
+
+$stories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 echo '<!-- スライド部分は人気の投稿、自分のチャットなどを表示予定 -->';
 echo '<div class="slideshow">';
 
@@ -81,12 +90,24 @@ if ($topPost) {
         echo '</div>';
     echo '</div>';
 }
+// ストーリーの表示
+foreach ($stories as $story) {
+    echo '<div class="story">';
+    echo '<p>ユーザー名: ' . htmlspecialchars($story['user_name']) . '</p>';
+    echo '<img src="img/' . htmlspecialchars($story['picture']) . '" alt="Story Image" width="auto" height="300px">';
+    echo '<p>コメント: ' . htmlspecialchars($story['comment']) . '</p>';
+    // 日付の表示
+    $postDate = date("Y-m-d", strtotime($story['post_date']));
+    echo '<p>投稿日時: ' . htmlspecialchars($postDate) . '</p>';
+    
+    echo '</div>';
+}
 
-// 固定の画像を表示
-    echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
-    echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
-    echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
-    echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
+// // 固定の画像を表示
+// echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
+// echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
+// echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
+// echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
