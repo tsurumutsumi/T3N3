@@ -122,7 +122,7 @@ foreach ($sql as $row) {
     echo '<div class="post-3">';
     echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
         // アイコン表示 (user_management.icon フィールドを使用するように更新)
-        $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
+        $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'post_img/no_image.png';
         echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
             //ユーザー名表示
         echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
