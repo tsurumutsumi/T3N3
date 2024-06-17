@@ -25,6 +25,15 @@ require 'top/header.php';
             </button>
         </form>
     </div>
+
+    <!-- ここに検索機能を作る -->
+    <form action="search/search.php"  method="post">
+        <label>
+            <input type="text" placeholder="ユーザー名、キーワードを入力してね！" name="keyword">
+        </label>
+        <button type="submit">検索</button>
+    </form>
+
     <!-- ログインボタン -->
     <?php
     if (!isset($_SESSION['user']['id'])) {
@@ -76,7 +85,7 @@ $storySql = 'SELECT s.*, u.user_name, u.icon
             FROM story_history s 
             LEFT JOIN user_management u ON s.user_id = u.user_id 
             WHERE s.post_date >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
-            ORDER BY s.post_date DESC';
+            ORDER BY story_id ASC';
 
 $stmt = $pdo->prepare($storySql);
 $stmt->execute();
