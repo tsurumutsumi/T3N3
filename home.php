@@ -56,6 +56,13 @@ if (isset($_SESSION['user']['id'])) {
     $likeSql->execute([$_SESSION['user']['id']]);
     $userLikes = $likeSql->fetchAll(PDO::FETCH_COLUMN, 0);
 }
+// ユーザーがフォローした人のIDを取得
+$userFollow = [];
+if (isset($_SESSION['user']['id'])) {
+    $followSql = $pdo->prepare('SELECT following_id FROM follow WHERE follower_id = ?');
+    $followSql->execute([$_SESSION['user']['id']]);
+    $userFollow = $followSql->fetchAll(PDO::FETCH_COLUMN, 0);
+}
 
 // 最もいいね数が多い投稿を取得
 $topPostSql = $pdo->prepare('SELECT ph.*, COUNT(l.post_id) AS like_count, u.user_name AS user_name FROM post_history ph 
@@ -145,10 +152,9 @@ foreach ($sql as $row) {
         // アイコン表示 (user_management.icon フィールドを使用するように更新)
         $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'img/no_img.png';
         echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
-            //ユーザー名表示
-        echo '<div class="name">',htmlspecialchars($row['user_id'] ?? '不明'),'</div>';
+        //ユーザー名表示
+        echo '<div class="name">', htmlspecialchars($row['user_id'] ?? '不明'), '</div>';
     echo '</a>';
-    
 
     // 画像があるかどうかチェック
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
@@ -165,9 +171,9 @@ foreach ($sql as $row) {
     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
 
     // フォローボタンを追加
-    echo '<input type="image" src="img/hito_gray.png" class="follow_button" data-user-id="', htmlspecialchars($row['user_id'] ?? 0), '">';
-    echo '<script src="js/follow.js"></script>';
-
+    $followButtonSrc = in_array($row['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
+    echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー">';
+    
     echo '</div>';
     echo '</div>';
     echo '</div>';
@@ -177,6 +183,7 @@ foreach ($sql as $row) {
 if ($image_count % 3 != 0) {
     echo '</div>'; // 最後の行を閉じる
 }
+echo '</div>';
 ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -214,6 +221,40 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             xhr.send("post_id=" + postId + "&action=" + action);
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.follow-button').forEach(button => {
+        button.addEventListener('click', function() {
+            var userId = this.getAttribute('data-user-id');
+            var action = this.src.includes('hito_gray.png') ? 'follow' : 'unfollow'; // 画像の状態でアクションを決定
+
+            console.log('Button clicked');  // デバッグ用
+            console.log('User ID:', userId);  // デバッグ用
+            console.log('Action:', action);  // デバッグ用
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "follow/follow.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log('Response received:', xhr.responseText);  // デバッグ用
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        if (action === 'follow') {
+                            button.src = 'img/hito_blue.png'; 
+                        } else {
+                            button.src = 'img/hito_gray.png'; 
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            xhr.send("action=" + action + "&followed_id=" + userId);
         });
     });
 });

@@ -2,46 +2,42 @@
 session_start();
 require '../top/db-connect.php';
 
-$response = ['success' => false, 'message' => ''];
+header('Content-Type: application/json');
 
 if (!isset($_SESSION['user']['id'])) {
-    $response['message'] = 'ログインしてください';
-    echo json_encode($response);
-    exit;
+    echo json_encode(['status' => 'error', 'message' => 'ログインしてください']);
+    exit();
 }
 
-if (!isset($_POST['action']) || !isset($_POST['followed_id'])) {
-    $response['message'] = '無効なリクエストです';
-    echo json_encode($response);
-    exit;
+if (!isset($_POST['user_id'])) {
+    echo json_encode(['status' => 'error', 'message' => '無効なリクエストです']);
+    exit();
 }
 
-$action = $_POST['action'];
-$followed_id = $_POST['followed_id'];
-$follower_id = $_SESSION['user']['id'];
+$userId = $_SESSION['user']['id'];
+$followingId = $_POST['user_id'];
 
 try {
     $pdo = new PDO($connect, USER, PASS);
-    if ($action === 'follow') {
-        $stmt = $pdo->prepare('INSERT INTO follow (follower_id, following_id) VALUES (?, ?)');
-        $success = $stmt->execute([$follower_id, $followed_id]);
-    } elseif ($action === 'unfollow') {
-        $stmt = $pdo->prepare('DELETE FROM follow WHERE follower_id = ? AND following_id = ?');
-        $success = $stmt->execute([$follower_id, $followed_id]);
-    } else {
-        $response['message'] = '無効なアクションです';
-        echo json_encode($response);
-        exit;
-    }
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if ($success) {
-        $response['success'] = true;
+    // フォロー状態の確認
+    $followCheckSql = $pdo->prepare('SELECT * FROM follow WHERE follower_id = ? AND following_id = ?');
+    $followCheckSql->execute([$userId, $followingId]);
+    $isFollowing = $followCheckSql->fetch();
+
+    if ($isFollowing) {
+        // フォローを解除
+        $unfollowSql = $pdo->prepare('DELETE FROM follow WHERE follower_id = ? AND following_id = ?');
+        $unfollowSql->execute([$userId, $followingId]);
+        echo json_encode(['status' => 'unfollowed']);
     } else {
-        $response['message'] = '操作に失敗しました';
+        // フォローする
+        $followSql = $pdo->prepare('INSERT INTO follow (follower_id, following_id) VALUES (?, ?)');
+        $followSql->execute([$userId, $followingId]);
+        echo json_encode(['status' => 'followed']);
     }
 } catch (PDOException $e) {
-    $response['message'] = 'データベースエラー: ' . $e->getMessage();
+    echo json_encode(['status' => 'error', 'message' => 'データベースエラー: ' . $e->getMessage()]);
 }
-
-echo json_encode($response);
 ?>
