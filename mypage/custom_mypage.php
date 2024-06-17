@@ -54,6 +54,11 @@ ob_end_flush(); // 出力バッファリングを終了
             <div class="head_2">
                 <?php echo '<p class="user_name">' . htmlspecialchars($user_id) . '</p>' ?>
             </div>
+            <div class="head_4">
+                <form action="mypage.php" method="post">
+                    <button type="submit" class="home_button" data-hover="▶">BACK</button>
+                </form>
+            </div>
             <div class="head_3">
                 <form action="../home.php" method="post">
                     <button type="submit" class="home_button" data-hover="▶">HOME</button>
