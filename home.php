@@ -109,12 +109,6 @@ foreach ($stories as $story) {
     
     echo '</div>';
 }
-
-// // 固定の画像を表示
-// echo '<div class="slide"><img src="img/kikou.png" alt="固定画像"></div>';
-// echo '<div class="slide"><img src="img/teitetsu.png" alt="固定画像"></div>';
-// echo '<div class="slide"><img src="img/taiiku_boushi_tate.png" alt="固定画像"></div>';
-// echo '<div class="slide"><img src="img/undoukai_pyramid.png" alt="固定画像"></div>';
 echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
@@ -173,7 +167,7 @@ foreach ($sql as $row) {
     // フォローボタンを追加
     $followButtonSrc = in_array($row['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
     echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー">';
-    
+    //var_dump($row['user_id']);
     echo '</div>';
     echo '</div>';
     echo '</div>';
@@ -230,9 +224,15 @@ document.addEventListener('DOMContentLoaded', function() {
             var userId = this.getAttribute('data-user-id');
             var action = this.src.includes('hito_gray.png') ? 'follow' : 'unfollow'; // 画像の状態でアクションを決定
 
-            console.log('Button clicked');  // デバッグ用
-            console.log('User ID:', userId);  // デバッグ用
-            console.log('Action:', action);  // デバッグ用
+            // デバッグ用のログ
+            console.log('Button clicked');  
+            console.log('User ID:', userId);  
+            console.log('Action:', action);  
+
+            if (!userId || !action) {
+                console.error('Invalid userId or action');
+                return;
+            }
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "follow/follow.php", true);
@@ -242,22 +242,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     console.log('Response received:', xhr.responseText);  // デバッグ用
                     var response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        if (action === 'follow') {
-                            button.src = 'img/hito_blue.png'; 
-                        } else {
-                            button.src = 'img/hito_gray.png'; 
-                        }
+                    if (response.status === 'followed') {
+                        document.querySelectorAll('.follow-button[data-user-id="' + userId + '"]').forEach(btn => {
+                            btn.src = 'img/hito_blue.png';
+                        });
+                    } else if (response.status === 'unfollowed') {
+                        document.querySelectorAll('.follow-button[data-user-id="' + userId + '"]').forEach(btn => {
+                            btn.src = 'img/hito_gray.png';
+                        });
                     } else {
                         alert(response.message);
                     }
                 }
             };
 
-            xhr.send("action=" + action + "&followed_id=" + userId);
+            xhr.send("action=" + encodeURIComponent(action) + "&user_id=" + encodeURIComponent(userId));
         });
     });
 });
+
 
 
 function logoutchack() {
