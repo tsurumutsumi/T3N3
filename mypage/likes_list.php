@@ -3,10 +3,10 @@ session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
 ?>
-<link rel="stylesheet" href="../css/mypage.css">
-<link rel="stylesheet" href="../css/home.css">
-<link rel="stylesheet" href="../slick/slick.css">
-<link rel="stylesheet" href="../slick/slick-theme.css">
+<link rel="stylesheet" href="../css/likes_list.css">
+<!-- <link rel="stylesheet" href="../slick/slick.css">
+<link rel="stylesheet" href="../slick/slick-theme.css"> -->
+<script src="../js/likes_list.js"></script>
 <?
 if (!isset($_SESSION['user']['id'])) {
     echo 'ログインが必要です。';
@@ -48,27 +48,28 @@ if (!isset($_SESSION['user']['id'])) {
 <div class="likes-list">
     <h2>いいねした投稿一覧</h2>
     <?php
-    echo '<ul class="post_list">';
+    echo '<div class="post_list">';
     foreach ($sql as $row) {
-        echo '<li class="post">';
+        echo '<div class="post-1" style="flex-basis:320px;">';
+        echo '<div class="post-2">';
+        echo '<div class="post-3">';
 
         // 投稿主のマイページへ飛ばす
-        echo '<a href="../mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '" class="icon_image">';
-        $iconPath = !empty($row['icon']) ? '../icon_img/' . htmlspecialchars($row['icon']) : '../img/no_img.png';
-        echo '<img src="' . $iconPath . '" class="icon_size">';
-        echo htmlspecialchars($row['user_name'] ?? '名無し');
+        echo '<a href="../mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
+            $iconPath = !empty($row['icon']) ? '../icon_img/' . htmlspecialchars($row['icon']) : '../img/no_img.png';
+            echo '<img src="' . $iconPath . '" class="like_icon">';
+            echo '<div class="name">'.htmlspecialchars($row['user_name'] ?? '名無し').'</div>';
         echo '</a><br>';
 
         // 画像があるかどうかチェック
         $imagePath = !empty($row['picture']) ? '../img/' . htmlspecialchars($row['picture']) : '../post_img/no_img.png';
         echo '<img src="', $imagePath, '" class="post_img"><br>';
 
-        echo '<p class="post_comment">',htmlspecialchars($row['comment'] ?? '記載なし'), '</p><br>';
+        echo '<p class="comment">',htmlspecialchars($row['comment'] ?? '記載なし'), '</p><br>';
 
-        echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
+        echo '<div class="post_date">'.htmlspecialchars($row['post_date'] ?? '日付不明'), '</div>';
 
-        echo 'いいね日: ' . htmlspecialchars($row['like_date'] ?? '不明') . '<br>';
-        echo '</li>';
+        // echo '</li>';
         // いいねボタンを追加
         $likeButtonSrc = in_array($row['post_id'], $userLikes) ? '../img/mark_heart_red.png' : '../img/mark_heart_gray.png';
         echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
@@ -77,8 +78,12 @@ if (!isset($_SESSION['user']['id'])) {
         // フォローボタンを追加
         $followButtonSrc = in_array($row['user_id'], $userFollow) ? '../img/hito_blue.png' : '../img/hito_gray.png';
         echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー" width=100px,height=100px>';
+
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
-    echo '</ul>';
+    echo '</div>';
     ?>
 </div>
 <script>
