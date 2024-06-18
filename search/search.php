@@ -31,7 +31,14 @@ if(isset($_POST['keyword'])){
         $followSql->execute([$_SESSION['user']['id']]);
         $userFollow = $followSql->fetchAll(PDO::FETCH_COLUMN, 0);
     }
-    echo "<h2>検索結果:</h2>";
+    ?>
+    <h2>検索結果</h2>
+    <div class="head_3">
+        <form action="../home.php" method="post">
+            <button type="submit" class="home_button" data-hover="▶">HOME</button>
+        </form>
+    </div>
+    <?php
     $image_count=0;
     foreach ($result as $row) {
         if ($image_count % 3 == 0) {
