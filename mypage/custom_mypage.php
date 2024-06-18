@@ -11,10 +11,10 @@ $pdo = new PDO($connect, USER, PASS);
 if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     
-    // ユーザーのアイコンを取得する
-    $stmt = $pdo->prepare("SELECT icon FROM user_management WHERE user_id = ?");
+    // ユーザー情報を取得する
+    $stmt = $pdo->prepare("SELECT u.icon, u.self_introduction, f.follower_id, f.following_id FROM user_management,post_history,follow WHERE user_id = ?");
     $stmt->execute([$user_id]);
-    $user_icon = $stmt->fetchColumn();
+    $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // ユーザーの投稿数を取得する
     $stmt = $pdo->prepare("SELECT COUNT(*) AS post_count FROM post_history WHERE user_id = ?");
@@ -36,7 +36,6 @@ if (isset($_GET['user_id'])) {
 }
 
 ob_end_flush(); // 出力バッファリングを終了
-// var_dump($user_id);
 ?>
 
 <div class="container">
@@ -44,8 +43,8 @@ ob_end_flush(); // 出力バッファリングを終了
         <div class="head">
             <div class="head_1">
                 <?php
-                    if (!empty($user_icon)) {
-                        $file_info = pathinfo($user_icon);
+                    if (!empty($user_info['icon'])) {
+                        $file_info = pathinfo($user_info['icon']);
                         $file_name = $file_info['filename'];
                         echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
                     } else {
@@ -67,22 +66,23 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <div class="head_6">
-                <form action="../talk/chathome.php?user_id="$user_id method="get">
-                    <button type="submit" class="talk_button" data-hover="▶">TALK</button>
-                </form>
+            <form action="../talk/chathome.php" method="get">
+                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+                <button type="submit" class="talk_button" data-hover="▶">TALK</button>
+            </form>
             </div>
         </div>
         <div class="profile">
         <?php 
-            if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
+            if (empty($user_info['bio'])) {
                 echo '<div class="text">bio：<span class="value">NONE</span></div>';
             } else {
-                echo '<div class="text">bio：<span class="value">'.$_SESSION['user']['bio'].'</span></div>'; 
+                echo '<div class="text">bio：<span class="value">'.htmlspecialchars($user_info['bio']).'</span></div>'; 
             }
         ?>
             <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
-            <div class="text">FOLLOW：<span class="value">12</span></div>
-            <div class="text">FOLLOWER：<span class="value">10</span></div>
+            <div class="text">FOLLOW：<span class="value"><?php echo htmlspecialchars($user_info['follow_count']); ?></span></div>
+            <div class="text">FOLLOWER：<span class="value"><?php echo htmlspecialchars($user_info['follower_count']); ?></span></div>
         </div>
         <?php if (!empty($posts)): ?>
                 <div class="history_title">
