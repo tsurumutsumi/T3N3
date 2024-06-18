@@ -61,7 +61,6 @@ body::after {
     height: 250px;
     margin: auto;
 }
-
 .slide-info {
     position: absolute;
     bottom: 10px;
@@ -72,6 +71,10 @@ body::after {
     padding: 10px;
     border-radius: 5px;
 }
+/* .title{
+    position: relative;
+    left: 150px;
+} */
 /* ストーリーのスライド */
 .slideshow .story{
     position: relative;
@@ -106,6 +109,10 @@ body::after {
     top: -285px;
     left: 140px;
 }
+/* .story_comment{
+    position: relative;
+} */
+
 
 /* ユーザー名 */
 .user_name{
@@ -283,6 +290,8 @@ body::after {
     height: 200px;
     border: 2px solid #fff;
     margin: 5px;
+    position: relative;
+    top: -30px;
 }
 /*リンクの下線 */
 a{
@@ -305,7 +314,7 @@ a{
     border-bottom: 1px solid #fff;
     position: relative;
     font-size: 25px;
-    top: -35px;
+    top: -50px;
 }
 /* カーソルがあたった時の文字色 */
 .name:hover{
@@ -313,15 +322,8 @@ a{
 }
 /* コメント */
 .comment {
-    /* -webkit-boxを使う宣言 */
-    /* display: -webkit-box; */
-    /* コンテンツの垂直方向の指定 */
-    /* -webkit-box-orient: vertical; */
-    /* コンテンツの行数を指定 */
-    /* -webkit-line-clamp: 3; */
-    /* はみ出た部分を非表示に */
-    /* overflow: hidden; */
     position: relative;
+    top: -40px;
     padding: 0.5em 0.7em;
     height: 90px;
     margin: 2em 1em;
