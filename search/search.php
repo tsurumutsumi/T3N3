@@ -14,7 +14,7 @@ if(isset($_POST['keyword'])){
     $sql = "SELECT ph.*, u.icon, (SELECT COUNT(*) FROM likes WHERE post_id = ph.post_id) AS like_count
         FROM post_history ph
         LEFT JOIN user_management u ON ph.user_id = u.user_id
-        WHERE ph.user_id LIKE '%$keyword%' OR ph.comment LIKE '%$keyword%'";
+        WHERE ph.user_id LIKE '%$keyword%' OR ph.comment LIKE '%$keyword%' OR u.user_name LIKE '%$keyword%'";
 
     $result = $pdo->query($sql);
     // ユーザーがいいねした投稿のIDを取得

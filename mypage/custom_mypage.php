@@ -12,7 +12,7 @@ if (isset($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
     
     // ユーザー情報を取得する
-    $stmt = $pdo->prepare("SELECT u.icon, u.self_introduction, f.follower_id, f.following_id FROM user_management,post_history,follow WHERE user_id = ?");
+    $stmt = $pdo->prepare("SELECT user_name, icon, self_introduction FROM user_management WHERE user_id = ?");
     $stmt->execute([$user_id]);
     $user_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -20,6 +20,16 @@ if (isset($_GET['user_id'])) {
     $stmt = $pdo->prepare("SELECT COUNT(*) AS post_count FROM post_history WHERE user_id = ?");
     $stmt->execute([$user_id]);
     $post_count = $stmt->fetch(PDO::FETCH_ASSOC)['post_count'];
+
+    // フォロー数を取得する
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS follow_count FROM follow WHERE follower_id = ?");
+    $stmt->execute([$user_id]);
+    $follow_count = $stmt->fetch(PDO::FETCH_ASSOC)['follow_count'];
+
+    // フォロワー数を取得する
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS follower_count FROM follow WHERE following_id = ?");
+    $stmt->execute([$user_id]);
+    $follower_count = $stmt->fetch(PDO::FETCH_ASSOC)['follower_count'];
 
     // ユーザーの投稿履歴といいね数を取得する
     $stmt = $pdo->prepare("
@@ -53,7 +63,7 @@ ob_end_flush(); // 出力バッファリングを終了
                 ?>
             </div>
             <div class="head_2">
-                <?php echo '<p class="user_name">' . htmlspecialchars($user_id) . '</p>' ?>
+                <?php echo '<p class="user_name">' . htmlspecialchars($user_info['user_name']) . '</p>' ?>
             </div>
             <div class="head_4">
                 <form action="mypage.php" method="post">
@@ -74,15 +84,15 @@ ob_end_flush(); // 出力バッファリングを終了
         </div>
         <div class="profile">
         <?php 
-            if (empty($user_info['bio'])) {
+            if (empty($user_info['self_introduction'])) {
                 echo '<div class="text">bio：<span class="value">NONE</span></div>';
             } else {
-                echo '<div class="text">bio：<span class="value">'.htmlspecialchars($user_info['bio']).'</span></div>'; 
+                echo '<div class="text">bio：<span class="value">'.htmlspecialchars($user_info['self_introduction']).'</span></div>'; 
             }
         ?>
             <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
-            <div class="text">FOLLOW：<span class="value"><?php echo htmlspecialchars($user_info['follow_count']); ?></span></div>
-            <div class="text">FOLLOWER：<span class="value"><?php echo htmlspecialchars($user_info['follower_count']); ?></span></div>
+            <div class="text">FOLLOW：<span class="value"><?php echo htmlspecialchars($follow_count); ?></span></div>
+            <div class="text">FOLLOWER：<span class="value"><?php echo htmlspecialchars($follower_count); ?></span></div>
         </div>
         <?php if (!empty($posts)): ?>
                 <div class="history_title">
