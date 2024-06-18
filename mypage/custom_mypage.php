@@ -67,7 +67,7 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <div class="head_6">
-                <form action="../talk/chathome.php?user_id="$user_id method="get">
+                <form action="../talk/talk.htmluser_id="$user_id method="get">
                     <button type="submit" class="talk_button" data-hover="▶">TALK</button>
                 </form>
             </div>
