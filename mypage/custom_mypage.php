@@ -36,7 +36,9 @@ if (isset($_GET['user_id'])) {
 }
 
 ob_end_flush(); // 出力バッファリングを終了
+// var_dump($user_id);
 ?>
+
 <div class="container">
     <?php if (isset($post_count)): ?>
         <div class="head">
@@ -65,7 +67,7 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <div class="head_6">
-                <form action="../talk/chathome.php?user_id="$user_id method="post">
+                <form action="../talk/chathome.php?user_id="$user_id method="get">
                     <button type="submit" class="talk_button" data-hover="▶">TALK</button>
                 </form>
             </div>
