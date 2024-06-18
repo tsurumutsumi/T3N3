@@ -129,7 +129,7 @@ ob_end_flush(); // 出力バッファリングを終了
                 }
             ?>
             <div class="text">POST：<span class="value"><?php echo $post_count; ?></span></div>
-            <details class="text">
+            <details class="follow">
                 <summary>FOLLOW：<span class="value"><?php echo $follow_count; ?></span></summary>
                 <ul>
                     <?php foreach ($following_list as $following): ?>
@@ -137,7 +137,7 @@ ob_end_flush(); // 出力バッファリングを終了
                     <?php endforeach; ?>
                 </ul>
             </details>
-            <details class="text">
+            <details class="follower">
                 <summary>FOLLOWER：<span class="value"><?php echo $follower_count; ?></span></summary>
                 <ul>
                     <?php foreach ($follower_list as $follower): ?>
