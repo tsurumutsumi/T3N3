@@ -1,0 +1,171 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-image: url(../img/maptile_mizu.png);
+	background-size: 150px;
+    font-family: "ノスタルドット（M+）";
+}
+/* 戻るボタン */
+.return{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+/* 全体の位置 */
+.post_list {
+    display: flex;
+    flex-wrap: wrap;
+    /* 中央 */
+    justify-content: center;
+    flex-direction:row ;
+    font-family: "ノスタルドット（M+）";
+}
+/* テキスト位置 */
+.post-1{
+    /* flex: 1; */
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    padding: 0.15rem;
+    margin: 10px;
+    float: right;
+    /* width: 320px; */
+    height: 580px;
+}
+.post-2{
+    background-color: #fff;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+    width: 324px;
+    height: 573px;
+    /* width: fit-content; */
+}
+.post-3{
+    color: #fff;
+    background-color: #000;
+    border-radius: 0.3rem;
+    padding: 1.0rem 0.75rem;
+    line-height: 2;
+    width: 299px;
+    height: 540px;
+    /* width: fit-content; */
+}
+
+.post-1 smaller-width {
+    width: 320px;
+    height: 580px;
+}
+
+/* 投稿された写真 */
+.post_img{
+    width: auto;
+    height: 200px;
+    border: 2px solid #fff;
+    margin: 5px;
+}
+/* コメント */
+.comment {
+    position: relative;
+    padding: 0.5em 0.7em;
+    height: 90px;
+    margin: 2em 1em;
+    background: #000000;
+    color: #ffffff;
+    font-weight: bold;
+    border: solid 3px #ffffff;
+}
+.comment:after {
+    position: absolute;
+    content: '';
+    bottom: 100%;
+    left: 30px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #000000;
+    width: 0;
+    height: 0;
+}
+.comment:before {
+    position: absolute;
+    content: '';
+    bottom: 101%;
+    left: 26px;
+    border: 19px solid transparent;
+    border-bottom: 18px solid #ffffff;
+    width: 0;
+    height: 0;
+}
+.comment p {
+    margin: 0; 
+    padding: 0;
+}
+.like_icon{
+    position: relative;
+    left: -90px;
+    top: 10px;
+    /* max-width: 50px; */
+    margin: 5px;
+    width: 40px;
+    height:40px;
+    border: 1px solid #fff;
+    border-radius: 10%;
+}
+/* ユーザー名 */
+.name{
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    position: relative;
+    font-size: 25px;
+    top: -35px;
+}
+/* カーソルがあたった時の文字色 */
+.name:hover{
+    color: #e9546b;
+}
+/* いいねボタン */
+.like-button{
+    position: relative;
+    top: -70px;
+    left: -40px;
+    width: 35px;
+    height: 35px;
+  }
+
+/* いいねの数 */
+.like-count{
+    position: relative;
+    left: -36px;
+    top: -70px;
+}
+
+/* フォローボタン */
+.follow-button{
+    width: 35px;
+    height: 35px;
+    position: relative;
+    left: 30px;
+    top: -70px;
+}
+.post_date{
+    position: relative;
+    top: -65px;
+}
+
+/* 戻るボタン */
+.return_button{
+	width: 150px;
+	height: 50px;
+    font-size: 18px;/*変更(5/17)*/
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border-bottom: solid 4px #8f8e8e;
+	border-radius: 15px 15px 0 0;
+	transition: .4s;
+}
