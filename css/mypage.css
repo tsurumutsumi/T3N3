@@ -42,6 +42,23 @@ body{
     display: inline-block;
     /* border-radius: 10px; */
     margin: 20px;
+    height: 30px;
+}
+.follow{
+    color: #fff;
+    padding: 15px;
+    border: 5px solid #fff;
+    background-color: #080808;
+    display: inline-block;
+    margin: 20px;
+}
+.follower{
+    color: #fff;
+    padding: 15px;
+    border: 5px solid #fff;
+    background-color: #080808;
+    display: inline-block;
+    margin: 20px;
 }
 /* 画像の大きさ */
 .iconImg{
