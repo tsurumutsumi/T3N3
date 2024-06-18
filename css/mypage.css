@@ -107,13 +107,18 @@ a:hover{
 /* 削除ボタン */
 .post_delete{
     position: relative;
-    background-color: transparent;
-    border: none;
+    background-color: #fff;
+    /* background-color: transparent; */
+    /* border: none; */
+    border-radius: 20%;
     height: 50px;
     width: 50px;
-    top: 25px;
+    top: 15px;
+    left: 20px;
 }
 .post_delete img{
+    position: relative;
+    right: 3px;
     height: 40px;
     width: 40px;
 }

@@ -106,19 +106,21 @@ if ($topPost) {
         echo '</div>';
     echo '</div>';
 }
-// ストーリーの表示
-foreach ($stories as $story) {
-    echo '<div class="story">';
-    echo '<p>ユーザー名: ' . htmlspecialchars($story['user_name']) . '</p>';
-    echo '<img src="img/' . htmlspecialchars($story['picture']) . '" alt="Story Image" width="auto" height="300px">';
-    echo '<p>コメント: ' . htmlspecialchars($story['comment']) . '</p>';
-    // 日付の表示
-    $postDate = date("Y-m-d", strtotime($story['post_date']));
-    echo '<p>投稿日時: ' . htmlspecialchars($postDate) . '</p>';
-    
+    // ストーリーの表示
+    foreach ($stories as $story) {
+        echo '<div class="story">';
+            // echo '<img src="img/inu.jpg">';
+            echo '<img src="img/'.htmlspecialchars($story['picture']).'">';
+                echo '<p class="story_username">USERNAME: ' . htmlspecialchars($story['user_name']) . '</p>';
+                echo '<div class="story-info">';
+                echo '<p class="story_comment">コメント: ' . htmlspecialchars($story['comment']) . '</p>';
+                // 日付の表示
+                $postDate = date("Y-m-d", strtotime($story['post_date']));
+                echo '<p>投稿日時: ' . htmlspecialchars($postDate) . '</p>';
+            echo '</div>';
+        echo '</div>';
+    }
     echo '</div>';
-}
-echo '</div>';
 echo '<script src="js/jquery-3.7.0.min.js"></script>';
 echo '<!-- スライドショーで使うプラグイン「slick」のJavaScriptを読み込む -->';
 echo '<script src="slick/slick.min.js"></script>';
