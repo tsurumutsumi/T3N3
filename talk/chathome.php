@@ -14,9 +14,10 @@
 </table>
 <p><input type="submit" value="送信" class="button" /></p>
 </form>
-<?php echo $_GET['user_id'];?>
+
+
 <!-- // URLパラメータからユーザーIDを取得 -->
-<?if (isset($_GET['user_id'])) {
+<?php if (isset($_GET['user_id'])) {
 	$user_id = $_GET['user_id'];
 	echo $user_id;
 } else {
