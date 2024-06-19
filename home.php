@@ -167,6 +167,11 @@ foreach ($sql as $row) {
 
     //コメントの表示
     echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    //コメントを追加するとこ
+    echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/coment.php" method="post">';
+        echo '<input type="text" name="comment" placeholder="コメントを入力" required>';
+        echo '<button type="submit">投稿</button>';
+    echo '</form>';
     //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
@@ -268,6 +273,41 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             xhr.send("action=" + encodeURIComponent(action) + "&user_id=" + encodeURIComponent(userId));
+        });
+    });
+    // コメントフォームのイベントハンドラ
+    document.querySelectorAll('.comment-form').forEach(form => {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var postId = this.getAttribute('data-post-id');
+            var commentInput = this.querySelector('input[name="comment"]');
+            var comment = commentInput.value;
+
+            if (!comment) {
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "comment/comment.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        var existingComments = document.querySelector('.existing-comments[data-post-id="' + postId + '"]');
+                        var newComment = document.createElement('div');
+                        newComment.classList.add('comment');
+                        newComment.innerHTML = '<p><strong>' + response.user_name + ':</strong> ' + response.comment + '</p><p class="comment-date">' + response.comment_date + '</p>';
+                        existingComments.prepend(newComment);
+                        commentInput.value = '';
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            xhr.send("post_id=" + encodeURIComponent(postId) + "&comment=" + encodeURIComponent(comment));
         });
     });
 });
