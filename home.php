@@ -27,11 +27,9 @@ require 'top/header.php';
     </div>
 
     <!-- ここに検索機能を作る -->
-    <form action="search/search.php"  method="post">
-        <label>
-            <input type="text" placeholder="ユーザー名、キーワードを入力してね！" name="keyword">
-        </label>
-        <button type="submit">検索</button>
+    <form action="search/search.php"  method="post" id="form">
+            <input type="text" placeholder="ユーザー名、キーワードを入力してね！" name="keyword" id="sbox2">
+        <button type="submit" id="sbtn2"><img src="img/rens.png" style="width:35px heigth:35px"></button>
     </form>
 
     <!-- ログインボタン -->

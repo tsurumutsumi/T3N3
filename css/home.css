@@ -153,6 +153,42 @@ body::after {
     height: auto;
 }
 
+/* 検索フォーム */
+#form{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin: 5px;
+}
+/* 入力フォーム */
+#sbox2{
+    width: 300px;
+    padding:0 15px;
+    border-radius:4px 0 0 4px;
+    /* background: transparent;背景カラー透明 */
+    background-color: #000;/*背景カラー透明*/
+    border:2px solid #fff;/*枠線の指定*/
+    /* border-right: none;枠線の右側だけ削除 */
+    outline:0;
+}
+/* 検索ボタン */
+#sbtn2{
+    width:50px;
+    border-radius:0 4px 4px 0;
+    background-color:#000;
+    border:none;
+    color:#fff;
+    font-size:18px;
+    cursor: pointer;
+}
+#sbtn2 img{
+    height: 35px;
+    width: 35px;
+}
+#sbtn2:hover{
+    background: #92dbff;/
+}
+
 /* ログインボタン */
 .login_button{
     margin: 10px;
