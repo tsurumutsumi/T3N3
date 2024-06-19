@@ -167,22 +167,17 @@ foreach ($sql as $row) {
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     //コメントの表示
-    echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div><br>';
-    // コメントを表示するコンテナ
+    echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
     echo '<div class="existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '">';
-
-    // コメントを取得
-    $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
-    $commentStmt->execute([$row['post_id']]);
-    $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($comments as $comment) {
-        echo '<div class="comment">';
-        echo '<p><strong>' . htmlspecialchars($comment['user_name']) . ':</strong> ' . htmlspecialchars($comment['comment']) . '</p>';
-        echo '<p class="comment-date">' . htmlspecialchars($comment['comment_date']) . '</p>';
-        echo '</div>';
-    }
-
-    echo '</div>'; // コメントコンテナの終了
+        $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
+        $commentStmt->execute([$row['post_id']]);
+        $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($comments as $comment) {
+            echo '<div class="comment">';
+            echo '<p>' . htmlspecialchars($comment['user_name']) . ':' . htmlspecialchars($comment['comment']) . htmlspecialchars($comment['comment_date']). '</p>';
+            echo '</div>';
+        }
+    echo '</div>';    
     //コメントを追加するとこ
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/coment.php" method="post">';
         echo '<input type="text" name="comment" placeholder="コメントを入力" required>';
