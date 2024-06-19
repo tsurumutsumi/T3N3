@@ -14,10 +14,7 @@
 </table>
 <p><input type="submit" value="送信" class="button" /></p>
 </form>
-
-<table summary="チャット">
-<tr><th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th></tr>
-
+<?php echo $_GET['user_id'];?>
 <!-- // URLパラメータからユーザーIDを取得 -->
 <?if (isset($_GET['user_id'])) {
 	$user_id = $_GET['user_id'];
@@ -27,6 +24,8 @@
     exit;
 }?>
 
+<table summary="チャット">
+<tr><th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th></tr>
 <tbody id="board">
 
 <?php foreach($_chat as $val){?>
