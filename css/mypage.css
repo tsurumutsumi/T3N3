@@ -152,21 +152,30 @@ a:hover{
 
 /* 戻るボタン */
 .return_button{
+    margin: 10px;
 	width: 150px;
 	height: 50px;
     font-size: 18px;/*変更(5/17)*/
 	font-family: "ノスタルドット（M+）";
 	position: relative;
+    top: 0;
 	display: inline-block;
 	font-weight: bold;
 	padding: 8px 10px 5px 10px;
 	text-decoration: none;
 	color: #080808;
 	background: #bfbebe;
-	border-bottom: solid 4px #8f8e8e;
+	border: solid 2px #5e5d5c;
 	border-radius: 15px 15px 0 0;
-	transition: .4s;
+    box-shadow: 0 5px #5e5d5c;
 }
+/* 戻るボタンをクリックしたとき */
+.return_button:active {
+    opacity: 0.5;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 
 /* 投稿ボタン */
 .post_button{
@@ -181,11 +190,18 @@ a:hover{
     text-decoration: none;
     color: #080808;
     background: #bfbebe;
-    border-bottom: solid 4px #5e5d5c;
-    border-radius: 15px 15px 0 0;
-    transition: .4s;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
 	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }
+/* 投稿ボタンをクリックしたとき */
+.post_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 /* ボタンのホバースタイル */
 .post_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
@@ -198,17 +214,25 @@ a:hover{
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
 	position: relative;
+    top: 0;
 	display: inline-block;
 	font-weight: bold;
 	padding: 8px 10px 5px 10px;
 	text-decoration: none;
 	color: #080808;
 	background: #bfbebe;
-	border-bottom: solid 4px #5e5d5c;
+    border: solid 2px #5e5d5c;
 	border-radius: 15px 15px 0 0;
-	transition: .4s;
 	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }
+/* ホームボタンをクリックしたとき */
+.home_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 /* ボタンのホバースタイル */
 .home_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
@@ -221,17 +245,25 @@ a:hover{
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
+    top: 0;
     display: inline-block;
     font-weight: bold;
     padding: 8px 10px 5px 10px;
     text-decoration: none;
     color: #080808;
     background: #bfbebe;
-    border-bottom: solid 4px #5e5d5c;
-    border-radius: 15px 15px 0 0;
-    transition: .4s;
-    overflow: hidden; /* オーバーフローを隠す */
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }
+/* アップデートボタンをクリックしたとき */
+.update_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 /* ボタンのホバースタイル */
 .update_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
@@ -273,11 +305,18 @@ a:hover{
     text-decoration: none;
     color: #080808;
     background: #bfbebe;
-    border-bottom: solid 4px #5e5d5c;
-    border-radius: 15px 15px 0 0;
-    transition: .4s;
-    overflow: hidden; /* オーバーフローを隠す */
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }
+/* ホームボタンをクリックしたとき */
+.good_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 /* ボタンのホバースタイル */
 .good_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
