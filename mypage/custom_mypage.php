@@ -76,7 +76,7 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <div class="head_6">
-            <form action="../talk/talk.html" method="get">
+            <form action="../talk/chathome.php" method="get">
                 <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
                 <button type="submit" class="talk_button" data-hover="▶">TALK</button>
             </form>
