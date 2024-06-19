@@ -30,7 +30,7 @@
 }?>
 
 <?php foreach($_chat as $val){?>
-<tr><td><?=htmlspecialchars($val["user_name"])?></td><td><?=substr($val["date"],5,14)?></td><td><?=htmlspecialchars($val["text"])?></td></tr>
+<tr><td><?php htmlspecialchars($val["user_name"])?></td><td><?php substr($val["date"],5,14)?></td><td><?php htmlspecialchars($val["text"])?></td></tr>
 <?php } ?>
 </tbody>
 </table>

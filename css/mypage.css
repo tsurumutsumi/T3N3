@@ -344,3 +344,20 @@ a:hover{
     position: relative;
     top: 15px;
 }
+
+/* いいねの数表示 */
+.like_count{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: 19px;
+    left: 60px;
+}
+
+.like_count img{
+    position: relative;
+    top: 15px;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+}
