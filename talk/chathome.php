@@ -60,13 +60,13 @@ function createXMLHttpRequest(){
 	return xmlHttpObject;
 }
 
-// はじめだけのチャットの内容の取得
-function chat(){
-	xmlHttpObject = createXMLHttpRequest();
-	xmlHttpObject.onreadystatechange = displayHtml;
-	xmlHttpObject.open("GET","caht.php",true);
-	xmlHttpObject.send(null);
-}
+// // はじめだけのチャットの内容の取得
+// function chat(){
+// 	xmlHttpObject = createXMLHttpRequest();
+// 	xmlHttpObject.onreadystatechange = displayHtml;
+// 	xmlHttpObject.open("GET","caht.php",true);
+// 	xmlHttpObject.send(null);
+// }
 
 // チャットの内容の取得
 function loadChatData(){
