@@ -130,6 +130,7 @@ echo '<br><br><br>';
 echo '<!-- ↓投稿表示部分 -->';
 echo '<!-- 全ユーザーの投稿 -->';
 echo '<div class="post_list">';
+
 $sql = $pdo->prepare('
     SELECT ph.*, u.icon, (SELECT COUNT(*) FROM likes WHERE post_id = ph.post_id) AS like_count
     FROM post_history ph
@@ -167,6 +168,21 @@ foreach ($sql as $row) {
 
     //コメントの表示
     echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div><br>';
+    // コメントを表示するコンテナ
+    echo '<div class="existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '">';
+
+    // コメントを取得
+    $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
+    $commentStmt->execute([$row['post_id']]);
+    $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($comments as $comment) {
+        echo '<div class="comment">';
+        echo '<p><strong>' . htmlspecialchars($comment['user_name']) . ':</strong> ' . htmlspecialchars($comment['comment']) . '</p>';
+        echo '<p class="comment-date">' . htmlspecialchars($comment['comment_date']) . '</p>';
+        echo '</div>';
+    }
+
+    echo '</div>'; // コメントコンテナの終了
     //コメントを追加するとこ
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/coment.php" method="post">';
         echo '<input type="text" name="comment" placeholder="コメントを入力" required>';
@@ -275,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.send("action=" + encodeURIComponent(action) + "&user_id=" + encodeURIComponent(userId));
         });
     });
-    // コメントフォームのイベントハンドラ
     document.querySelectorAll('.comment-form').forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -288,13 +303,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "comment/comment.php", true);
+            xhr.open("POST", "comment.php", true); // パスを確認
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     if (response.success) {
+                        // 新しいコメントを表示する
                         var existingComments = document.querySelector('.existing-comments[data-post-id="' + postId + '"]');
                         var newComment = document.createElement('div');
                         newComment.classList.add('comment');
