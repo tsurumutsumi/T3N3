@@ -1,4 +1,3 @@
-<?=$msg?>
 <head><meta charset="UTF-8"></head>
 
 <!-- <form action="sendChatData.php" method="POST">
@@ -18,7 +17,6 @@
 
 <table summary="チャット">
 <tr><th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th></tr>
-<tbody id="board">
 
 <!-- // URLパラメータからユーザーIDを取得 -->
 <?if (isset($_GET['user_id'])) {
@@ -28,6 +26,8 @@
     echo 'ユーザーIDが指定されていません';
     exit;
 }?>
+
+<tbody id="board">
 
 <?php foreach($_chat as $val){?>
 <tr><td><?php htmlspecialchars($val["user_name"])?></td><td><?php substr($val["date"],5,14)?></td><td><?php htmlspecialchars($val["text"])?></td></tr>
