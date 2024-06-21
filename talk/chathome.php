@@ -15,7 +15,6 @@
 <p><input type="submit" value="送信" class="button" /></p>
 </form>
 
-
 <!-- // URLパラメータからユーザーIDを取得 -->
 <?php if (isset($_GET['user_id'])) {
 	$user_id = $_GET['user_id'];
@@ -37,6 +36,8 @@
 
 <script type="text/javascript">
 
+var userId = "<?=$user_id?>";
+// var url = 'loadChatData.php?user_id=' + encodeURIComponent(userId);
 // 名前か文章にカーソルをフォーカス
 if(document.getElementsByName("text")[0]) document.getElementsByName("text")[0].focus();
 if(document.getElementsByName("name")[0]) document.getElementsByName("name")[0].focus();
@@ -72,8 +73,9 @@ function createXMLHttpRequest(){
 function loadChatData(){
 	xmlHttpObject = createXMLHttpRequest();
 	xmlHttpObject.onreadystatechange = displayHtml;
-	xmlHttpObject.open("GET","loadChatData.php",true);
-	xmlHttpObject.send(null);
+	xmlHttpObject.open("POST",'loadChatData.php',true);
+	xmlHttpObject.send("user_id" + userId);
+	console.log(aaa,"");
 }
 
 // 新たな書き込みがあった場合に表示する
