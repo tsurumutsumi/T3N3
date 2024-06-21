@@ -1,0 +1,73 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-image: url(../img/maptile_sogen_01.png);
+    font-family: "ノスタルドット（M+）";
+}
+.title{
+    /* margin: auto; */
+    position: relative;
+    text-align: center;
+    top: 20px;
+}
+
+@keyframes blinking{
+    0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes loop-slide{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.blink{
+    text-align: center;
+    /* font-family: bold; */
+    color: #fff;
+    font-size: 45px;
+    position: relative;
+    top: 100px;
+    animation-name: blinking; /*アニメーション名*/
+    animation-duration: 3s; /*アニメーション1回分の時間の長さ*/
+    animation-timing-function: ease-in-out;/*アニメーションの動き方*/
+    animation-delay: 0s;/*アニメーションの開始時間*/
+    animation-iteration-count: infinite;/*繰り返す回数*/
+    animation-direction: alternate;/*反転再生するかどうか*/
+}
+
+.wrap {
+    display: flex;
+    align-items: center;
+    height: 340px;
+    overflow: hidden;
+    align-content: end;
+    align-items: end;
+  }
+  .slideshow {
+    display: flex;
+    animation: loop-slide 20s infinite linear 1s both;
+  }
+.slideshow{
+    animation-name: loop-slide;/* アニメーション名 */
+    animation-duration: 10s;/* 開始から終了までの所要時間 */
+    animation-iteration-count: infinite;/* アニメーションのループ回数(ウィンドウを閉じるまで) */
+    animation-timing-function: linear;/* 動きの加減速(一定速度) */
+    animation-delay: 0s;/* アニメーションが開始するまでの遅延時間 */
+    animation-fill-mode: both;/* アニメーション開始前・終了後の挙動 */
+}
+
+.slide_img{
+    width: 130px;
+    height: 130px;
+}
+ul{
+    list-style-type: none;
+    padding: 0%;
+}
