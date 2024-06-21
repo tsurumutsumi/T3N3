@@ -62,13 +62,12 @@ body{
 }
 /* 画像の大きさ */
 .iconImg{
-    margin: 20px;
-	width: 90px;
-	height: 90px;
-	/* border-radius: 50%; */
-	/* border:5px double black; */
-    padding: 5px;
-    /* background-color: #67d0dcc0; */
+	width: 120px;
+	height: auto;
+    position: relative;
+    left: 8px;
+    top: -2px;
+
 }
 .icon_image{
     position: relative;
