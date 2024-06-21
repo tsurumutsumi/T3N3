@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pdo = new PDO($connect, USER, PASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // 例外をスローする設定
 
-            $stmt = $pdo->prepare('INSERT INTO comments (comment_id,post_id, user_id, comment, comment_date) VALUES (NULL,?, ?, ?, ?)');
+            $stmt = $pdo->prepare('INSERT INTO comments (comment_id, post_id, user_id, comment, comment_date) VALUES (NULL,?, ?, ?, ?)');
             $commentDate = date('Y-m-d'); // 日付フォーマットを Y-m-d に変更
             $stmt->execute([$postId, $userId, $comment, $commentDate]);
 

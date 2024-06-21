@@ -165,19 +165,52 @@ foreach ($sql as $row) {
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     //コメントの表示
+    // echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
+    // echo '<div class="existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '">';
+    //     $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
+    //     $commentStmt->execute([$row['post_id']]);
+    //     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
+    //     foreach ($comments as $comment) {
+    //         echo '<div class="comment">';
+    //         echo '<p>' . htmlspecialchars($comment['user_name']) . ':' . htmlspecialchars($comment['comment']) . '</p>';
+    //         echo '</div>';
+    //     }
+    // echo '</div>';    
+    // echo '<div class="dropdown">';
+    //     echo '<button onclick="toggleDropdown()">コメントを見る</button>';
+    //     echo '<div class="dropdown-content">';
+    //         foreach ($comments as $comment):
+    //             echo '<div class="comment">';
+    //                 echo '<p>',htmlspecialchars($comment['user_name']) . ': ' . htmlspecialchars($comment['comment']).'</p>';
+    //             echo '</div>';
+    //         endforeach;
+    //     echo '</div>';
+    // echo '</div>';
+
+
+    // コメントの表示部分
     echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
-    echo '<div class="existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '">';
-        $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
-        $commentStmt->execute([$row['post_id']]);
-        $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($comments as $comment) {
-            echo '<div class="comment">';
-            echo '<p>' . htmlspecialchars($comment['user_name']) . ':' . htmlspecialchars($comment['comment']) . htmlspecialchars($comment['comment_date']). '</p>';
-            echo '</div>';
+
+    // コメントを取得
+    $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
+    $commentStmt->execute([$row['post_id']]);
+    $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo '<div class="dropdown">';
+    echo '<button class="dropdown-btn" onclick="toggleDropdown(this)">コメント▼</button>';
+        echo '<div class="dropdown-content" style="display:none;">';
+        if ($comments) {
+            foreach ($comments as $comment) {
+                echo '<p><strong>' . htmlspecialchars($comment['user_name']) . ':</strong> ' . htmlspecialchars($comment['comment']) . '</p>';
+            }
+        } else {
         }
-    echo '</div>';    
+        echo '</div>';
+    echo '</div>';
+
+
     //コメントを追加するとこ
-    echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/coment.php" method="post">';
+    echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/comment.php" method="post">';
         echo '<input type="text" name="comment" placeholder="コメントを入力" required>';
         echo '<button type="submit">投稿</button>';
     echo '</form>';
@@ -296,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "comment.php", true); // パスを確認
+            xhr.open("POST", "comment/comment.php", true); // パスを確認
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function () {
@@ -321,7 +354,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+// function toggleDropdown(button) {
+//     var dropdownContent = button.nextElementSibling;
+//     if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
+//         dropdownContent.style.display = "block";
+//     } else {
+//         dropdownContent.style.display = "none";
+//     }
+// }
 
 function logoutchack() {
     if (confirm("ログアウトしますか？") ) {
