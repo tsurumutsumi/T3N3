@@ -14,9 +14,9 @@
 </table>
 <p><input type="submit" value="送信" class="button" /></p>
 </form>
-<?php echo $_GET['user_id'];?>
+
 <!-- // URLパラメータからユーザーIDを取得 -->
-<?if (isset($_GET['user_id'])) {
+<?php if (isset($_GET['user_id'])) {
 	$user_id = $_GET['user_id'];
 	echo $user_id;
 } else {
@@ -36,6 +36,8 @@
 
 <script type="text/javascript">
 
+var userId = "<?=$user_id?>";
+// var url = 'loadChatData.php?user_id=' + encodeURIComponent(userId);
 // 名前か文章にカーソルをフォーカス
 if(document.getElementsByName("text")[0]) document.getElementsByName("text")[0].focus();
 if(document.getElementsByName("name")[0]) document.getElementsByName("name")[0].focus();
@@ -59,20 +61,21 @@ function createXMLHttpRequest(){
 	return xmlHttpObject;
 }
 
-// はじめだけのチャットの内容の取得
-function chat(){
-	xmlHttpObject = createXMLHttpRequest();
-	xmlHttpObject.onreadystatechange = displayHtml;
-	xmlHttpObject.open("GET","caht.php",true);
-	xmlHttpObject.send(null);
-}
+// // はじめだけのチャットの内容の取得
+// function chat(){
+// 	xmlHttpObject = createXMLHttpRequest();
+// 	xmlHttpObject.onreadystatechange = displayHtml;
+// 	xmlHttpObject.open("GET","caht.php",true);
+// 	xmlHttpObject.send(null);
+// }
 
 // チャットの内容の取得
 function loadChatData(){
 	xmlHttpObject = createXMLHttpRequest();
 	xmlHttpObject.onreadystatechange = displayHtml;
-	xmlHttpObject.open("GET","loadChatData.php",true);
-	xmlHttpObject.send(null);
+	xmlHttpObject.open("POST",'loadChatData.php',true);
+	xmlHttpObject.send("user_id" + userId);
+	console.log(aaa,"");
 }
 
 // 新たな書き込みがあった場合に表示する

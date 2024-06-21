@@ -9,6 +9,8 @@ header("Cache-Control: post-check=0, pre-check=0",false);
 header("Pragma: no-cache");
 header("Content-type: text/html; charset=utf-8");
 
+$user_id = $_POST['user_id'];
+
 // PDOインスタンスの作成
 try {
     $dbh = new PDO('mysql:host=mysql303.phy.lolipop.lan;dbname=LAA1517798-stp', 'LAA1517798', '0000');
@@ -25,7 +27,7 @@ $max_chid = isset($_SESSION["max_chid"]) ? $_SESSION["max_chid"] : 0;
 
 // チャットの内容の取得
 $_chat = array();
-$stmt = $dbh->query("SELECT * FROM chat WHERE chid > $max_chid ORDER BY date DESC LIMIT 30");
+$stmt = $dbh->query("SELECT * FROM chat WHERE user_id=$user_id AND chid > $max_chid ORDER BY date DESC LIMIT 30");
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $_chat[$row["chid"]] = $row;
 }

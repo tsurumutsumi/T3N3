@@ -162,12 +162,15 @@ body::after {
 }
 /* 入力フォーム */
 #sbox2{
+    font-family: "ノスタルドット（M+）";
     width: 300px;
     padding:0 15px;
-    border-radius:4px 0 0 4px;
+    border-radius:37px 0 0 37px;
     /* background: transparent;背景カラー透明 */
     background-color: #000;/*背景カラー透明*/
-    border:2px solid #fff;/*枠線の指定*/
+    color: #fff;
+    font-size: 15px;
+    border:2px double #fff;/*枠線の指定*/
     /* border-right: none;枠線の右側だけ削除 */
     outline:0;
 }
@@ -175,18 +178,15 @@ body::after {
 #sbtn2{
     width:50px;
     border-radius:0 4px 4px 0;
-    background-color:#000;
+    background-color:#4ab7fa;
     border:none;
-    color:#fff;
+    /* color:#fff; */
     font-size:18px;
     cursor: pointer;
 }
 #sbtn2 img{
     height: 35px;
     width: 35px;
-}
-#sbtn2:hover{
-    background: #92dbff;/
 }
 
 /* ログインボタン */
