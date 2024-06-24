@@ -180,6 +180,7 @@ a:hover{
 .post_button{
     margin: 20px;
 	width: 150px;
+    height: 50px;
     font-size: 18px;/*変更(5/17)*/
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -210,6 +211,7 @@ a:hover{
 .home_button{
     margin: 20px;
 	width: 150px;
+    height: 50px;
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
 	position: relative;
@@ -241,6 +243,7 @@ a:hover{
 .update_button{
     margin: 20px;
 	width: 150px;
+    height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -272,6 +275,7 @@ a:hover{
 .talk_button{
     margin: 20px;
 	width: 150px;
+    height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;
@@ -295,6 +299,7 @@ a:hover{
 .good_button{
     margin: 20px;
 	width: 150px;
+    height: 50px;
     font-size: 18px;
     font-family: "ノスタルドット（M+）";
     position: relative;

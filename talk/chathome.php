@@ -82,6 +82,7 @@ function displayHtml(){
 }
 
 function sendChatData(){
+<<<<<<< HEAD
     var text = document.getElementById("text").value;
     xmlHttpObject = createXMLHttpRequest();
     xmlHttpObject.open("POST", "sendChatData.php", true);
@@ -92,6 +93,14 @@ function sendChatData(){
         "&text=" + encodeURIComponent(text)
     );
     document.getElementById("text").value = ""; // フォームをクリアする
+=======
+	xmlHttpObject = createXMLHttpRequest();
+	xmlHttpObject.open("POST","sendChatData.php",true);
+	xmlHttpObject.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xmlHttpObject.send("user_id="+encodeURIComponent(document.getElementsByName(userId)[0].value)+"name="+encodeURIComponent(document.getElementsByName("name")[0].value)+"&text="+encodeURIComponent(document.getElementsByName("text")[0].value));
+	document.getElementsByName("text")[0].value = "";
+	loadChatData();
+>>>>>>> 1458bc3df109f864401f774f6d7a9d75524a8fcd
 }
 
 // 初回ロード時にチャットデータを取得
