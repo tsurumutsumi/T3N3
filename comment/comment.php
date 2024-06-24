@@ -13,17 +13,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userId = $_SESSION['user']['id'];
 
     // デバッグ用ログ
-    error_log('POST ID: ' . $postId);
-    error_log('COMMENT: ' . $comment);
-    error_log('USER ID: ' . $userId);
+    error_log('Received POST ID: ' . $postId);
+    error_log('Received COMMENT: ' . $comment);
+    error_log('Received USER ID: ' . $userId);
 
     if ($postId && $comment) {
         try {
             $pdo = new PDO($connect, USER, PASS);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // 例外をスローする設定
 
-            $stmt = $pdo->prepare('INSERT INTO comments (comment_id, post_id, user_id, comment, comment_date) VALUES (NULL,?, ?, ?, ?)');
-            $commentDate = date('Y-m-d'); // 日付フォーマットを Y-m-d に変更
+            // デバッグ用に post_history テーブルに該当する post_id が存在するか確認
+            $stmtCheck = $pdo->prepare('SELECT COUNT(*) FROM post_history WHERE post_id = ?');
+            $stmtCheck->execute([$postId]);
+            $postExists = $stmtCheck->fetchColumn();
+            if (!$postExists) {
+                echo json_encode(['success' => false, 'message' => '無効な post_id です。']);
+                exit;
+            }
+
+            $stmt = $pdo->prepare('INSERT INTO comments (comment_id, post_id, user_id, comment, comment_date) VALUES (NULL, ?, ?, ?, ?)');
+            $commentDate = date('Y-m-d');
             $stmt->execute([$postId, $userId, $comment, $commentDate]);
 
             echo json_encode([

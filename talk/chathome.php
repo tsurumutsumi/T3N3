@@ -1,101 +1,104 @@
-<head><meta charset="UTF-8"></head>
-
-<!-- <form action="sendChatData.php" method="POST">
-	<table summary="送信フォーム">
-	<tr><th style="width:150px">名前(10文字以内)</th><td><input type="text" name="name" value="" style="width:100%" maxlength="10" required /></td></tr>
-	<tr><th>文章(50文字以内)</th><td><input type="text" name="text" value="" style="width:100%" maxlength="50" required /></td></tr>
-	</table>
-	<p><input type="submit" value="送信" class="button" /></p>
-</form> -->
-<form onsubmit="sendChatData();return false">
-<table summary="送信フォーム">
-<tr><th style="width:150px">名前(10文字以内)</th><td><input type="text" name="name" value="" style="width:100%" maxlength="10" required /></td></tr>
-<tr><th>文章(50文字以内)</th><td><input type="text" name="text" value="" style="width:100%" maxlength="50" required /></td></tr>
-</table>
-<p><input type="submit" value="送信" class="button" /></p>
+<?php session_start(); ?>
+<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="slick/slick.css">
+<link rel="stylesheet" href="slick/slick-theme.css">
+<div class="head_3">
+    <form action="../home.php" method="post">
+        <button type="submit" class="home_button" data-hover="▶">HOME</button>
+    </form>
+</div>
+<?php echo $_GET['user_id'],'さんとのトークルーム'; ?>
+<form onsubmit="sendChatData(); return false;">
+    <table summary="送信フォーム">
+        <tr>
+            <th style="width:150px">名前(10文字以内)</th>
+            <td>
+                <?php 
+                if (isset($_SESSION['user']['id'])) {
+                    echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); 
+                } else {
+                    echo 'ユーザーIDが指定されていません';
+                    exit;
+                }
+                ?>
+            </td>
+        </tr>
+        <tr>
+            <th>文章(50文字以内)</th>
+            <td><input type="text" id="text" style="width:100%" maxlength="50" required /></td>
+        </tr>
+    </table>
+    <p><input type="submit" value="送信" class="button" /></p>
 </form>
 
-<!-- // URLパラメータからユーザーIDを取得 -->
-<?php if (isset($_GET['user_id'])) {
-	$user_id = $_GET['user_id'];
-	echo $user_id;
-} else {
-    echo 'ユーザーIDが指定されていません';
-    exit;
-}?>
+<!-- ユーザーIDのhiddenフィールド -->
+<!-- 相手の名前 -->
+<input type="hidden" id="user_id" value="<?php echo htmlspecialchars($_GET['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
+<!-- 自分の名前 -->
+<input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
 
 <table summary="チャット">
-<tr><th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th></tr>
-<tbody id="board">
-
-<?php foreach($_chat as $val){?>
-<tr><td><?php htmlspecialchars($val["user_name"])?></td><td><?php substr($val["date"],5,14)?></td><td><?php htmlspecialchars($val["text"])?></td></tr>
-<?php } ?>
-</tbody>
+    <tr>
+        <th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th>
+    </tr>
+    <tbody id="board"></tbody>
 </table>
 
 <script type="text/javascript">
+var userId = document.getElementById("user_id").value;
+var myId = document.getElementById("my_id").value;
+var xmlHttpObject;
 
-var userId = "<?=$user_id?>";
-// var url = 'loadChatData.php?user_id=' + encodeURIComponent(userId);
-// 名前か文章にカーソルをフォーカス
-if(document.getElementsByName("text")[0]) document.getElementsByName("text")[0].focus();
-if(document.getElementsByName("name")[0]) document.getElementsByName("name")[0].focus();
-
-// xmlHttpObjectの作成
 function createXMLHttpRequest(){
-	var xmlHttpObject = null;
-	if(window.XMLHttpRequest){
-		xmlHttpObject = new XMLHttpRequest();
-	}else if(window.ActiveXObject){
-		try{
-			xmlHttpObject = new ActiveXObject("Msxml2.XMLHTTP");
-		}catch(e){
-			try{
-				xmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
-			}catch(e){
-				return null;
-			}
-		}
-	}
-	return xmlHttpObject;
+    var xmlHttpObject = null;
+    if(window.XMLHttpRequest){
+        xmlHttpObject = new XMLHttpRequest();
+    }else if(window.ActiveXObject){
+        try{
+            xmlHttpObject = new ActiveXObject("Msxml2.XMLHTTP");
+        }catch(e){
+            try{
+                xmlHttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+            }catch(e){
+                return null;
+            }
+        }
+    }
+    return xmlHttpObject;
 }
 
-// // はじめだけのチャットの内容の取得
-// function chat(){
-// 	xmlHttpObject = createXMLHttpRequest();
-// 	xmlHttpObject.onreadystatechange = displayHtml;
-// 	xmlHttpObject.open("GET","caht.php",true);
-// 	xmlHttpObject.send(null);
-// }
-
-// チャットの内容の取得
 function loadChatData(){
-	xmlHttpObject = createXMLHttpRequest();
-	xmlHttpObject.onreadystatechange = displayHtml;
-	xmlHttpObject.open("POST",'loadChatData.php',true);
-	xmlHttpObject.send("user_id" + userId);
-	console.log(aaa,"");
+    xmlHttpObject = createXMLHttpRequest();
+    xmlHttpObject.onreadystatechange = displayHtml;
+    xmlHttpObject.open("POST", 'loadChatData.php', true);
+    xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttpObject.send("userId=" + encodeURIComponent(userId));
 }
 
-// 新たな書き込みがあった場合に表示する
 function displayHtml(){
-	if((xmlHttpObject.readyState == 4) && (xmlHttpObject.status == 200) && xmlHttpObject.responseText){
-		document.getElementById("board").innerHTML = xmlHttpObject.responseText + document.getElementById("board").innerHTML;
-	}
+    if((xmlHttpObject.readyState == 4) && (xmlHttpObject.status == 200) && xmlHttpObject.responseText){
+        document.getElementById("board").innerHTML = xmlHttpObject.responseText;
+    }
 }
 
-// チャットに書き込みをする
 function sendChatData(){
-	xmlHttpObject = createXMLHttpRequest();
-	xmlHttpObject.open("POST","sendChatData.php",true);
-	xmlHttpObject.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	xmlHttpObject.send("name="+encodeURIComponent(document.getElementsByName("name")[0].value)+"&text="+encodeURIComponent(document.getElementsByName("text")[0].value));
-	document.getElementsByName("text")[0].value = "";
-	loadChatData();
+    var text = document.getElementById("text").value;
+    xmlHttpObject = createXMLHttpRequest();
+    xmlHttpObject.open("POST", "sendChatData.php", true);
+    xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlHttpObject.send(
+        "userId=" + encodeURIComponent(userId) +
+        "&myId=" + encodeURIComponent(myId) +
+        "&text=" + encodeURIComponent(text)
+    );
+    document.getElementById("text").value = ""; // フォームをクリアする
 }
+
+// 初回ロード時にチャットデータを取得
+loadChatData();
 
 // 3秒ごとにチャットの内容を取りに行く
-setInterval('loadChatData()',3000);
-
+setInterval(loadChatData, 2000);
 </script>
+</body>
+</html>

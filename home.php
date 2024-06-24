@@ -164,56 +164,36 @@ foreach ($sql as $row) {
     $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
-    //コメントの表示
-    // echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
-    // echo '<div class="existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '">';
-    //     $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
-    //     $commentStmt->execute([$row['post_id']]);
-    //     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
-    //     foreach ($comments as $comment) {
-    //         echo '<div class="comment">';
-    //         echo '<p>' . htmlspecialchars($comment['user_name']) . ':' . htmlspecialchars($comment['comment']) . '</p>';
-    //         echo '</div>';
-    //     }
-    // echo '</div>';    
-    // echo '<div class="dropdown">';
-    //     echo '<button onclick="toggleDropdown()">コメントを見る</button>';
-    //     echo '<div class="dropdown-content">';
-    //         foreach ($comments as $comment):
-    //             echo '<div class="comment">';
-    //                 echo '<p>',htmlspecialchars($comment['user_name']) . ': ' . htmlspecialchars($comment['comment']).'</p>';
-    //             echo '</div>';
-    //         endforeach;
-    //     echo '</div>';
-    // echo '</div>';
-
-
     // コメントの表示部分
     echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
-
+    
     // コメントを取得
-    $commentStmt = $pdo->prepare('SELECT c.*, u.user_name FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
+    $commentStmt = $pdo->prepare('SELECT c.*, u.user_id FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
     $commentStmt->execute([$row['post_id']]);
     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
     echo '<div class="dropdown">';
-    echo '<button class="dropdown-btn" onclick="toggleDropdown(this)">コメント▼</button>';
-        echo '<div class="dropdown-content" style="display:none;">';
-        if ($comments) {
-            foreach ($comments as $comment) {
-                echo '<p><strong>' . htmlspecialchars($comment['user_name']) . ':</strong> ' . htmlspecialchars($comment['comment']) . '</p>';
+        echo '<button class="dropdown-btn" onclick="toggleDropdown(this)">コメント▼</button>';
+        echo '<div class="dropdown-content existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '" style="display:none;">';
+            if ($comments) {
+                foreach ($comments as $comment) {
+                    echo '<p><strong>' . htmlspecialchars($comment['user_id']) . ':</strong> ' . htmlspecialchars($comment['comment']) . '</p>';
+                }
+            } else {
+                echo '<p>コメントはまだありません。</p>';
             }
-        } else {
-        }
         echo '</div>';
     echo '</div>';
-
-
-    //コメントを追加するとこ
+    
+    // コメントを追加するフォーム
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/comment.php" method="post">';
         echo '<input type="text" name="comment" placeholder="コメントを入力" required>';
+        echo '<input type="hidden" name="post_id" value="' . htmlspecialchars($row['post_id']) . '">'; // hidden input に post_id を追加
         echo '<button type="submit">投稿</button>';
     echo '</form>';
+
+
+
     //日付の表示
     echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
 
@@ -242,11 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
         button.addEventListener('click', function() {
             var postId = this.getAttribute('data-post-id');
-            var action = this.src.includes('mark_heart_gray.png') ? 'like' : 'unlike'; // 画像の状態でアクションを決定
-
-            console.log('Button clicked');  // デバッグ用
-            console.log('Post ID:', postId);  // デバッグ用
-            console.log('Action:', action);  // デバッグ用
+            var action = this.src.includes('mark_heart_gray.png') ? 'like' : 'unlike'; 
 
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "like/like.php", true);
@@ -254,16 +230,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log('Response received:', xhr.responseText);  // デバッグ用
                     var response = JSON.parse(xhr.responseText);
                     if (response.success) {
                         var likeCountSpan = button.nextElementSibling;
                         var likeCount = parseInt(likeCountSpan.textContent);
                         if (action === 'like') {
-                            button.src = 'img/mark_heart_red.png'; // 画像を変更
+                            button.src = 'img/mark_heart_red.png'; 
                             likeCountSpan.textContent = likeCount + 1;
                         } else {
-                            button.src = 'img/mark_heart_gray.png'; // 画像を変更
+                            button.src = 'img/mark_heart_gray.png'; 
                             likeCountSpan.textContent = likeCount - 1;
                         }
                     } else {
@@ -272,20 +247,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
 
-            xhr.send("post_id=" + postId + "&action=" + action);
+            xhr.send("post_id=" + encodeURIComponent(postId) + "&action=" + encodeURIComponent(action));
         });
     });
-});
-document.addEventListener('DOMContentLoaded', function() {
+
     document.querySelectorAll('.follow-button').forEach(button => {
         button.addEventListener('click', function() {
             var userId = this.getAttribute('data-user-id');
-            var action = this.src.includes('hito_gray.png') ? 'follow' : 'unfollow'; // 画像の状態でアクションを決定
-
-            // デバッグ用のログ
-            console.log('Button clicked');  
-            console.log('User ID:', userId);  
-            console.log('Action:', action);  
+            var action = this.src.includes('hito_gray.png') ? 'follow' : 'unfollow'; 
 
             if (!userId || !action) {
                 console.error('Invalid userId or action');
@@ -298,7 +267,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log('Response received:', xhr.responseText);  // デバッグ用
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'followed') {
                         document.querySelectorAll('.follow-button[data-user-id="' + userId + '"]').forEach(btn => {
@@ -317,6 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.send("action=" + encodeURIComponent(action) + "&user_id=" + encodeURIComponent(userId));
         });
     });
+
     document.querySelectorAll('.comment-form').forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -329,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "comment/comment.php", true); // パスを確認
+            xhr.open("POST", "comment/comment.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function () {
@@ -340,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         var existingComments = document.querySelector('.existing-comments[data-post-id="' + postId + '"]');
                         var newComment = document.createElement('div');
                         newComment.classList.add('comment');
-                        newComment.innerHTML = '<p><strong>' + response.user_name + ':</strong> ' + response.comment + '</p><p class="comment-date">' + response.comment_date + '</p>';
+                        newComment.innerHTML = '<p><strong>' + decodeURIComponent(response.user_name) + ':</strong> ' + decodeURIComponent(response.comment) + '</p><p class="comment-date">' + response.comment_date + '</p>';
                         existingComments.prepend(newComment);
                         commentInput.value = '';
                     } else {
@@ -351,6 +320,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             xhr.send("post_id=" + encodeURIComponent(postId) + "&comment=" + encodeURIComponent(comment));
         });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.classList.contains('dropdown-btn')) {
+            toggleDropdown(event.target);
+        }
     });
 });
 
@@ -364,10 +339,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // }
 
 function logoutchack() {
-    if (confirm("ログアウトしますか？") ) {
+    if (confirm("ログアウトしますか？")) {
         window.location.href = "https://aso2201161.vivian.jp/T3N3/logout/logout_output.php";
     }
 }
+
 </script>
 </div>
 <div class="top">
