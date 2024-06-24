@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="../css/chathome.css">
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
 <div class="head_3">
@@ -7,17 +7,18 @@
         <button type="submit" class="home_button" data-hover="▶">HOME</button>
     </form>
 </div>
-<?php 
-    if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
-        echo '<img src="../icon_img/icon.png" alt="アイコン" class="iconImg">';
-    } else {
-        $file_info = pathinfo($_SESSION['user']['icon']);
-        $file_name = $file_info['filename'];
-        echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
-    }
-?>
-<?php echo $_GET['user_id'],'さんとのトークルーム'; ?>
-<form onsubmit="sendChatData(); return false;">
+<div class="talkRoom">
+        <?php 
+            if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
+                echo '<div class="icon"><img src="../icon_img/icon.png" alt="アイコン" class="iconImg"></div>';
+            } else {
+                $file_info = pathinfo($_SESSION['user']['icon']);
+                $file_name = $file_info['filename'];
+                echo '<div class=""icon><img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg"></div>';
+            }
+        ?>
+        <?php echo '<div class="roomName">'.$_GET['user_id'],'さんとのトークルーム</div>'; ?>
+    </div><form onsubmit="sendChatData(); return false;">
     <table summary="送信フォーム">
         <tr>
             <th style="width:150px">名前(10文字以内)</th>
