@@ -30,6 +30,6 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
 // チャットデータの書き出し
 foreach ($_chat as $val) {
-    echo "<tr><td>" . htmlspecialchars($val["user_name"]) . "</td><td>" . substr($val["date"], 5, 14) . "</td><td>" . htmlspecialchars($val["text"]) . "</td></tr>";
+    echo "<tr><td class='chatName'>" . htmlspecialchars($val["user_name"]) . ":</td><td class='chatText'>" . htmlspecialchars($val["text"]) . "</td></tr>";
 }
 ?>
