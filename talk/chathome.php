@@ -7,39 +7,41 @@
         <button type="submit" class="home_button" data-hover="▶">HOME</button>
     </form>
 </div>
-<div class="talkRoom">
-        <?php 
-            if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
-                echo '<div class="icon"><img src="../icon_img/icon.png" alt="アイコン" class="iconImg"></div>';
-            } else {
-                $file_info = pathinfo($_SESSION['user']['icon']);
-                $file_name = $file_info['filename'];
-                echo '<div class=""icon><img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg"></div>';
-            }
-        ?>
-        <?php echo '<div class="roomName">'.$_GET['user_id'],'さんとのトークルーム</div>'; ?>
-    </div><form onsubmit="sendChatData(); return false;">
-    <table summary="送信フォーム">
+<table class="talkRoom">
         <tr>
-            <th style="width:150px">名前(10文字以内)</th>
-            <td>
-                <?php
-                if (isset($_SESSION['user']['id'])) {
-                    echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8');
+            <?php 
+                if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
+                    echo '<td class="icon"><img src="../icon_img/icon.png" alt="アイコン" class="iconImg"></td>';
                 } else {
-                    echo 'ユーザーIDが指定されていません';
-                    exit;
+                    $file_info = pathinfo($_SESSION['user']['icon']);
+                    $file_name = $file_info['filename'];
+                    echo '<td class="icon"><img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg"></td>';
                 }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <th>文章(50文字以内)</th>
-            <td><input type="text" id="text" style="width:100%" maxlength="50" required /></td>
+            ?>
+            <?php echo '<td class="roomName">'.$_GET['user_id'],'さんとのトークルーム</td>'; ?>
         </tr>
     </table>
-    <p><input type="submit" value="送信" class="button" /></p>
-</form>
+    <form onsubmit="sendChatData(); return false;">
+        <table summary="送信フォーム" class="sendForm">
+            <tr>
+                <!-- <th style="width:150px">名前(10文字以内)</th> -->
+                <td>
+                    <?php
+                    if (isset($_SESSION['user']['id'])) {
+                        echo '<div class="userId">'.htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8').'</div>';
+                    } else {
+                        echo '<div class="userId">ユーザーIDが指定されていません</div>';
+                        exit;
+                    }
+                    ?>
+                </td>
+            </tr>
+            <tr class="talk">
+                <td>50字以内でチャットしてください<br><input type="text" id="text" style="width:100%" maxlength="50" required /></td>
+            </tr>
+        </table>
+        <input type="submit" value="送信" class="send_button" /></form>
+    </form>
  
 <!-- ユーザーIDのhiddenフィールド -->
 <!-- 相手の名前 -->
@@ -47,11 +49,11 @@
 <!-- 自分の名前 -->
 <input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
  
-<table summary="チャット">
-    <tr>
-        <th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th>
-    </tr>
-    <tbody id="board"></tbody>
+<table summary="チャット" class="chat">
+    <!-- <tr>
+        <th style="width:150px">名前</th><th>文章</th>
+    </tr> -->
+    <tbody id="board" ></tbody>
 </table>
  
 <script type="text/javascript">
