@@ -1,5 +1,8 @@
-<?php session_start(); ?>
-<link rel="stylesheet" href="../css/chathome.css">
+<?php 
+session_start();
+require '../top/db-connect.php';
+?>
+<link rel="stylesheet" href="./css/home.css">
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
 <div class="head_3">
@@ -7,7 +10,23 @@
         <button type="submit" class="home_button" data-hover="▶">HOME</button>
     </form>
 </div>
-<table class="talkRoom">
+<div class="head_4">
+    <form action="../group/selectgroup.php" method="post">
+        <button type="submit" class="talk_button" data-hover="▶">NEW CHAT</button>
+    </form>
+</div>
+<?php 
+    if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
+        echo '<img src="../icon_img/icon.png" alt="アイコン" class="iconImg">';
+    } else {
+        $file_info = pathinfo($_SESSION['user']['icon']);
+        $file_name = $file_info['filename'];
+        echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
+    }
+?>
+<?php echo $_GET['user_id'],'さんとのトークルーム'; ?>
+<form onsubmit="sendChatData(); return false;">
+    <table summary="送信フォーム">
         <tr>
             <?php 
                 if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
@@ -55,6 +74,28 @@
     </tr> -->
     <tbody id="board" ></tbody>
 </table>
+
+<p>グループ一覧</p>
+<ul>
+<?php
+// データベースから自分が所属しているグループを取得
+$dbh = new PDO($connect, USER, PASS);
+$user_id = $_SESSION['user']['id'];
+$stmt = $dbh->prepare("SELECT gc.id, gc.group_name FROM group_chat gc JOIN group_members gm ON gc.id = gm.group_id WHERE gm.user_id = ?");
+$stmt->execute([$user_id]);
+$groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (count($groups) > 0) {
+    foreach ($groups as $group) {
+        $group_id = $group['id'] ?? '';
+        $group_name = $group['group_name'] ?? '';
+        echo '<li><a href="../group/groupchat.php?group_id=', htmlspecialchars($group_id ?? '', ENT_QUOTES, 'UTF-8'), '">', htmlspecialchars($group_name ?? '', ENT_QUOTES, 'UTF-8'), '</a></li>';
+    }
+} else {
+    echo '<li>グループがありません。</li>';
+}
+?>
+</ul>
  
 <script type="text/javascript">
 var userId = document.getElementById("user_id").value;
