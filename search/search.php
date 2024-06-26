@@ -3,10 +3,10 @@
     require '../top/db-connect.php';
     require '../top/header.php'; 
 ?>
-<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/search.css">
 <link rel="stylesheet" href="../slick/slick.css">
 <link rel="stylesheet" href="../slick/slick-theme.css">
-<script src="../js/home.js"></script>
+<script src="../js/search.js"></script>
 <?php
     $pdo = new PDO($connect, USER, PASS);
 if(isset($_POST['keyword'])){
@@ -32,21 +32,15 @@ if(isset($_POST['keyword'])){
         $userFollow = $followSql->fetchAll(PDO::FETCH_COLUMN, 0);
     }
     ?>
-    <h2>検索結果</h2>
     <div class="head_3">
         <form action="../home.php" method="post">
-            <button type="submit" class="home_button" data-hover="▶">HOME</button>
+            <button type="submit" class="home_button" onmouseover="changeText(this, true);" onmouseout="changeText(this, false);">HOME</button>
         </form>
     </div>
+    <h2>検索結果</h2>
     <?php
-    $image_count=0;
+    echo '<div class="post_list">';
     foreach ($result as $row) {
-        if ($image_count % 3 == 0) {
-            if ($image_count != 0) {
-                echo '</div>'; // 前の行を閉じる
-            }
-            echo '<div class="image_row">'; // 新しい行を開始
-        }
     
         // 投稿主のユーザーIDを取得する
         $post_owner_id = $row['user_id'];
@@ -54,13 +48,15 @@ if(isset($_POST['keyword'])){
         echo '<div class="post-1" style="flex-basis:320px;">';
         echo '<div class="post-2">';
         echo '<div class="post-3">';
+
+        // 投稿主のマイページへ飛ばす
         echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
             // アイコン表示 (user_management.icon フィールドを使用するように更新)
             $iconPath = !empty($row['icon']) ? '../icon_img/' . htmlspecialchars($row['icon']) : '../post_img/no_image.png';
-            echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
+            echo '<img src="' . $iconPath . '" class="post_icon">';
             //ユーザー名表示
             echo '<div class="name">', htmlspecialchars($row['user_id'] ?? '不明'), '</div>';
-        echo '</a>';
+        echo '</a><br>';
     
         // 画像があるかどうかチェック
         $imagePath = !empty($row['picture']) ? '../img/' . htmlspecialchars($row['picture']) : '../img/no_img.png';
@@ -69,7 +65,7 @@ if(isset($_POST['keyword'])){
         //コメントの表示
         echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div><br>';
         //日付の表示
-        echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
+        echo '<div class="post_date">'.htmlspecialchars($row['post_date'] ?? '日付不明'), '</div>';
     
         // いいねボタンを追加
         $likeButtonSrc = in_array($row['post_id'], $userLikes) ? '../img/mark_heart_red.png' : '../img/mark_heart_gray.png';
@@ -84,14 +80,8 @@ if(isset($_POST['keyword'])){
         echo '</div>';
         echo '</div>';
     
-        $image_count++;
-    }
-    if ($image_count % 3 != 0) {
-        echo '</div>'; // 最後の行を閉じる
     }
     echo '</div>';
-}else{
-    echo '入力してください';
 }
 ?>
 <script>
