@@ -1,0 +1,143 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-image: url(../img/maptile_umi_01.png);
+    font-family: "ノスタルドット（M+）";
+}
+
+/* トークルームタイトル部分 */
+.talkRoom{
+    margin: auto;
+    position: relative;
+    top: -85px;
+}
+.icon{
+    width: 80px;
+    height: 80px;
+}
+.iconImg{
+    /* position: relative;
+    left: 300px;
+    top: -30px; */
+    /* 画像サイズ */
+    width: 80px;
+    height: 80px;
+}
+.roomName{
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    /* max-width: 300px; */
+    font-size: 20px;
+}
+
+/* チャット送るフォーム */
+.sendForm{
+    background-color: #000;
+    position: relative;
+    top: 320px;
+    margin: auto;
+    width: 400px;
+    height: 200px;
+}
+tr .userId{
+    height: 20px;
+}
+.userId{
+    font-size: 18px;
+    color: #fff;
+    position: relative;
+    left: 10px;
+    vertical-align: bottom;
+}
+.talk{
+    color: #fff;
+    vertical-align: top;
+}
+
+/* チャット全体 */
+.chat{
+    margin: auto;
+    background-color: #000;
+    position: relative;
+    top: -360px;
+}
+/* ユーザーID */
+.chatName{
+    color: #fff;
+    font-size: 18px;
+    text-align: right;
+}
+/* チャット内容 */
+.chatText{
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+}
+
+
+
+
+/* ホームボタン */
+.home_button{
+    margin: 5px;
+	width: 130px;
+    height: 50px;
+	font-size: 18px;
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+    top: 0;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+    border: solid 2px #8f8e8e;
+	border-radius: 15px 15px 0 0;
+    box-shadow: 0 5px #8f8e8e;
+}
+/* ホームボタンをクリックしたとき */
+.home_button:active {
+    opacity: 0.5;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 0 #8f8e8e;
+  }
+/* ボタンのホバースタイル */
+.home_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* 送信ボタン */
+.send_button{
+    margin: 20px;
+	width: 130px;
+    height: 50px;
+	font-size: 18px;
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+    top: 230px;
+    left: 680px;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+    border: solid 2px #8f8e8e;
+	border-radius: 15px 15px 0 0;
+    box-shadow: 0 5px #8f8e8e;
+}
+/* 送信ボタンをクリックしたとき */
+.send_button:active {
+    opacity: 0.5;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 0 #8f8e8e;
+  }
+/* ボタンのホバースタイル */
+.send_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
