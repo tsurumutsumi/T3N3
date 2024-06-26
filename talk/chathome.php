@@ -69,12 +69,14 @@ require 'chathistorietest.php'
 <!-- 自分の名前 -->
 <input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
  
-<table summary="チャット" class="chat">
-    <!-- <tr>
-        <th style="width:150px">名前</th><th>文章</th>
-    </tr> -->
-    <tbody id="board" ></tbody>
-</table>
+<div class="contents_box">
+    <table summary="チャット" class="chat">
+        <!-- <tr>
+            <th style="width:150px">名前</th><th>文章</th>
+        </tr> -->
+        <tbody id="board" ></tbody>
+    </table>
+</div>
 
 <p>グループ一覧</p>
 <ul>
