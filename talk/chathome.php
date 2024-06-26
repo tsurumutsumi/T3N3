@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require '../top/db-connect.php';
+require 'chathistorietest.php'
 ?>
 <link rel="stylesheet" href="./css/home.css">
 <link rel="stylesheet" href="slick/slick.css">
