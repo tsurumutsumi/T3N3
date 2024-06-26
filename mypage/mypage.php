@@ -79,6 +79,11 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <div class="head_4">
+                <form action="../talk/chathome.php" method="post">
+                    <button type="submit" class="talk_button" data-hover="▶">TALK</button>
+                </form>
+            </div>
+            <div class="head_4">
                 <form action="profile_change.php" method="post">
                     <button type="submit" class="update_button" data-hover="▶">UPDATE</button>
                 </form>
