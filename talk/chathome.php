@@ -2,7 +2,7 @@
 session_start();
 require '../top/db-connect.php';
 ?>
-<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/chathome.css">
 <link rel="stylesheet" href="..slick/slick.css">
 <link rel="stylesheet" href="..slick/slick-theme.css">
 <div class="head_3">
