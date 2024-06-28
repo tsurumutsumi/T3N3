@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require '../top/db-connect.php';
+require 'chathistorietest.php'
 ?>
 <link rel="stylesheet" href="../css/home.css">
 <link rel="stylesheet" href="..slick/slick.css">
@@ -70,12 +71,14 @@ require 't_chathistori.php';
 <!-- 自分の名前 -->
 <input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
  
-<table summary="チャット" class="chat">
-    <!-- <tr>
-        <th style="width:150px">名前</th><th>文章</th>
-    </tr> -->
-    <tbody id="board" ></tbody>
-</table>
+<div class="contents_box">
+    <table summary="チャット" class="chat">
+        <!-- <tr>
+            <th style="width:150px">名前</th><th>文章</th>
+        </tr> -->
+        <tbody id="board" ></tbody>
+    </table>
+</div>
 
 <p>グループ一覧</p>
 <ul>
