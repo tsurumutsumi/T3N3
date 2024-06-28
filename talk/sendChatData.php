@@ -14,7 +14,7 @@ if (!$user_id) $err[] = "ユーザーIDが指定されていません";
 if (!count($err)) {
     try {
         $dbh = new PDO($connect, USER, PASS);
-        $stmt = $dbh->prepare("INSERT INTO chat (user_id, date, user_name, text) VALUES (?, NOW(), ?, ?)");
+        $stmt = $dbh->prepare("INSERT INTO chat (user_id, date, my_id, text) VALUES (?, NOW(), ?, ?)");
         $stmt->execute([$user_id, $my_id, $text]);
     } catch (PDOException $e) {
         die('接続エラー： ' . $e->getMessage());

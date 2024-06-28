@@ -11,14 +11,14 @@ try {
 
     // 個チャの履歴
     $sql = "
-    SELECT c.user_id, c.user_name, c.text, c.date
+    SELECT c.user_id, c.my_id, c.text, c.date
     FROM chat c
     JOIN (
-        SELECT user_id, user_name, MAX(date) as latest_date
+        SELECT user_id, my_id, MAX(date) as latest_date
         FROM chat
         WHERE user_id = :user_id
-        GROUP BY user_name
-    ) t2 ON c.user_name = t2.user_name AND c.date = t2.latest_date
+        GROUP BY my_id
+    ) t2 ON c.my_id = t2.my_id AND c.date = t2.latest_date
     WHERE c.user_id = :user_id
     ORDER BY c.date DESC";
     
@@ -46,12 +46,6 @@ try {
     $group_chats->bindParam(':user_id', $user_id, PDO::PARAM_INT);
     $group_chats->execute();
     $g_individual_chats = $group_chats->fetchAll(PDO::FETCH_ASSOC);
-
-    // 両方の結果を結合してソート
-    // $all_chats = array_merge($individual_chats, $g_individual_chats);
-    // usort($all_chats, function($a, $b) {
-    //     return strtotime($b['date']) - strtotime($a['date']);
-    // });
 
     $conn = null;
 } catch (PDOException $e) {
@@ -98,7 +92,7 @@ try {
         <?php foreach ($individual_chats as $chat): ?>
         <div class="chat">
             <div class="chat-details">
-                <div class="chat-name"><?php echo htmlspecialchars($chat['user_name'] ?? ''); ?></div>
+                <div class="chat-name"><?php echo htmlspecialchars($chat['my_id'] ?? ''); ?></div>
                 <div class="chat-message"><?php echo htmlspecialchars($chat['text']); ?></div>
                 <div class="chat-timestamp"><?php echo htmlspecialchars($chat['date']); ?></div>
             </div>
