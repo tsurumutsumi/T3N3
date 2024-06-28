@@ -123,20 +123,21 @@ a:hover{
 /* 削除ボタン */
 .post_delete{
     position: relative;
-    background-color: #fff;
-    /* background-color: transparent; */
-    /* border: none; */
+    /* background-color: #fff; */
+    background-color: transparent;
+    border: none;
     border-radius: 20%;
     height: 50px;
     width: 50px;
-    top: 15px;
-    left: 20px;
+    top: -25px;
+    left: 55px;
 }
 .post_delete img{
     position: relative;
-    right: 3px;
-    height: 40px;
-    width: 40px;
+    right: 1px;
+    top: 1px;
+    width: 35px;
+    height: 35px;
 }
 
 /* 投稿とホームをflexで調整 */
