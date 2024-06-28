@@ -401,20 +401,25 @@ a{
     margin: 0; 
     padding: 0;
 }
+.post_date{
+    position: relative;
+    top: -190px;
+}
+
 /* いいねボタン */
 .like-button{
     position: relative;
-    top: -70px;
+    top: -190px;
     left: -40px;
     width: 35px;
     height: 35px;
-  }
+}
 
 /* いいねの数 */
 .like-count{
     position: relative;
     left: -36px;
-    top: -70px;
+    top: -190px;
 }
 
 /* フォローボタン */
@@ -423,7 +428,7 @@ a{
     height: 35px;
     position: relative;
     left: 30px;
-    top: -70px;
+    top: -190px;
 }
 
 /* 鶴がいじるとこ。追加コメントのプルダウン */
@@ -431,6 +436,7 @@ a{
     position: relative;
     display: inline-block;
     margin-bottom: 10px;
+    font-family: "ノスタルドット（M+）";
 }
 
 .dropdown-content {
@@ -464,6 +470,23 @@ a{
 }
 button.dropdown-btn {
     position: relative;
-    top: -100px;
+    top: -130px;
     left: -90px;
+}
+.comment-form {
+    position:relative;
+    top: -40px;
+}
+.comment-form-text{
+    height: 25px;
+    margin: 5px;
+    border-radius:37px 0 0 37px;
+    font-family: "ノスタルドット（M+）";
+}
+.c_post{
+    background-color: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    font-family: "ノスタルドット（M+）";
+    height: 25px;
 }
