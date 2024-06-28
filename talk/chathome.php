@@ -27,7 +27,15 @@ require 't_chathistori.php';
         echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
     }
 ?> -->
-<?php echo $_GET['user_id'],'さんとのトークルーム'; ?>
+
+<?php 
+    if(isset($_GET['user_id'])) {
+        echo $_GET['user_id'],'さんとのトークルーム';
+    }else{
+        echo '全体チャット';
+    }
+    
+?>
 <form onsubmit="sendChatData(); return false;">
     <table summary="送信フォーム">
         <tr>
