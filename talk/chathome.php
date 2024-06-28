@@ -2,9 +2,9 @@
 session_start();
 require '../top/db-connect.php';
 ?>
-<link rel="stylesheet" href="./css/home.css">
-<link rel="stylesheet" href="slick/slick.css">
-<link rel="stylesheet" href="slick/slick-theme.css">
+<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="..slick/slick.css">
+<link rel="stylesheet" href="..slick/slick-theme.css">
 <div class="head_3">
     <form action="../home.php" method="post">
         <button type="submit" class="home_button" data-hover="▶">HOME</button>
@@ -15,7 +15,10 @@ require '../top/db-connect.php';
         <button type="submit" class="talk_button" data-hover="▶">NEW CHAT</button>
     </form>
 </div>
-<?php 
+<?php
+require 't_chathistori.php';
+?>
+<!-- <?php 
     if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
         echo '<img src="../icon_img/icon.png" alt="アイコン" class="iconImg">';
     } else {
@@ -23,7 +26,7 @@ require '../top/db-connect.php';
         $file_name = $file_info['filename'];
         echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
     }
-?>
+?> -->
 <?php echo $_GET['user_id'],'さんとのトークルーム'; ?>
 <form onsubmit="sendChatData(); return false;">
     <table summary="送信フォーム">
@@ -37,7 +40,6 @@ require '../top/db-connect.php';
                     echo '<td class="icon"><img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg"></td>';
                 }
             ?>
-            <?php echo '<td class="roomName">'.$_GET['user_id'],'さんとのトークルーム</td>'; ?>
         </tr>
     </table>
     <form onsubmit="sendChatData(); return false;">
@@ -78,7 +80,7 @@ require '../top/db-connect.php';
 <p>グループ一覧</p>
 <ul>
 <?php
-// データベースから自分が所属しているグループを取得
+//自分が所属しているグループを取得
 $dbh = new PDO($connect, USER, PASS);
 $user_id = $_SESSION['user']['id'];
 $stmt = $dbh->prepare("SELECT gc.id, gc.group_name FROM group_chat gc JOIN group_members gm ON gc.id = gm.group_id WHERE gm.user_id = ?");
