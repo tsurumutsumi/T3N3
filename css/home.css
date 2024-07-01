@@ -470,8 +470,9 @@ a{
 }
 button.dropdown-btn {
     position: relative;
-    top: -130px;
+    top: -125px;
     left: -90px;
+    font-family: "ノスタルドット（M+）";
 }
 .comment-form {
     position:relative;
