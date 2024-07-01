@@ -25,8 +25,11 @@
         </label>
         <!-- 場所移動＋変更(5/20) -->
         <p>コメント</p>
-        <textarea rows="3" cols="30" name="comment" id="comment"></textarea>
-    <br>
+        <div class="TextareaWrapper">
+            <textarea rows="3" cols="30" name="comment" id="textarea" maxlength="30" onkeyup="ShowLength(this.value);"></textarea>
+             <p id="inputlength">0文字</p>
+        </div>    
+        <br>
     <button type="submit" id="post_button" class="post_button" onmouseout="changeText(this, false);" onmouseover="changeText(this, true);">投稿</button>
 </form>
 <script src="../js/preview.js"></script>
