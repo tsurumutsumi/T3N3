@@ -3,6 +3,7 @@
 <?php require '../top/header.php'; ?> 
 
 <script src="../js/post.js"></script>
+<script src="../js/post_comment.js"></script>
 <link rel="stylesheet" href="../css/post.css">
 
 <!-- 追加(5/22) -->
