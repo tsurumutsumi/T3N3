@@ -220,7 +220,7 @@ ob_end_flush(); // 出力バッファリングを終了
                             <?php if (isset($post['comment'])): ?>
                                 <p class="post_comment"><?php echo $post['comment']; ?></p>
                             <?php endif; ?>
-                            <p class="like_count"><img src="../img/mark_heart_red.png"><?php echo $post['like_count']; ?>
+                            <div class="like"><img src="../img/mark_heart_red.png"><?php echo '<div class="like_count">'.$post['like_count'] .'</div></div>'; ?>
                             <button onclick="deletePost(<?php echo $post['post_id']; ?>)" class="post_delete"><img src="../img/mark_batsu.png"></button></p>
                         </div>
                     </div>
