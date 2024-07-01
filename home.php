@@ -187,9 +187,9 @@ foreach ($sql as $row) {
     
     // コメントを追加するフォーム
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/comment.php" method="post">';
-        echo '<input type="text" name="comment" placeholder="コメントを入力" required>';
+        echo '<input type="text" name="comment" class="comment-form-text" placeholder="コメントを入力" required>';
         echo '<input type="hidden" name="post_id" value="' . htmlspecialchars($row['post_id']) . '">'; // hidden input に post_id を追加
-        echo '<button type="submit">投稿</button>';
+        echo '<button type="submit" class="c_post">投稿</button>';
     echo '</form>';
 
 
