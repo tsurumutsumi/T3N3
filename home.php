@@ -199,7 +199,7 @@ foreach ($sql as $row) {
 
 
     //日付の表示
-    echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
+    echo '<div class="post_date">'.htmlspecialchars($row['post_date'] ?? '日付不明'), '</div><br>';
 
     // いいねボタンを追加
     $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
