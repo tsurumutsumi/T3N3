@@ -445,15 +445,20 @@ a:hover{
 }
 
 /* いいねの数表示 */
-.like_count{
+.like{
     position: relative;
     height: 50px;
     width: 50px;
     top: 19px;
     left: 60px;
 }
+.like_count{
+    position: relative;
+    top: -5px;
+    left: 30px;
+}
 
-.like_count img{
+.like img{
     position: relative;
     top: 15px;
     margin: 2px;
