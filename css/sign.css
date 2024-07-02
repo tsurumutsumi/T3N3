@@ -265,3 +265,7 @@ p{
 .create_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }
+.error{
+	color: red;
+	font-size: large;
+}
