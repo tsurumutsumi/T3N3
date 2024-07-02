@@ -436,3 +436,9 @@ body{
     margin-bottom: 6px;
     box-shadow: 0 1px 0 #5e5d5c;
   }
+  .imgerror{
+	color: red;
+	position: absolute;
+	left: 45%;
+	bottom: 0%;
+  }
