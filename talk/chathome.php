@@ -89,7 +89,8 @@ if ($chat_partner_id) {
                 <td>50字以内でチャットしてください<br><input type="text" id="text" style="width:100%" maxlength="50" required /></td>
             </tr>
         </table>
-        <input type="submit" value="送信" class="send_button" /></form>
+        <input type="submit" value="送信" class="send_button" />
+    </form>
 </form>
 <input type="hidden" id="user_id" value="<?php echo htmlspecialchars($chat_partner_id, ENT_QUOTES, 'UTF-8'); ?>">
 <!-- 自分の名前 -->
@@ -112,9 +113,9 @@ $groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if (count($groups) > 0) {
     foreach ($groups as $group) {
-        $group_id = $group['id'] ?? '';
-        $group_name = $group['group_name'] ?? '';
-        echo '<li><a href="../group/groupchat.php?group_id=', htmlspecialchars($group_id ?? '', ENT_QUOTES, 'UTF-8'), '">', htmlspecialchars($group_name ?? '', ENT_QUOTES, 'UTF-8'), '</a></li>';
+        $group_id = htmlspecialchars($group['id'], ENT_QUOTES, 'UTF-8');
+        $group_name = htmlspecialchars($group['group_name'], ENT_QUOTES, 'UTF-8');
+        echo '<li><a href="#" class="groupchat" data-group-id="', $group_id, '">', $group_name, '</a></li>';
     }
 } else {
     echo '<li>グループがありません。</li>';
@@ -123,8 +124,6 @@ if (count($groups) > 0) {
 </ul>
 
 <script type="text/javascript">
-var userId = document.getElementById("user_id").value;
-var myId = document.getElementById("my_id").value;
 var xmlHttpObject;
 
 function createXMLHttpRequest(){
@@ -145,12 +144,18 @@ function createXMLHttpRequest(){
     return xmlHttpObject;
 }
 
-function loadChatData(){
+function loadChatData(isGroup = false, id = null){
     xmlHttpObject = createXMLHttpRequest();
     xmlHttpObject.onreadystatechange = displayHtml;
-    xmlHttpObject.open("POST", 'loadChatData.php', true);
-    xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlHttpObject.send("userId=" + encodeURIComponent(userId));
+    if (isGroup) {
+        xmlHttpObject.open("POST", 'g_loadchatdata.php', true);
+        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.send("groupId=" + encodeURIComponent(id));
+    } else {
+        xmlHttpObject.open("POST", 'loadChatData.php', true);
+        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.send("userId=" + encodeURIComponent(id));
+    }
 }
 
 function displayHtml(){
@@ -159,33 +164,34 @@ function displayHtml(){
     }
 }
 
-function sendChatData(){
-    var text = document.getElementById("text").value;
-    xmlHttpObject = createXMLHttpRequest();
-    xmlHttpObject.open("POST", "sendChatData.php", true);
-    xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlHttpObject.send(
-        "userId=" + encodeURIComponent(userId) +
-        "&myId=" + encodeURIComponent(myId) +
-        "&text=" + encodeURIComponent(text)
-    );
-    document.getElementById("text").value = ""; // フォームをクリアする
-}
+// 初回ロード時に個人チャットデータを取得
+loadChatData(false, document.getElementById('user_id').value);
 
-// 初回ロード時にチャットデータを取得
-loadChatData();
+// 3秒ごとに個人チャットの内容を取りに行く
+setInterval(() => {
+    var isGroup = document.getElementById('user_id').value.startsWith('group-');
+    loadChatData(isGroup, document.getElementById('user_id').value);
+}, 3000);
 
-// 3秒ごとにチャットの内容を取りに行く
-setInterval(loadChatData, 2000);
-
-// チャット履歴のリンクをクリックしたときに履歴を更新
-document.querySelectorAll('.chat-container .chat').forEach(chat => {
-    chat.addEventListener('click', function() {
-        userId = this.querySelector('.chat-partner').innerText;
-        document.getElementById('user_id').value = userId;
-        loadChatData();
+//クリックした時履歴を更新
+document.querySelectorAll('.chat-container .personchat, .chat-container .groupchat').forEach(chat => {
+    chat.addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        var userId = this.getAttribute('data-user-id');
+        var groupId = this.getAttribute('data-group-id');
+        
+        if (userId) {
+            console.log('User ID:', userId);
+            document.getElementById('user_id').value = userId;
+            loadChatData(false, userId);
+        } else if (groupId) {
+            console.log('Group ID:', groupId);
+            document.getElementById('group_id').value = groupId;
+            loadChatData(true, groupId);
+        } else {
+            console.log('見つからないよん');
+        }
     });
 });
 </script>
-</body>
-</html>

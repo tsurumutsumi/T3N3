@@ -59,7 +59,12 @@ try {
         width: 300px;
         border: 1px solid #ccc;
     }
-    .chat {
+    .personchat {
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    .groupchat {
         display: flex;
         padding: 10px;
         border-bottom: 1px solid #eee;
@@ -96,7 +101,7 @@ try {
     <!-- 個チャの出力 -->
     <?php if (!empty($individual_chats)): ?>
         <?php foreach ($individual_chats as $chat): ?>
-            <div class="chat">
+            <div class="personchat" data-user-id="<?php echo htmlspecialchars($chat['user_id'] == $user_id ? $chat['my_id'] : $chat['user_id']); ?>">
                 <div class="chat-details">
                     <!-- ログインユーザーとのチャット相手 -->
                     <div class="chat-partner">
@@ -120,11 +125,12 @@ try {
     <?php else: ?>
         <p>No chat history available.</p>
     <?php endif; ?>
-    <hr>
+</div>
     <!-- グルチャの出力 -->
+<div class="chat-container">
     <?php if (!empty($g_individual_chats)): ?>
         <?php foreach ($g_individual_chats as $chat): ?>
-            <div class="chat">
+            <div class="groupchat" data-group-id="<?php echo htmlspecialchars($chat['group_id']); ?>">
                 <div class="chat-details">
                     <?php if (isset($chat['group_name'])): ?>
                         <div class="group-name"><?php echo htmlspecialchars($chat['group_name']); ?></div>
@@ -139,3 +145,4 @@ try {
         <p>No chat history available.</p>
     <?php endif; ?>
 </div>
+
