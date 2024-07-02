@@ -409,7 +409,7 @@ a{
 /* いいねボタン */
 .like-button{
     position: relative;
-    top: -190px;
+    top: -165px;
     left: -40px;
     width: 35px;
     height: 35px;
@@ -419,7 +419,7 @@ a{
 .like-count{
     position: relative;
     left: -36px;
-    top: -190px;
+    top: -165px;
 }
 
 /* フォローボタン */
@@ -428,7 +428,7 @@ a{
     height: 35px;
     position: relative;
     left: 30px;
-    top: -190px;
+    top: -165px;
 }
 
 /* 鶴がいじるとこ。追加コメントのプルダウン */
@@ -470,7 +470,7 @@ a{
 }
 button.dropdown-btn {
     position: relative;
-    top: -125px;
+    top: -95px;
     left: -90px;
     font-family: "ノスタルドット（M+）";
 }

@@ -152,7 +152,11 @@ foreach ($sql as $row) {
     echo '<div class="post-1" style="flex-basis:320px;">';
     echo '<div class="post-2">';
     echo '<div class="post-3">';
-    echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
+    if (isset($_SESSION['user']['id'])){
+        echo '<a href="mypage/custom_mypage.php?user_id=' . htmlspecialchars($post_owner_id) . '">';
+    }else {
+        echo '';
+    }
         // アイコン表示 (user_management.icon フィールドを使用するように更新)
         $iconPath = !empty($row['icon']) ? 'icon_img/' . htmlspecialchars($row['icon']) : 'post_img/no_image.png';
         echo '<img src="' . $iconPath . '" width="100px" height="100px" class="post_icon">';
@@ -195,7 +199,7 @@ foreach ($sql as $row) {
 
 
     //日付の表示
-    echo htmlspecialchars($row['post_date'] ?? '日付不明'), '<br>';
+    echo '<div class="post_date">'.htmlspecialchars($row['post_date'] ?? '日付不明'), '</div><br>';
 
     // いいねボタンを追加
     $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';

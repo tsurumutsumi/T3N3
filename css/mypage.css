@@ -60,6 +60,61 @@ body{
     display: inline-block;
     margin: 20px;
 }
+
+/* お試し */
+/* ナビゲーションメニュー */
+.nav-menu {
+    color: #fff; /* メニューテキストの色 */
+  }
+  .menu-list {
+    display: flex;
+    /* justify-content: center; メニューアイテムを中央揃えに */
+    list-style: none;
+  }
+  .menu-item {
+    background-color: #000; /*メニューの背景色*/
+    border-left: 1px solid #fff; /* メニューアイテムの左ボーダー */
+    position: relative;
+    margin: 20px; /* 余白 */
+    border: 4px solid #fff;
+  }
+  
+  /* メニューアイテムのホバースタイル */
+  .menu-item:hover .drop-menu-list {
+    visibility: visible; /* 下層メニューを表示 */
+  }
+  
+  .menu-item a {
+    align-items: center;
+    color: #fff; /* メニューアイテム内のリンクテキストの色 */
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    text-decoration: none; /* リンクの下線を非表示 */
+    width: 135px;
+    /* padding: 10px; */
+  }
+
+  
+  /* ドロップダウンメニュー */
+  .drop-menu {
+    position: relative;
+  }
+  .drop-menu-list {
+    background-color: #696969; /* ドロップダウンメニューの背景色 */
+    left: 0;
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    visibility: hidden; /* 下層メニューを非表示 */
+    width: max-content;
+    z-index: 1;
+  }
+.a_link{
+    position: relative;
+    left: -50px;
+}
+
 /* 画像の大きさ */
 .iconImg{
 	width: 120px;
@@ -390,15 +445,20 @@ a:hover{
 }
 
 /* いいねの数表示 */
-.like_count{
+.like{
     position: relative;
     height: 50px;
     width: 50px;
     top: 19px;
     left: 60px;
 }
+.like_count{
+    position: relative;
+    top: -5px;
+    left: 30px;
+}
 
-.like_count img{
+.like img{
     position: relative;
     top: 15px;
     margin: 2px;
