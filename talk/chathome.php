@@ -93,6 +93,8 @@ if ($chat_partner_id) {
     </form>
 </form>
 <input type="hidden" id="user_id" value="<?php echo htmlspecialchars($chat_partner_id, ENT_QUOTES, 'UTF-8'); ?>">
+<input type="hidden" id="group_id" value="">
+
 <!-- 自分の名前 -->
 <input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
 
@@ -148,7 +150,7 @@ function loadChatData(isGroup = false, id = null){
     xmlHttpObject = createXMLHttpRequest();
     xmlHttpObject.onreadystatechange = displayHtml;
     if (isGroup) {
-        xmlHttpObject.open("POST", 'g_loadchatdata.php', true);
+        xmlHttpObject.open("POST", '../group/g_loadChatData.php', true);
         xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlHttpObject.send("groupId=" + encodeURIComponent(id));
     } else {
@@ -170,10 +172,11 @@ loadChatData(false, document.getElementById('user_id').value);
 // 3秒ごとに個人チャットの内容を取りに行く
 setInterval(() => {
     var isGroup = document.getElementById('user_id').value.startsWith('group-');
-    loadChatData(isGroup, document.getElementById('user_id').value);
+    var id = isGroup ? document.getElementById('group_id').value : document.getElementById('user_id').value;
+    loadChatData(isGroup, id);
 }, 3000);
 
-//クリックした時履歴を更新
+// クリックした時履歴を更新
 document.querySelectorAll('.chat-container .personchat, .chat-container .groupchat').forEach(chat => {
     chat.addEventListener('click', function(event) {
         event.preventDefault();
@@ -184,10 +187,12 @@ document.querySelectorAll('.chat-container .personchat, .chat-container .groupch
         if (userId) {
             console.log('User ID:', userId);
             document.getElementById('user_id').value = userId;
+            document.getElementById('group_id').value = ''; // グループIDをクリア
             loadChatData(false, userId);
         } else if (groupId) {
             console.log('Group ID:', groupId);
             document.getElementById('group_id').value = groupId;
+            document.getElementById('user_id').value = groupId; // user_id にグループ識別子を設定
             loadChatData(true, groupId);
         } else {
             console.log('見つからないよん');

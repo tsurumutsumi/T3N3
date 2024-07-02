@@ -12,6 +12,7 @@ header("Content-type: text/html; charset=utf-8");
 // POSTリクエストからgroupIdを取得
 if (isset($_POST['groupId']) && isset($_SESSION['user']['id'])) {
     $group_id = $_POST['groupId'];
+    echo $_POST['groupId'];
     $user_id = $_SESSION['user']['id'];
     echo 'groupId: ' . $group_id . '<br>';
     echo 'userId: ' . $user_id . '<br>';
@@ -34,6 +35,6 @@ echo '取得したメッセージ数: ' . count($_chat) . '<br>';
 
 // チャットデータの書き出し
 foreach ($_chat as $val) {
-    echo "<tr><td>" . htmlspecialchars($val["user_id"], ENT_QUOTES, 'UTF-8') . "</td><td>" . substr($val["timestamp"], 5, 11) . "</td><td>" . htmlspecialchars($val["message"], ENT_QUOTES, 'UTF-8') . "</td></tr>";
+    echo "<tr><td class='chatName'>" . htmlspecialchars($val["user_id"]) . ":</td><td class='chatText'>" . htmlspecialchars($val["message"]) . "</td></tr>";
 }
 ?>
