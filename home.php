@@ -176,19 +176,30 @@ foreach ($sql as $row) {
     $commentStmt->execute([$row['post_id']]);
     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     
-    echo '<div class="dropdown">';
-        echo '<button class="dropdown-btn" onclick="toggleDropdown(this)">コメント▼</button>';
-        echo '<div class="dropdown-content existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '" style="display:none;">';
-            if ($comments) {
-                foreach ($comments as $comment) {
-                    echo '<p><strong>' . htmlspecialchars($comment['user_id']) . ':</strong> ' . htmlspecialchars($comment['comment']) . '</p>';
-                }
-            } else {
-                echo '<p>コメントはまだありません。</p>';
-            }
-        echo '</div>';
-    echo '</div>';
-    
+    ?>
+
+    <nav class="nav-menu">
+        <ul class="menu-list">
+            <li class="menu-item drop-menu">
+                <a class="list_commment" href="#">▶comment</a>
+                <ul class="drop-menu-list">
+                    <li class="drop-menu-item">
+                        <?php
+                            if ($comments) {
+                                foreach ($comments as $comment) {
+                                    echo '<p>' . htmlspecialchars($comment['user_id']) . ':' . htmlspecialchars($comment['comment']) . '</p>';
+                                }
+                            } else {
+                                echo '<p>コメントはまだありません。</p>';
+                            }
+                        ?>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>    
+
+    <?php
     // コメントを追加するフォーム
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/comment.php" method="post">';
         echo '<input type="text" name="comment" class="comment-form-text" placeholder="コメントを入力" required>';
