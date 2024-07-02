@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } catch (Exception $e) {
         // ロールバック
         $dbh->rollBack();
-        echo "Failed: " . $e->getMessage();
+        echo "Failed: " . $e->getMessage(); 
     }
 }
 ?>

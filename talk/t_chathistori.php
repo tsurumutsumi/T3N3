@@ -135,7 +135,7 @@ try {
                     <?php if (isset($chat['group_name'])): ?>
                         <div class="group-name"><?php echo htmlspecialchars($chat['group_name']); ?></div>
                     <?php endif; ?>
-                    <div class="chat-name"><?php echo htmlspecialchars($chat['user_name'] ?? ''); ?></div>
+                    <div class="chat-name"><?php echo htmlspecialchars($chat['user_id'] ?? ''); ?></div>
                     <div class="chat-message"><?php echo htmlspecialchars($chat['text']); ?></div>
                     <div class="chat-timestamp"><?php echo htmlspecialchars($chat['date']); ?></div>
                 </div>

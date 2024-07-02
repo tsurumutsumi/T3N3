@@ -28,6 +28,29 @@ try {
 $chat_partner_id = $latest_chat_partner['chat_partner_id'] ?? null;
 $chat_partner_id = $_GET['user_id'] ?? $chat_partner_id;
 
+// 最新のグループチャットを取得
+try {
+    $conn = new PDO($connect, USER, PASS);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $sql = "
+        SELECT group_id
+        FROM group_messages
+        WHERE user_id = :user_id
+        ORDER BY timestamp DESC
+        LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+    $stmt->execute();
+    $latest_group_chat = $stmt->fetch(PDO::FETCH_ASSOC);
+    $conn = null;
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+
+$latest_group_id = $latest_group_chat['group_id'] ?? null;
+$Group_id = $_GET['group_id'] ?? $latest_group_id;
+
 ?>
 
 <link rel="stylesheet" href="../css/chathome.css">
@@ -49,6 +72,7 @@ $chat_partner_id = $_GET['user_id'] ?? $chat_partner_id;
 <?php require 't_chathistori.php'; ?>
 
 <!-- 表示するトークルームのタイトル -->
+<!-- グルチャに切り替える場合加筆修正する -->
 <?php 
 if ($chat_partner_id) {
     echo htmlspecialchars($chat_partner_id) . 'さんとのトークルーム';
@@ -56,6 +80,7 @@ if ($chat_partner_id) {
     echo 'トークルーム';
 }
 ?>
+
 
 <form onsubmit="sendChatData(); return false;">
     <table summary="送信フォーム">
@@ -93,7 +118,7 @@ if ($chat_partner_id) {
     </form>
 </form>
 <input type="hidden" id="user_id" value="<?php echo htmlspecialchars($chat_partner_id, ENT_QUOTES, 'UTF-8'); ?>">
-<input type="hidden" id="group_id" value="">
+<input type="hidden" id="group_id" value="<?php echo htmlspecialchars($Group_id, ENT_QUOTES, 'UTF-8'); ?>">
 
 <!-- 自分の名前 -->
 <input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
@@ -104,6 +129,7 @@ if ($chat_partner_id) {
     </table>
 </div>
 
+<!-- 消すか相談 -->
 <p>グループ一覧</p>
 <ul>
 <?php
@@ -166,18 +192,58 @@ function displayHtml(){
     }
 }
 
-function sendChatData(){
-        var text = document.getElementById("text").value;
-        xmlHttpObject = createXMLHttpRequest();
-        xmlHttpObject.open("POST", "sendChatData.php", true);
+function sendChatData() {
+    var text = document.getElementById("text").value;
+    var groupId = document.getElementById("group_id").value;
+    var userId = document.getElementById("user_id").value;
+    var myId = document.getElementById("my_id").value;
+
+    xmlHttpObject = createXMLHttpRequest();
+    var url = "";
+
+    if (groupId) {
+        url = "../group/g_sendChatData.php";
+        xmlHttpObject.open("POST", url, true);
         xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.onreadystatechange = function () {
+            if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
+                var response = JSON.parse(xmlHttpObject.responseText);
+                if (response.status === 'success') {
+                    loadChatData(true, groupId);
+                } else {
+                    alert(response.message);
+                }
+            }
+        };
         xmlHttpObject.send(
-            "userId=" + encodeURIComponent(userId) +
-            "&name=" + encodeURIComponent(userId) +
+            "groupId=" + encodeURIComponent(groupId) +
+            "&myId=" + encodeURIComponent(myId) +
             "&text=" + encodeURIComponent(text)
         );
-        document.getElementById("text").value = ""; // フォームをクリアする
+    } else {
+        url = "sendChatData.php";
+        xmlHttpObject.open("POST", url, true);
+        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.onreadystatechange = function () {
+            if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
+                var response = JSON.parse(xmlHttpObject.responseText);
+                if (response.status === 'success') {
+                    loadChatData(false, userId);
+                } else {
+                    alert(response.message);
+                }
+            }
+        };
+        xmlHttpObject.send(
+            "userId=" + encodeURIComponent(userId) +
+            "&myId=" + encodeURIComponent(myId) +
+            "&text=" + encodeURIComponent(text)
+        );
     }
+
+    document.getElementById("text").value = "";  // フォームをクリアする
+}
+
 
 // 初回ロード時に個人チャットデータを取得
 loadChatData(false, document.getElementById('user_id').value);

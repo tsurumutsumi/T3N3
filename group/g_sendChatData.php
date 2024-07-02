@@ -2,7 +2,7 @@
 session_start();
 require '../top/db-connect.php';
 
-$text = isset($_POST["message"]) ? $_POST["message"] : "";
+$text = isset($_POST["text"]) ? $_POST["text"] : "";
 $group_id = isset($_POST["groupId"]) ? $_POST["groupId"] : "";
 $my_id = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : "";
 
@@ -16,11 +16,12 @@ if (!count($err)) {
         $dbh = new PDO($connect, USER, PASS);
         $stmt = $dbh->prepare("INSERT INTO group_messages (group_id, timestamp, user_id, message) VALUES (?, NOW(), ?, ?)");
         $stmt->execute([$group_id, $my_id, $text]);
+        echo json_encode(['status' => 'success']);
     } catch (PDOException $e) {
-        die('接続エラー： ' . $e->getMessage());
+        die(json_encode(['status' => 'error', 'message' => '接続エラー： ' . $e->getMessage()]));
     }
 } else {
-    $msg = showerr($err);
+    echo json_encode(['status' => 'error', 'message' => showerr($err)]);
 }
 
 function showerr($err)
