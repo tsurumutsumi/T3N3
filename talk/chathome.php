@@ -166,6 +166,19 @@ function displayHtml(){
     }
 }
 
+function sendChatData(){
+        var text = document.getElementById("text").value;
+        xmlHttpObject = createXMLHttpRequest();
+        xmlHttpObject.open("POST", "sendChatData.php", true);
+        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.send(
+            "userId=" + encodeURIComponent(userId) +
+            "&name=" + encodeURIComponent(userId) +
+            "&text=" + encodeURIComponent(text)
+        );
+        document.getElementById("text").value = ""; // フォームをクリアする
+    }
+
 // 初回ロード時に個人チャットデータを取得
 loadChatData(false, document.getElementById('user_id').value);
 
