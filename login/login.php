@@ -63,7 +63,8 @@
         computed: {
             isInvalidMail() {
                 // メールアドレスが1文字未満の場合にtrueを返す
-                return !/^[a-zA-Z0-9]+$/.test(this.mail) || this.mail.length < 1;
+                return !/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(this.mail) || this.mail.length < 1;
+
             },
             isInvalidPassword() {
                 // パスワードが1文字未満の場合にtrueを返す
