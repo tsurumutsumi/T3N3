@@ -45,8 +45,8 @@ require '../top/header.php';
                 return !/^[a-zA-Z0-9]+$/.test(this.pass) || this.pass.length < 5;
             },
             isInvalidMail() {
-                // パスワードが半角英数字で5文字未満の場合にtrueを返す
-                return !/^[a-zA-Z0-9]+$/.test(this.mail) || this.mail.length < 5;
+                // メールアドレスが半角英数字で1文字未満の場合にtrueを返す
+                return !/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(this.mail) || this.mail.length < 1;
             }
         }
     });
