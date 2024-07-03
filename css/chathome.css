@@ -41,7 +41,7 @@ body{
 .sendForm{
     background-color: #000;
     position: relative;
-    top: 370px;
+    top: -210px;
     margin: auto;
     width: 400px;
     height: 200px;
@@ -87,7 +87,7 @@ tr .userId{
     overflow-y: scroll;
     overflow: auto;
     position: relative;
-    top: -360px;
+    top: -1000px;
     margin: auto;
 }
 .contents_box::-webkit-scrollbar{
@@ -140,7 +140,7 @@ tr .userId{
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
 	position: relative;
-    top: 270px;
+    top: -280px;
     left: 665px;
 	display: inline-block;
 	font-weight: bold;
