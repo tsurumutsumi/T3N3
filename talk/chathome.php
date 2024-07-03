@@ -69,7 +69,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
     </form>
 </div>
 
-<?php require 't_chathistori.php'; ?>
+<?php require 'chathistorie.php'; ?>
 
 <!-- 表示するトークルームのタイトル -->
 <!-- グルチャに切り替える場合加筆修正する -->

@@ -9,3 +9,8 @@ body{
     background-size: 250px;
     height: 715px;
 }
+
+h1{
+    font-size: 45px;
+	/* text-align: center; */
+}

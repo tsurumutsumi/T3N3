@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../top/db-connect.php';
+require '../home.php';
 
 // ユーザー一覧を取得
 $dbh = new PDO($connect, USER, PASS);
@@ -9,7 +10,13 @@ $stmt->execute([$_SESSION['user']['id']]);
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <body>
-<h2>グループ作成</h2>
+<link rel="stylesheet" href="../css/new_group.css">
+<div class="head_4">
+    <form action="../mypage/mypage.php" method="post">
+        <button type="submit" class="home_button" data-hover="▶">BACK</button>
+    </form>
+</div>
+<h2 class="title">グループ作成</h2>
 <form action="creategroup.php" method="POST">
     <label for="group_name">グループ名:</label>
     <input type="text" id="group_name" name="group_name" required>
