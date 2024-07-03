@@ -103,8 +103,14 @@ tr .userId{
 .chat-container {
     width: 300px;
     border: 1px solid #ccc;
+    background-color: #fff;
 }
-.chat {
+.personchat {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.groupchat {
     display: flex;
     padding: 10px;
     border-bottom: 1px solid #eee;
@@ -123,6 +129,18 @@ tr .userId{
 }
 .chat-message {
     margin-top: 5px;
+}
+.chat-timestamp {
+    color: gray;
+    font-size: 0.8em;
+}
+.chat-partner {
+    color: blue;
+    font-size: 0.9em;
+}
+.group-name {
+    color: blue;
+    font-size: 0.9em;
 }
 
 
