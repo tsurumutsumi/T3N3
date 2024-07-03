@@ -265,6 +265,7 @@ body::after {
   /* ドロップダウンメニュー */
   .drop-menu {
     position: relative;
+    top: 50px;
   }
   .drop-menu-list {
     background-color: #696969; /* ドロップダウンメニューの背景色 */
