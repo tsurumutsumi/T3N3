@@ -61,7 +61,7 @@ tr .userId{
     vertical-align: top;
 }
 .talk input{
-    margin: 10px;
+    /* margin: 10px; */
     height: 40px;
     width: 375px;
 }
