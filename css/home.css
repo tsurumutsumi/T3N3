@@ -315,12 +315,39 @@ body::after {
 }
 
 /* トップリンク */
+html {
+    scroll-behavior: smooth;
+  }
+  body {
+    height: auto;
+  }
+  @keyframes progress {
+    0% {
+      bottom: -100px;
+    }
+    5% {
+      bottom: 20px;
+    }
+    45% {
+      bottom: 20px;
+    }
+    50% {
+      bottom: 20px;
+    }
+    100% {
+      bottom: 20px;
+    }
+  }
 .top{
     position: fixed;
     bottom: 10px;
     right: 20px;
     height: 60px;
     width: 60px;
+    animation: progress linear;
+    animation-timeline: scroll();
+    transition: bottom 1s ease;
+    z-index: 2;
 }
 .top img{
     height: 60px;
