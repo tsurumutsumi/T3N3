@@ -13,7 +13,7 @@ require '../top/header.php';?>
 <!-- 追加(5/17) -->
 <p class="title">SPT</p>
 <!-- 仮登録 -->
-<div class="back" id="app">
+<div id="app" class="back">
     <form action="sign_up.php" method="post">
         <h1>仮登録</h1>
         <div class="iptxt">
@@ -38,8 +38,9 @@ require '../top/header.php';?>
         computed: {
             isInvalidMail() {
                 // メールアドレスが1文字未満の場合にtrueを返す
-                return !/^[a-zA-Z0-9]+$/.test(this.mail) || this.mail.length < 1;
+                return !/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(this.mail) || this.mail.length < 1;
             }
         }
     });
+</script>
 <?php require '../top/footer.php';?>
