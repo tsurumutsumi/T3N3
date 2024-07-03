@@ -43,32 +43,8 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-        .chat-container {
-            width: 300px;
-            border: 1px solid #ccc;
-        }
-        .chat {
-            display: flex;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .chat-details {
-            flex: 1;
-        }
-        .chat-name {
-            font-weight: bold;
-        }
-        .chat-message {
-            margin-top: 5px;
-        }
-    </style></head>
+<link rel="stylesheet" href="../css/chathome.css">
+</head>
 <body>
 <div class="chat-container">
     <?php foreach ($chats as $chat): ?>
