@@ -542,7 +542,7 @@ button.dropdown-btn {
 }
 .comment-form {
     position:relative;
-    top: -40px;
+    top: -10px;
 }
 .comment-form-text{
     width:225px;

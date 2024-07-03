@@ -41,7 +41,7 @@ body{
 .sendForm{
     background-color: #000;
     position: relative;
-    top: 370px;
+    top: -210px;
     margin: auto;
     width: 400px;
     height: 200px;
@@ -61,7 +61,7 @@ tr .userId{
     vertical-align: top;
 }
 .talk input{
-    margin: 10px;
+    /* margin: 10px; */
     height: 40px;
     width: 375px;
 }
@@ -87,7 +87,7 @@ tr .userId{
     overflow-y: scroll;
     overflow: auto;
     position: relative;
-    top: -360px;
+    top: -1000px;
     margin: auto;
 }
 .contents_box::-webkit-scrollbar{
@@ -99,6 +99,50 @@ tr .userId{
     border-radius: 20px;
 }
 
+/* chathistorieのcss */
+.chat-container {
+    width: 300px;
+    border: 1px solid #ccc;
+}
+.personchat {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+.groupchat {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.chat-details {
+    flex: 1;
+}
+.chat-name {
+    font-weight: bold;
+}
+.chat-message {
+    margin-top: 5px;
+}
+.chat-timestamp {
+    color: gray;
+    font-size: 0.8em;
+}
+.chat-partner {
+    color: blue;
+    font-size: 0.9em;
+}
+.group-name {
+    color: blue;
+    font-size: 0.9em;
+}
 
 
 /* ホームボタン */
@@ -140,7 +184,7 @@ tr .userId{
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
 	position: relative;
-    top: 270px;
+    top: -280px;
     left: 665px;
 	display: inline-block;
 	font-weight: bold;

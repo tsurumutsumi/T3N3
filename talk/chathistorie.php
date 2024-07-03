@@ -54,49 +54,13 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 ?>
-<style>
-    .chat-container {
-        width: 300px;
-        border: 1px solid #ccc;
-    }
-    .personchat {
-        display: flex;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-    }
-    .groupchat {
-        display: flex;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-    }
-    .avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-    .chat-details {
-        flex: 1;
-    }
-    .chat-name {
-        font-weight: bold;
-    }
-    .chat-message {
-        margin-top: 5px;
-    }
-    .chat-timestamp {
-        color: gray;
-        font-size: 0.8em;
-    }
-    .chat-partner {
-        color: blue;
-        font-size: 0.9em;
-    }
-    .group-name {
-        color: blue;
-        font-size: 0.9em;
-    }
-</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/chathome.css">
+</head>
+<body>
 <div class="chat-container">
     <!-- 個チャの出力 -->
     <?php if (!empty($individual_chats)): ?>
