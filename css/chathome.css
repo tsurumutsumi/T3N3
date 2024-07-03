@@ -103,17 +103,18 @@ tr .userId{
 .chat-container {
     width: 300px;
     border: 1px solid #ccc;
-    background-color: #fff;
 }
 .personchat {
     display: flex;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    background-color: #fff;
 }
 .groupchat {
     display: flex;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    background-color: #fff;
 }
 .avatar {
     width: 50px;
