@@ -83,19 +83,6 @@ if ($chat_partner_id) {
 
 
 <form onsubmit="sendChatData(); return false;">
-    <table summary="送信フォーム">
-        <tr>
-            <?php 
-                if (!isset($_SESSION['user']['icon']) || empty($_SESSION['user']['icon'])) {
-                    echo '<td class="icon"><img src="../icon_img/icon.png" alt="アイコン" class="iconImg"></td>';
-                } else {
-                    $file_info = pathinfo($_SESSION['user']['icon']);
-                    $file_name = $file_info['filename'];
-                    echo '<td class="icon"><img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg"></td>';
-                }
-            ?>
-        </tr>
-    </table>
     <form onsubmit="sendChatData(); return false;">
         <table summary="送信フォーム" class="sendForm">
             <tr>

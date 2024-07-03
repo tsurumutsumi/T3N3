@@ -1,0 +1,11 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    /* background-image: url(../img/maptile_renga_white_02.png); */
+    background-image: url(../img/maptile_renga_brown_01_1.jpg);
+    font-family: "ノスタルドット（M+）";
+    background-size: 250px;
+    height: 715px;
+}
