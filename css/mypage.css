@@ -69,7 +69,16 @@ body{
     display: flex;
     /* justify-content: center; メニューアイテムを中央揃えに */
     list-style: none;
-  }
+}
+.menu-item-bio {
+    background-color: #000; /*メニューの背景色*/
+    border-left: 1px solid #fff; /* メニューアイテムの左ボーダー */
+    position: relative;
+    margin: 20px; /* 余白 */
+    border: 4px solid #fff;
+    width: 100px;
+}
+
   .menu-item {
     background-color: #000; /*メニューの背景色*/
     border-left: 1px solid #fff; /* メニューアイテムの左ボーダー */
