@@ -128,7 +128,7 @@ ob_end_flush(); // 出力バッファリングを終了
 
         <nav class="nav-menu">
             <ul class="menu-list">
-                <li class="menu-item">
+                <li class="menu-item-bio">
                 <?php 
                     if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
                         echo '<a href="#">bio：<span class="value">NONE</span></a>';

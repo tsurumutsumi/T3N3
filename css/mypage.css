@@ -77,6 +77,14 @@ body{
     margin: 20px; /* 余白 */
     border: 4px solid #fff;
   }
+  .menu-item-bio {
+    background-color: #000; /*メニューの背景色*/
+    border-left: 1px solid #fff; /* メニューアイテムの左ボーダー */
+    position: relative;
+    margin: 20px; /* 余白 */
+    border: 4px solid #fff;
+    width: 300px;
+  }
   
   /* メニューアイテムのホバースタイル */
   .menu-item:hover .drop-menu-list {
@@ -91,6 +99,16 @@ body{
     justify-content: center;
     text-decoration: none; /* リンクの下線を非表示 */
     width: 135px;
+    /* padding: 10px; */
+  }
+  .menu-item-bio a {
+    align-items: center;
+    color: #fff; /* メニューアイテム内のリンクテキストの色 */
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    text-decoration: none; /* リンクの下線を非表示 */
+    width: 300px;
     /* padding: 10px; */
   }
 
@@ -138,7 +156,7 @@ body{
     border: 1px solid #fff;
     border-radius: 10%;
 }
-a:hover{
+.logout_link:hover{
     color: #e9546b;
 }
 /* ログアウト */
@@ -162,12 +180,39 @@ a:hover{
 }
 
 /* トップリンク */
+html {
+    scroll-behavior: smooth;
+  }
+  body {
+    height: auto;
+  }
+  @keyframes progress {
+    0% {
+      bottom: -100px;
+    }
+    5% {
+      bottom: 20px;
+    }
+    45% {
+      bottom: 20px;
+    }
+    50% {
+      bottom: 20px;
+    }
+    100% {
+      bottom: 20px;
+    }
+  }
 .top{
     position: fixed;
     bottom: 10px;
     right: 20px;
     height: 60px;
     width: 60px;
+    animation: progress linear;
+    animation-timeline: scroll();
+    transition: bottom 1s ease;
+    z-index: 2;
 }
 .top img{
     height: 60px;
@@ -340,11 +385,18 @@ a:hover{
     text-decoration: none;
     color: #080808;
     background: #bfbebe;
-    border-bottom: solid 4px #5e5d5c;
-    border-radius: 15px 15px 0 0;
-    transition: .4s;
-    overflow: hidden; /* オーバーフローを隠す */
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }
+/* トークボタンをクリックしたとき */
+.talk_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 /* ボタンのホバースタイル */
 .talk_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
