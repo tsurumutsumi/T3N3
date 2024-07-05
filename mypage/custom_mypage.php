@@ -84,15 +84,15 @@ ob_end_flush(); // 出力バッファリングを終了
         </div>
         <div class="profile">
         <?php 
-            if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
+            if (empty($user_info['self_introduction'])) {
                 echo '<div class="text">bio：<span class="value">NONE</span></div>';
             } else {
-                echo '<div class="text">bio：<span class="value">'.$_SESSION['user']['bio'].'</span></div>'; 
+                echo '<div class="text">bio：<span class="value">'.htmlspecialchars($user_info['self_introduction']).'</span></div>'; 
             }
         ?>
             <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
-            <div class="text">FOLLOW：<span class="value"></span><?php echo $follow_count; ?></div>
-            <div class="text">FOLLOWER：<span class="value"></span><?php echo $follower_count; ?></div>
+            <div class="text">FOLLOW：<span class="value"><?php echo htmlspecialchars($follow_count); ?></span></div>
+            <div class="text">FOLLOWER：<span class="value"><?php echo htmlspecialchars($follower_count); ?></span></div>
         </div>
         <?php if (!empty($posts)): ?>
                 <div class="history_title">
