@@ -26,20 +26,22 @@ body{
     left: 20px;
     
 }
-/* 投稿数やフォロー数の値のみ大きく */
 .value{
-    font-size: 25px;
+    font-size: 20px;
 }
+
+/* 投稿数やフォロー数の値のみ大きく */
 .profile{
     display: flex;
 }
 /* 投稿数・bio・フォロー・フォロワーを囲む */
-/* .text{
+.text{
     color: #fff;
     padding: 15px;
     border: 5px solid #fff;
     background-color: #080808;
     display: inline-block;
+    /* border-radius: 10px; */
     margin: 20px;
     height: 30px;
 }
@@ -58,7 +60,7 @@ body{
     background-color: #080808;
     display: inline-block;
     margin: 20px;
-} */
+}
 
 /* お試し */
 /* ナビゲーションメニュー */
