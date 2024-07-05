@@ -10,7 +10,27 @@ body{
     height: 715px;
 }
 
-h1{
-    font-size: 45px;
+.title{
+    font-size: 30px;
 	/* text-align: center; */
+}
+.g_name{
+    font-size: 20px;
+}
+h3{
+    font-size: 15px;
+}
+.user-list {
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-item {
+    width: 20%; /* 横に5つ並べるための幅 (100% / 5) */
+    box-sizing: border-box;
+    padding: 10px;
+}
+.head_4{
+    
 }
