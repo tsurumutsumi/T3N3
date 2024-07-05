@@ -61,7 +61,64 @@ try {
 <link rel="stylesheet" href="../css/chathome.css">
 </head>
 <body>
-<div class="chat-container">
+<!-- <div class="chat-container"> -->
+    <!-- 個チャの出力 -->
+    <!-- <?php //if (!empty($individual_chats)): ?>
+        <?php //foreach ($individual_chats as $chat): ?>
+            <div class="personchat" data-user-id="<?php //echo htmlspecialchars($chat['user_id'] == $user_id ? $chat['my_id'] : $chat['user_id']); ?>">
+                <div class="chat-details"> -->
+                    <!-- ログインユーザーとのチャット相手 -->
+                    <!-- <div class="chat-partner">
+                        <?php 
+                        //if ($chat['user_id'] == $user_id) {
+                            //echo htmlspecialchars($chat['my_id']);
+                        //} else {
+                            //echo htmlspecialchars($chat['user_id']);
+                        //}
+                        ?>
+                    </div> -->
+                    <!-- 最新の履歴 -->
+                    <!-- <div class="chat-name">
+                        <?php //echo htmlspecialchars($chat['my_id']); ?>
+                    </div>
+                    <div class="chat-message"><?php //echo htmlspecialchars($chat['text']); ?></div>
+                    <div class="chat-timestamp"><?php //echo htmlspecialchars($chat['date']); ?></div>
+                </div>
+            </div>
+        <?php //endforeach; ?>
+    <?php //else: ?>
+        <p>No chat history available.</p>
+    <?php //endif; ?>
+</div> -->
+    <!-- グルチャの出力 -->
+<!-- <div class="chat-container">
+    <?php //if (!empty($g_individual_chats)): ?>
+        <?php //foreach ($g_individual_chats as $chat): ?>
+            <div class="groupchat" data-group-id="<?php //echo htmlspecialchars($chat['group_id']); ?>">
+                <div class="chat-details">
+                    <?php //if (isset($chat['group_name'])): ?>
+                        <div class="group-name"><?php //echo htmlspecialchars($chat['group_name']); ?></div>
+                    <?php //endif; ?>
+                    <div class="chat-name"><?php //echo htmlspecialchars($chat['user_id'] ?? ''); ?></div>
+                    <div class="chat-message"><?php //echo htmlspecialchars($chat['text']); ?></div>
+                    <div class="chat-timestamp"><?php //echo htmlspecialchars($chat['date']); ?></div>
+                </div>
+            </div>
+        <?php //endforeach; ?>
+    <?php //else: ?>
+        <p>No chat history available.</p>
+    <?php //endif; ?>
+</div> -->
+
+<!-- お試し -->
+<div class="tabs">
+    <input id="all" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="all">個人</label>
+    <input id="programming" type="radio" name="tab_item">
+    <label class="tab_item" for="programming">グループ</label>
+    <div class="tab_content" id="all_content">
+        個人チャットの内容がここに入ります
+        <div class="chat-container">
     <!-- 個チャの出力 -->
     <?php if (!empty($individual_chats)): ?>
         <?php foreach ($individual_chats as $chat): ?>
@@ -90,23 +147,27 @@ try {
         <p>No chat history available.</p>
     <?php endif; ?>
 </div>
-    <!-- グルチャの出力 -->
-<div class="chat-container">
-    <?php if (!empty($g_individual_chats)): ?>
-        <?php foreach ($g_individual_chats as $chat): ?>
-            <div class="groupchat" data-group-id="<?php echo htmlspecialchars($chat['group_id']); ?>">
-                <div class="chat-details">
-                    <?php if (isset($chat['group_name'])): ?>
-                        <div class="group-name"><?php echo htmlspecialchars($chat['group_name']); ?></div>
-                    <?php endif; ?>
-                    <div class="chat-name"><?php echo htmlspecialchars($chat['user_id'] ?? ''); ?></div>
-                    <div class="chat-message"><?php echo htmlspecialchars($chat['text']); ?></div>
-                    <div class="chat-timestamp"><?php echo htmlspecialchars($chat['date']); ?></div>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No chat history available.</p>
-    <?php endif; ?>
+    </div>
+    <div class="tab_content" id="programming_content">
+        グループチャットの内容がここに入ります
+            <!-- グルチャの出力 -->
+        <div class="chat-container">
+            <?php if (!empty($g_individual_chats)): ?>
+                <?php foreach ($g_individual_chats as $chat): ?>
+                    <div class="groupchat" data-group-id="<?php echo htmlspecialchars($chat['group_id']); ?>">
+                        <div class="chat-details">
+                            <?php if (isset($chat['group_name'])): ?>
+                                <div class="group-name"><?php echo htmlspecialchars($chat['group_name']); ?></div>
+                            <?php endif; ?>
+                            <div class="chat-name"><?php echo htmlspecialchars($chat['user_id'] ?? ''); ?></div>
+                            <div class="chat-message"><?php echo htmlspecialchars($chat['text']); ?></div>
+                            <div class="chat-timestamp"><?php echo htmlspecialchars($chat['date']); ?></div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No chat history available.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
-
