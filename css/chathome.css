@@ -66,6 +66,13 @@ tr .userId{
     width: 375px;
 }
 
+.talkroomName{
+    position: relative;
+    top: -585px;
+    text-align: center;
+    color: #fff;
+}
+
 /* チャット全体 */
 /* ユーザーID */
 .chatName{
@@ -87,7 +94,7 @@ tr .userId{
     overflow-y: scroll;
     overflow: auto;
     position: relative;
-    top: -1000px;
+    top: -858px;
     margin: auto;
 }
 .contents_box::-webkit-scrollbar{
