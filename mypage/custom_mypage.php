@@ -134,7 +134,7 @@ ob_end_flush(); // 出力バッファリングを終了
                                     ?>
                                     <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
                                     <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
-                                    <p class="like_count">いいね: <?php echo htmlspecialchars($post['like_count']); ?></p>
+                                    <div class="like2"><img src="../img/mark_heart_red.png"><?php echo '<div class="like_count">'.$post['like_count'] .'</div></div>'; ?>
                                 </div>
                             </div>
                         </li>

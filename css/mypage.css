@@ -516,3 +516,17 @@ html {
     width: 35px;
     height: 35px;
 }
+.like2{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: 19px;
+    left: 40%;
+}
+.like2 img{
+    position: relative;
+    top: 15px;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+}
