@@ -8,7 +8,7 @@ if (isset($_GET['user_id'])) {
         $conn = new PDO($connect, USER, PASS);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $sql = "SELECT name FROM users WHERE id = :user_id";
+        $sql = "SELECT * FROM user_management WHERE user_id = :user_id";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':user_id', $user_id, PDO::PARAM_STR);
         $stmt->execute();
@@ -16,7 +16,7 @@ if (isset($_GET['user_id'])) {
         $conn = null;
 
         if ($user) {
-            echo htmlspecialchars($user['name'], ENT_QUOTES, 'UTF-8');
+            echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8');
         } else {
             echo '不明なユーザー';
         }

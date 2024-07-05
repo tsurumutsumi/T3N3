@@ -113,7 +113,7 @@ echo '<link rel="stylesheet" href="../css/account.css">';
             },
             isInvalidUser_name() {
                 // ユーザー名が0文字または11文字以上の場合にtrueを返す
-                return !/^[a-zA-Z0-9]+$/.test(this.name) || this.name.length < 1 || this.name.length > 10;
+                return !/^[a-zA-Z0-9ぁ-んァ-ヶー一-龠々]{1,10}$/.test(this.name) || this.name.length < 1 || this.name.length > 10;
             },
             isInvalidMail() {
                 // メールアドレスが1文字未満の場合にtrueを返す
