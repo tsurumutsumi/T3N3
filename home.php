@@ -178,7 +178,7 @@ foreach ($sql as $row) {
     $commentStmt->execute([$row['post_id']]);
     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     
-    ?>S
+    ?>
 
     <nav class="nav-menu">
         <ul class="menu-list">
