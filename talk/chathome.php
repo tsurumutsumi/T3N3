@@ -72,13 +72,16 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 <?php require 'chathistorie.php'; ?>
 
 <!-- 表示するトークルームのタイトル -->
-<?php 
-if ($chat_partner_id) {
-    echo '<div class="talkroom">'.htmlspecialchars($chat_partner_id) . 'さんとのトークルーム</div>';
-} else {
-    echo 'トークルーム';
-}
-?>
+<div class="talkroom" id="talkroom-title">
+    <?php 
+    if ($chat_partner_id) {
+        echo '<div class="talkroomName">'.htmlspecialchars($chat_partner_id) . 'さんとのトークルーム</div>';
+    } else {
+        echo 'トークルーム';
+    }
+    ?>
+</div>
+
 
 
 <form onsubmit="sendChatData(); return false;">
@@ -114,28 +117,6 @@ if ($chat_partner_id) {
         <tbody id="board"></tbody>
     </table>
 </div>
-
-<!-- 消すか相談 -->
-<p>グループ一覧</p>
-<ul>
-<?php
-// 自分が所属しているグループを取得
-$dbh = new PDO($connect, USER, PASS);
-$stmt = $dbh->prepare("SELECT gc.id, gc.group_name FROM group_chat gc JOIN group_members gm ON gc.id = gm.group_id WHERE gm.user_id = ?");
-$stmt->execute([$user_id]);
-$groups = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if (count($groups) > 0) {
-    foreach ($groups as $group) {
-        $group_id = htmlspecialchars($group['id'], ENT_QUOTES, 'UTF-8');
-        $group_name = htmlspecialchars($group['group_name'], ENT_QUOTES, 'UTF-8');
-        echo '<li><a href="#" class="groupchat" data-group-id="', $group_id, '">', $group_name, '</a></li>';
-    }
-} else {
-    echo '<li>グループがありません。</li>';
-}
-?>
-</ul>
 
 <script type="text/javascript">
 var xmlHttpObject;
@@ -241,7 +222,6 @@ setInterval(() => {
     loadChatData(isGroup, id);
 }, 3000);
 
-// クリックした時履歴を更新
 document.querySelectorAll('.chat-container .personchat, .chat-container .groupchat').forEach(chat => {
     chat.addEventListener('click', function(event) {
         event.preventDefault();
@@ -254,14 +234,43 @@ document.querySelectorAll('.chat-container .personchat, .chat-container .groupch
             document.getElementById('user_id').value = userId;
             document.getElementById('group_id').value = ''; // グループIDをクリア
             loadChatData(false, userId);
+            // ユーザー名を取得してタイトルを更新
+            updateChatTitle(userId);
         } else if (groupId) {
             console.log('Group ID:', groupId);
             document.getElementById('group_id').value = groupId;
             document.getElementById('user_id').value = groupId; // user_id にグループ識別子を設定
             loadChatData(true, groupId);
+            // グループ名を取得してタイトルを更新
+            updateGroupTitle(groupId);
         } else {
             console.log('見つからないよん');
         }
     });
 });
+
+function updateChatTitle(userId) {
+    var xmlHttpObject = createXMLHttpRequest();
+    xmlHttpObject.onreadystatechange = function() {
+        if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
+            var userName = xmlHttpObject.responseText;
+            document.getElementById('talkroom-title').innerText = userName + 'さんとのトークルーム';
+        }
+    };
+    xmlHttpObject.open("GET", "getUserName.php?user_id=" + encodeURIComponent(userId), true);
+    xmlHttpObject.send(null);
+}
+
+function updateGroupTitle(groupId) {
+    var xmlHttpObject = createXMLHttpRequest();
+    xmlHttpObject.onreadystatechange = function() {
+        if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
+            var groupName = xmlHttpObject.responseText;
+            document.getElementById('talkroom-title').innerText = groupName + 'グループのトークルーム';
+        }
+    };
+    xmlHttpObject.open("GET", "getGroupName.php?group_id=" + encodeURIComponent(groupId), true);
+    xmlHttpObject.send(null);
+}
+
 </script>
