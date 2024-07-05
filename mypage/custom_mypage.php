@@ -82,43 +82,18 @@ ob_end_flush(); // 出力バッファリングを終了
             </form>
             </div>
         </div>
-        <nav class="nav-menu">
-            <ul class="menu-list">
-                <li class="menu-item-bio">
-                <?php 
-                    if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
-                        echo '<a href="#">bio：<span class="value">NONE</span></a>';
-                    } else {
-                        echo '<a href="#">bio：<span class="value">'.$_SESSION['user']['bio'].'</span></a>'; 
-                    }
-                ?>
-                </li>
-
-                <li class="menu-item">
-                    <a href="#">POST：<span class="value"><?php echo $post_count; ?></span></a>                
-                </li>
-                <li class="menu-item drop-menu">
-                <a  class="list_follow" href="#">▶ FOLLOW：<span class="value"><?php echo $follow_count; ?></span></a>
-                <ul class="drop-menu-list">
-                    <li class="drop-menu-item">
-                    <?php foreach ($following_list as $following): ?>
-                                <a  class="a_link" href="custom_mypage.php?user_id=<?php echo htmlspecialchars($following['user_id']); ?>"><?php echo '▶ '.htmlspecialchars($following['user_name']); ?></a>
-                    <?php endforeach; ?>
-                    </li>
-                </ul>
-                </li>
-                <li class="menu-item">
-                <a class="list_follower" href="#">▶ FOLLOWER：<span class="value"><?php echo $follower_count; ?></span></a>
-                <ul class="drop-menu-list">
-                    <li class="drop-menu-item">
-                    <?php foreach ($follower_list as $follower): ?>
-                            <a class="a_link" href="custom_mypage.php?user_id=<?php echo htmlspecialchars($follower['user_id']); ?>"><?php echo '▶ '.htmlspecialchars($follower['user_name']); ?></a>
-                    <?php endforeach; ?>
-                    </li>
-                </ul>
-                </li>
-            </ul>
-        </nav>
+        <div class="profile">
+        <?php 
+            if (!isset($_SESSION['user']['bio']) || empty($_SESSION['user']['bio'])) {
+                echo '<div class="text">bio：<span class="value">NONE</span></div>';
+            } else {
+                echo '<div class="text">bio：<span class="value">'.$_SESSION['user']['bio'].'</span></div>'; 
+            }
+        ?>
+            <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
+            <div class="text">FOLLOW：<span class="value"></span><?php echo $follow_count; ?></div>
+            <div class="text">FOLLOWER：<span class="value"></span><?php echo $follower_count; ?></div>
+        </div>
         <?php if (!empty($posts)): ?>
                 <div class="history_title">
                     <p>POST HISTORY...</p>
