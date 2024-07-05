@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../top/db-connect.php';
-require '../home.php';
+require '../top/header.php';
 
 // ユーザー一覧を取得
 $dbh = new PDO($connect, USER, PASS);
@@ -18,15 +18,19 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </div>
 <h2 class="title">グループ作成</h2>
 <form action="creategroup.php" method="POST">
-    <label for="group_name">グループ名:</label>
+    <label for="group_name" class="g_name" >グループ名:</label>
     <input type="text" id="group_name" name="group_name" required>
     
-    <h3>Invite Users:</h3>
-    <?php foreach ($users as $user): ?>
-        <input type="checkbox" name="user_ids[]" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
-        <?php echo htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8'); ?><br>
-    <?php endforeach; ?>
-
+    <h3>招待するユーザー:</h3>
+    <div class="user-list">
+        <?php foreach ($users as $user): ?>
+            <div class="user-item">
+                <input type="checkbox" name="user_ids[]" value="<?php echo htmlspecialchars($user['user_id'], ENT_QUOTES, 'UTF-8'); ?>">
+                <?php echo htmlspecialchars($user['user_name'], ENT_QUOTES, 'UTF-8'); ?><br>
+            </div>
+        <?php endforeach; ?>
+    </div>
     <input type="submit" value="Create Group">
+    </div>
 </form>
 </body>

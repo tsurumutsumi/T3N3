@@ -385,11 +385,18 @@ html {
     text-decoration: none;
     color: #080808;
     background: #bfbebe;
-    border-bottom: solid 4px #5e5d5c;
-    border-radius: 15px 15px 0 0;
-    transition: .4s;
-    overflow: hidden; /* オーバーフローを隠す */
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }
+/* トークボタンをクリックしたとき */
+.talk_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
 /* ボタンのホバースタイル */
 .talk_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
