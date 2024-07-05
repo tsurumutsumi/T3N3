@@ -41,7 +41,7 @@ body{
 .sendForm{
     background-color: #000;
     position: relative;
-    top: -210px;
+    top: -118px;
     margin: auto;
     width: 400px;
     height: 200px;
@@ -66,6 +66,13 @@ tr .userId{
     width: 375px;
 }
 
+.talkroomName{
+    position: relative;
+    top: -585px;
+    text-align: center;
+    color: #fff;
+}
+
 /* チャット全体 */
 /* ユーザーID */
 .chatName{
@@ -87,7 +94,7 @@ tr .userId{
     overflow-y: scroll;
     overflow: auto;
     position: relative;
-    top: -1000px;
+    top: -858px;
     margin: auto;
 }
 .contents_box::-webkit-scrollbar{
@@ -184,7 +191,7 @@ tr .userId{
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
 	position: relative;
-    top: -280px;
+    top: -200px;
     left: 665px;
 	display: inline-block;
 	font-weight: bold;
@@ -207,3 +214,66 @@ tr .userId{
 .send_button:hover::before{
 	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
 }
+
+
+/* お試し */
+/*タブ切り替え全体のスタイル*/
+.tabs {
+    margin-top: 50px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 380px;
+    margin: 0 auto;
+    position: relative;
+    left: -500px;
+}
+  
+  /*タブのスタイル*/
+  .tab_item {
+    /* width: calc(100%/3); */
+    width: 190px;
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    margin-right: auto;
+  }
+  .tab_item:hover {
+    opacity: 0.75;
+  }
+  
+  /*ラジオボタンを全て消す*/
+  input[name="tab_item"] {
+    display: none;
+  }
+  
+  /*タブ切り替えの中身のスタイル*/
+  .tab_content {
+    display: none;
+    padding: 40px 40px 0;
+    clear: both;
+    overflow: hidden;
+  }
+  
+  
+  /*選択されているタブのコンテンツのみを表示*/
+  #all:checked ~ #all_content,
+  #programming:checked ~ #programming_content,
+  #design:checked ~ #design_content {
+    display: block;
+  }
+  
+  /*選択されているタブのスタイルを変える*/
+  .tabs input:checked + .tab_item {
+    background-color: #5ab4bd;
+    color: #fff;
+    width: 190px;
+  }
