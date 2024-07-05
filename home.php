@@ -172,11 +172,13 @@ foreach ($sql as $row) {
     echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
     
     // コメントを取得
-    $commentStmt = $pdo->prepare('SELECT c.*, u.user_id FROM comments c LEFT JOIN user_management u ON c.user_id = u.user_id WHERE c.post_id = ? ORDER BY c.comment_date DESC');
+    $commentStmt = $pdo->prepare('SELECT c.*, u.user_id FROM comments c 
+                                  LEFT JOIN user_management u ON c.user_id = u.user_id 
+                                  WHERE c.post_id = ? ORDER BY c.comment_date DESC');
     $commentStmt->execute([$row['post_id']]);
     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     
-    ?>
+    ?>S
 
     <nav class="nav-menu">
         <ul class="menu-list">
@@ -198,7 +200,7 @@ foreach ($sql as $row) {
             </li>
         </ul>
     </nav>    
-
+ 
     <?php
     // コメントを追加するフォーム
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/comment.php" method="post">';

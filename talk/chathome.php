@@ -72,7 +72,6 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 <?php require 'chathistorie.php'; ?>
 
 <!-- 表示するトークルームのタイトル -->
-<!-- グルチャに切り替える場合加筆修正する -->
 <?php 
 if ($chat_partner_id) {
     echo htmlspecialchars($chat_partner_id) . 'さんとのトークルーム';
