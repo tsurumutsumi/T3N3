@@ -75,7 +75,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 <div class="talkroom" id="talkroom-title">
     <?php 
     if ($chat_partner_id) {
-        echo htmlspecialchars($chat_partner_id) . 'さんとのトークルーム';
+        echo '<div class="talkroomName">'.htmlspecialchars($chat_partner_id) . 'さんとのトークルーム</div>';
     } else {
         echo 'トークルーム';
     }
