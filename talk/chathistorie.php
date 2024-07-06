@@ -117,7 +117,6 @@ try {
     <input id="programming" type="radio" name="tab_item">
     <label class="tab_item" for="programming">グループ</label>
     <div class="tab_content" id="all_content">
-        個人チャットの内容がここに入ります
         <div class="chat-container">
     <!-- 個チャの出力 -->
     <?php if (!empty($individual_chats)): ?>
@@ -149,7 +148,6 @@ try {
 </div>
     </div>
     <div class="tab_content" id="programming_content">
-        グループチャットの内容がここに入ります
             <!-- グルチャの出力 -->
         <div class="chat-container">
             <?php if (!empty($g_individual_chats)): ?>
