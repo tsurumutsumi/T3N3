@@ -64,6 +64,7 @@ body{
 
 /* お試し */
 /* ナビゲーションメニュー */
+/* ナビゲーションメニュー */
 .nav-menu {
     color: #fff; /* メニューテキストの色 */
   }
@@ -110,8 +111,8 @@ body{
     height: 50px;
     justify-content: center;
     text-decoration: none; /* リンクの下線を非表示 */
-    width: 300px;
-    /* padding: 10px; */
+    width: 135px;
+    left: -20px;
   }
 
   
@@ -120,7 +121,8 @@ body{
     position: relative;
   }
   .drop-menu-list {
-    background-color: #696969; /* ドロップダウンメニューの背景色 */
+    background-color: #000; /* ドロップダウンメニューの背景色 */
+    border: 3px solid #fff;
     left: 0;
     position: absolute;
     top: 100%;
@@ -131,7 +133,11 @@ body{
   }
 .a_link{
     position: relative;
-    left: -50px;
+    left: -20px;
+    border-bottom: 3px solid #fff;
+}
+.a_link:hover{
+    color: #e9546b;
 }
 
 /* 画像の大きさ */
