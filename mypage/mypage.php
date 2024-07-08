@@ -151,7 +151,7 @@ ob_end_flush(); // 出力バッファリングを終了
                     </li>
                 </ul>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item drop-menu">
                 <a class="list_follower" href="#">▶ FOLLOWER：<span class="value"><?php echo $follower_count; ?></span></a>
                 <ul class="drop-menu-list">
                     <li class="drop-menu-item">
