@@ -10,15 +10,52 @@ body{
     height: 715px;
 }
 
-.title{
+.title {
     font-size: 30px;
-	/* text-align: center; */
+    padding: 0.5em;
+    /* margin: 2em; */
+    font-weight: bold;
+    color: green;
+    background: black;
+    border: green;
+    border-radius: 10px;
+    width: 180px;
+    /* text-align: center; */
 }
+
+
 .g_name{
     font-size: 20px;
+    padding: 0.5em;
+    /* margin: 2em; */
+    font-weight: bold;
+    color: green;
+    background: black;
+    border: green;
+    border-radius: 10px;
+    width: 180px;
+    /* text-align: center; */
 }
+
 h3{
-    font-size: 15px;
+    position: relative;
+    padding: 0.5em 0.7em;
+    /* margin: 2em 0; */
+    background: black;
+    color: green;
+    font-weight: bold;
+    width:180px;
+    border-radius: 10px;
+}
+h3:after {
+    position: absolute;
+    content: '';
+    top: 100%;
+    left: 30px;
+    border: 15px solid transparent;
+    border-top: 15px solid black;
+    width: 0;
+    height: 0;
 }
 .user-list {
     background-color: black;
@@ -30,7 +67,12 @@ h3{
     width: 20%; /* 横に5つ並べるための幅 (100% / 5) */
     box-sizing: border-box;
     padding: 10px;
+    color:green;
 }
 .head_4{
     
+}
+.group_name{
+    background-color:black;
+    border-radius: 10px;
 }
