@@ -12,6 +12,11 @@
         background-repeat: repeat;
     }
 
+/*リンクの下線 */
+a{
+    text-decoration: none;
+}
+
 /* 全体の位置 */
 .post_list {
     display: flex;
