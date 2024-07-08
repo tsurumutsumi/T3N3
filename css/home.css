@@ -496,13 +496,13 @@ a{
 }
 .post_date{
     position: relative;
-    top: -184px;
+    top: -145px;
 }
 
 /* いいねボタン */
 .like-button{
     position: relative;
-    top: -210px;
+    top: -158px;
     left: -40px;
     width: 35px;
     height: 35px;
@@ -512,7 +512,7 @@ a{
 .like-count{
     position: relative;
     left: -36px;
-    top: -210px;
+    top: -158px;
 }
 
 /* フォローボタン */
@@ -521,7 +521,7 @@ a{
     height: 35px;
     position: relative;
     left: 30px;
-    top: -210px;
+    top: -158px;
 }
 
 /* 鶴がいじるとこ。追加コメントのプルダウン */
@@ -563,13 +563,13 @@ a{
 }
 button.dropdown-btn {
     position: relative;
-    top: -95px;
+    top: -225px;
     left: -90px;
     font-family: "ノスタルドット（M+）";
 }
 .comment-form {
     position:relative;
-    top: -47px;
+    /* top: -47px; */
 }
 .comment-form-text{
     width:225px;
