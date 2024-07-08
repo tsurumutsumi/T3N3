@@ -10,12 +10,19 @@ body{
     height: 715px;
 }
 
-/* トークルームタイトル部分 */
-.talkRoom{
-    margin: auto;
+/* トークルームタイトル部分(〇〇さんとのトークルーム) */
+.talkroom{
     position: relative;
-    top: -85px;
+    top: -585px;
+    text-align: center;
+    color: #fff;
 }
+/* .talkroomName{
+    position: relative;
+    top: -585px;
+    text-align: center;
+    color: #fff;
+} */
 .icon{
     width: 80px;
     height: 80px;
@@ -64,13 +71,6 @@ tr .userId{
     /* margin: 10px; */
     height: 40px;
     width: 375px;
-}
-
-.talkroomName{
-    position: relative;
-    top: -585px;
-    text-align: center;
-    color: #fff;
 }
 
 /* チャット全体 */
