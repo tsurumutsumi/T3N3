@@ -561,11 +561,18 @@ a{
 .dropdown.show .dropdown-content {
     display: block;
 }
-button.dropdown-btn {
+/* button.dropdown-btn {
     position: relative;
-    top: -225px;
+    top: 95px;
     left: -90px;
     font-family: "ノスタルドット（M+）";
+} */
+
+.menu-item .drop-menu{
+    background-color: #000;
+    position: relative;
+    margin: 20px;
+    top: 95px;
 }
 .comment-form {
     position:relative;
