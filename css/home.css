@@ -568,7 +568,7 @@ a{
     font-family: "ノスタルドット（M+）";
 } */
 
-.menu-item .drop-menu{
+.menu-item drop-menu{
     background-color: #000;
     position: relative;
     margin: 20px;
