@@ -63,10 +63,13 @@
     height: 200px;
     border: 2px solid #fff;
     margin: 5px;
+    top: -30px;
+    position: relative;
 }
 /* コメント */
 .comment {
     position: relative;
+    top: -40px;
     padding: 0.5em 0.7em;
     height: 90px;
     margin: 2em 1em;
@@ -125,7 +128,7 @@
 /* いいねボタン */
 .like-button{
     position: relative;
-    top: -70px;
+    top: -10px;
     left: -40px;
     width: 35px;
     height: 35px;
@@ -135,7 +138,7 @@
 .like-count{
     position: relative;
     left: -36px;
-    top: -70px;
+    top: -100px;
 }
 
 /* フォローボタン */
@@ -144,11 +147,11 @@
     height: 35px;
     position: relative;
     left: 30px;
-    top: -70px;
+    top: -100px;
 }
 .post_date{
     position: relative;
-    top: -65px;
+    top: -105px;
 }
 /* ホームボタン */
 .home_button{
