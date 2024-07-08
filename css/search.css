@@ -133,7 +133,7 @@ a{
 /* いいねボタン */
 .like-button{
     position: relative;
-    top: -10px;
+    top: -100px;
     left: -40px;
     width: 35px;
     height: 35px;
