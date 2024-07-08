@@ -23,7 +23,7 @@ $dbh = new PDO($connect, USER, PASS);
 
 // チャットの内容の取得
 $_chat = array();
-$stmt = $dbh->prepare("SELECT * FROM group_messages WHERE group_id = ? ORDER BY timestamp ASC LIMIT 30");
+$stmt = $dbh->prepare("SELECT * FROM group_messages WHERE group_id = ? ORDER BY timestamp ASC");
 $stmt->execute([$group_id]);
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $_chat[$row["id"]] = $row;

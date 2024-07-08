@@ -22,7 +22,7 @@ $dbh = new PDO($connect, USER, PASS);
 
 // チャットの内容の取得
 $_chat = array();
-$stmt = $dbh->prepare("SELECT * FROM chat WHERE (user_id=? AND my_id=?) OR (user_id=? AND my_id=?) ORDER BY date ASC LIMIT 30");
+$stmt = $dbh->prepare("SELECT * FROM chat WHERE (user_id=? AND my_id=?) OR (user_id=? AND my_id=?) ORDER BY date ASC");
 $stmt->execute([$user_id, $my_id, $my_id, $user_id]);
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $_chat[$row["chid"]] = $row;
