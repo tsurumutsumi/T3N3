@@ -567,12 +567,14 @@ a{
     left: -90px;
     font-family: "ノスタルドット（M+）";
 } */
-
-.menu-item drop-menu{
-    background-color: #000;
+.drop-menu {
     position: relative;
+    top: 90px;
+}
+
+.menu-item{
+    background-color: #000;
     margin: 20px;
-    top: 95px;
 }
 .comment-form {
     position:relative;
