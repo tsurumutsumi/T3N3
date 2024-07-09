@@ -12,8 +12,9 @@ body{
 
 /* トークルームタイトル部分(〇〇さんとのトークルーム) */
 .talkroom{
-    position: relative;
-    top: -585px;
+    position: absolute;
+    top: 63px;
+    left: 630px;
     text-align: center;
     color: #fff;
 }
@@ -47,8 +48,9 @@ body{
 /* チャット送るフォーム */
 .sendForm{
     background-color: #000;
-    position: relative;
-    top: -118px;
+    position: absolute;
+    top: 560px;
+    left: 567px;
     margin: auto;
     width: 400px;
     height: 200px;
@@ -93,8 +95,9 @@ tr .userId{
     background-color: #000;
     overflow-y: scroll;
     overflow: auto;
-    position: relative;
-    top: -858px;
+    position: absolute;
+    top: 120px;
+    left: 567px;
     margin: auto;
 }
 .contents_box::-webkit-scrollbar{
@@ -191,9 +194,9 @@ tr .userId{
     height: 50px;
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
-	position: relative;
-    top: -200px;
-    left: 665px;
+	position: absolute;
+    top: 670px;
+    left: 677px;
 	display: inline-block;
 	font-weight: bold;
 	padding: 8px 10px 5px 10px;
