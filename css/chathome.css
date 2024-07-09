@@ -163,7 +163,7 @@ tr .userId{
 /* ホームボタン */
 .home_button{
     margin: 5px;
-	width: 130px;
+	width: 150px;
     height: 50px;
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
@@ -177,13 +177,14 @@ tr .userId{
     background: #bfbebe;
     border: solid 2px #5e5d5c;
 	border-radius: 15px 15px 0 0;
+    overflow: hidden; /* オーバーフローを隠す */
     box-shadow: 0 5px #5e5d5c;
 }
 /* ホームボタンをクリックしたとき */
 .home_button:active {
     opacity: 0.5;
-    margin-top: 25px;
-    margin-bottom: 15px;
+    margin-top: 14px;
+    margin-bottom: 6px;
     box-shadow: 0 1px 0 #5e5d5c;
   }
 /* ボタンのホバースタイル */
@@ -194,7 +195,7 @@ tr .userId{
 /* 送信ボタン */
 .send_button{
     margin: 20px;
-	width: 130px;
+	width: 150px;
     height: 50px;
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
@@ -215,8 +216,8 @@ tr .userId{
 /* 送信ボタンをクリックしたとき */
 .send_button:active {
     opacity: 0.5;
-    margin-top: 25px;
-    margin-bottom: 15px;
+    margin-top: 14px;
+    margin-bottom: 6px;
     box-shadow: 0 1px 0 #5e5d5c;
   }
 /* ボタンのホバースタイル */
@@ -227,7 +228,7 @@ tr .userId{
 /* newchatボタン */
 .talk_button{
     margin: 5px;
-	width: 130px;
+	width: 150px;
     height: 50px;
 	font-size: 18px;
 	font-family: "ノスタルドット（M+）";
@@ -246,8 +247,8 @@ tr .userId{
 /* newchatボタンをクリックしたとき */
 .talk_button:active {
     opacity: 0.5;
-    margin-top: 25px;
-    margin-bottom: 15px;
+    margin-top: 14px;
+    margin-bottom: 6px;
     box-shadow: 0 1px 0 #5e5d5c;
   }
 /* newchatのホバースタイル */
