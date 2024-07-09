@@ -19,7 +19,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <h2 class="title">グループ作成</h2>
 <form action="creategroup.php" method="POST">
     <label for="group_name" class="g_name" >グループ名:</label>
-    <input type="text" id="group_name" name="group_name" required>
+    <input type="text" id="group_name" name="group_name" class="group_name" required>
     
     <h3>招待するユーザー:</h3>
     <div class="user-list">
