@@ -156,6 +156,9 @@ tr .userId{
     font-size: 0.9em;
 }
 
+.button{
+    display: flex;
+}
 
 /* ホームボタン */
 .home_button{
