@@ -79,7 +79,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
     if ($chat_partner_id) {
         echo '<div class="talkroomName">▶'.htmlspecialchars($chat_partner_id) . 'さんとのトークルーム</div>';
     } else {
-        echo 'トークルーム';
+        echo '<div class="talkroomName">▶トークルーム</div>';
     }
     ?>
 </div>
