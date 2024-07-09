@@ -169,21 +169,34 @@ foreach ($sql as $row) {
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     // コメントの表示部分
+    echo '<div class="existing-comments" data-post-id="' . htmlspecialchars($row['post_id']) . '">'; // 新しいコメントを表示する場所
     echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
-    
-    // コメントを取得
+
     $commentStmt = $pdo->prepare('SELECT c.*, u.user_id FROM comments c 
                                   LEFT JOIN user_management u ON c.user_id = u.user_id 
                                   WHERE c.post_id = ? ORDER BY c.comment_date DESC');
     $commentStmt->execute([$row['post_id']]);
     $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
+    // if ($comments) {
+    //     foreach ($comments as $comment) {
+    //         echo '<p>' . htmlspecialchars($comment['user_id']) . ':' . htmlspecialchars($comment['comment']) . '</p>';
+    //     }
+    // } else {
+    //     echo '<p>コメントはまだありません。</p>';
+    // }
+    echo '</div>'; // existing-comments div の終了
+
     ?>
 
     <nav class="nav-menu">
         <ul class="menu-list">
             <li class="menu-item drop-menu">
-                <a class="list_commment" href="#">▶comment</a>
+                <?php if ($comments) { ?>
+                    <a class="list_commment" href="#" style="color:#ADFF2F;">▶comment</a>
+                <?php }else{ ?>
+                    <a class="list_commment" href="#">▶comment</a>
+                <?php } ?>
                 <ul class="drop-menu-list">
                     <li class="drop-menu-item">
                         <?php
@@ -200,7 +213,7 @@ foreach ($sql as $row) {
             </li>
         </ul>
     </nav>    
- 
+
     <?php
     // コメントを追加するフォーム
     echo '<form class="comment-form" data-post-id="' . htmlspecialchars($row['post_id']) . '" action="comment/comment.php" method="post">';
@@ -208,8 +221,6 @@ foreach ($sql as $row) {
         echo '<input type="hidden" name="post_id" value="' . htmlspecialchars($row['post_id']) . '">'; // hidden input に post_id を追加
         echo '<button type="submit" class="c_post">投稿</button>';
     echo '</form>';
-
-
 
     //日付の表示
     echo '<div class="post_date">'.htmlspecialchars($row['post_date'] ?? '日付不明'), '</div><br>';
@@ -222,7 +233,6 @@ foreach ($sql as $row) {
     // フォローボタンを追加
     $followButtonSrc = in_array($row['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
     echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー">';
-    //var_dump($row['user_id']);
     echo '</div>';
     echo '</div>';
     echo '</div>';
@@ -234,6 +244,7 @@ if ($image_count % 3 != 0) {
 }
 echo '</div>';
 ?>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
@@ -324,10 +335,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (response.success) {
                         // 新しいコメントを表示する
                         var existingComments = document.querySelector('.existing-comments[data-post-id="' + postId + '"]');
-                        var newComment = document.createElement('div');
-                        newComment.classList.add('comment');
-                        newComment.innerHTML = '<p><strong>' + decodeURIComponent(response.user_name) + ':</strong> ' + decodeURIComponent(response.comment) + '</p><p class="comment-date">' + response.comment_date + '</p>';
-                        existingComments.prepend(newComment);
+                        var newComment = document.createElement('p');
+                        newComment.innerHTML = '<strong>' + decodeURIComponent(response.user_name) + ':</strong> ' + decodeURIComponent(response.comment);
+                        existingComments.appendChild(newComment);
                         commentInput.value = '';
                     } else {
                         alert(response.message);

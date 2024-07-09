@@ -33,4 +33,4 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <input type="submit" value="Create Group">
     </div>
 </form>
-</body>
+</body> 

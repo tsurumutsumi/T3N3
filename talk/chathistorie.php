@@ -29,19 +29,43 @@ try {
     
     // グルチャの履歴
     $g_sql = "
-        SELECT gm.group_id, g.group_name as group_name, gm.user_id as user_id,
-            u.user_name as user_name, gm.message as text, gm.timestamp as date
-        FROM group_messages gm
-        JOIN (
-            SELECT group_id, MAX(timestamp) as latest_timestamp
-            FROM group_messages
-            GROUP BY group_id
-        ) latest_gm ON gm.group_id = latest_gm.group_id AND gm.timestamp = latest_gm.latest_timestamp
-        JOIN group_chat g ON gm.group_id = g.id
-        JOIN user_management u ON gm.user_id = u.user_id
-        JOIN group_members gmemb ON g.id = gmemb.group_id
-        WHERE gmemb.user_id = :user_id
-        ORDER BY gm.timestamp DESC";
+        SELECT 
+    g.id as group_id, 
+    g.group_name as group_name, 
+    gm.user_id as user_id, 
+    u.user_name as user_name, 
+    gm.message as text, 
+    gm.timestamp as date
+FROM 
+    group_chat g
+LEFT JOIN (
+    SELECT 
+        group_id, 
+        user_id, 
+        message, 
+        timestamp
+    FROM 
+        group_messages
+    WHERE 
+        (group_id, timestamp) IN (
+            SELECT 
+                group_id, 
+                MAX(timestamp) as latest_timestamp
+            FROM 
+                group_messages
+            GROUP BY 
+                group_id
+        )
+) gm ON g.id = gm.group_id
+LEFT JOIN 
+    user_management u ON gm.user_id = u.user_id
+JOIN 
+    group_members gmemb ON g.id = gmemb.group_id
+WHERE 
+    gmemb.user_id = :user_id
+ORDER BY 
+    gm.timestamp DESC, g.id;
+";
 
     // 06/28 自分が話してないとグルチャの履歴が出ない状態
     $group_chats = $conn->prepare($g_sql);
@@ -158,8 +182,8 @@ try {
                                 <div class="group-name"><?php echo htmlspecialchars($chat['group_name']); ?></div>
                             <?php endif; ?>
                             <div class="chat-name"><?php echo htmlspecialchars($chat['user_id'] ?? ''); ?></div>
-                            <div class="chat-message"><?php echo htmlspecialchars($chat['text']); ?></div>
-                            <div class="chat-timestamp"><?php echo htmlspecialchars($chat['date']); ?></div>
+                            <div class="chat-message"><?php echo htmlspecialchars($chat['text'] ?? ''); ?></div>
+                            <div class="chat-timestamp"><?php echo htmlspecialchars($chat['date'] ?? ''); ?></div>
                         </div>
                     </div>
                 <?php endforeach; ?>
