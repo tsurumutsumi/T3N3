@@ -21,7 +21,7 @@ if (!isset($_SESSION['user']['id'])) {
     $pdo = new PDO($connect, USER, PASS);
 
     $sql = $pdo->prepare('
-        SELECT ph.*, u.user_name, u.icon, l.created_at AS like_date
+        SELECT ph.*, u.user_name, u.icon, l.created_at AS like_date,(SELECT COUNT(*) FROM likes WHERE post_id = ph.post_id) AS like_count 
         FROM likes l
         JOIN post_history ph ON l.post_id = ph.post_id
         JOIN user_management u ON ph.user_id = u.user_id
