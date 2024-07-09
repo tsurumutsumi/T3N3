@@ -76,4 +76,43 @@ h3:after {
     background-color:black;
     border-radius: 10px;
     padding: 10px;
+    color: green;
+}
+.create_group{
+    margin: 5px;
+	width: 130px;
+    height: 50px;
+	font-size: 18px;
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+    top: 0;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
+}
+.home_button{
+    margin: 5px;
+	width: 130px;
+    height: 50px;
+	font-size: 18px;
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+    top: 0;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
 }

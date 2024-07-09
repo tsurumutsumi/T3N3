@@ -30,7 +30,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php endforeach; ?>
     </div>
-    <input type="submit" value="Create Group">
+    <input type="submit" value="Create Group" class="create_group">
     </div>
 </form>
 </body> 
