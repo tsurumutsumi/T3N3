@@ -16,6 +16,8 @@ body{
     top: 63px;
     left: 630px;
     text-align: center;
+    background-color: #000;
+    height: 30px;
     color: #fff;
 }
 /* .talkroomName{
