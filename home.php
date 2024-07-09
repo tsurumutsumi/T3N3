@@ -192,7 +192,11 @@ foreach ($sql as $row) {
     <nav class="nav-menu">
         <ul class="menu-list">
             <li class="menu-item drop-menu">
-                <a class="list_commment" href="#">▶comment</a>
+                <?php if ($comments) { ?>
+                    <a class="list_commment" href="#" style="color:#ADFF2F;">▶comment</a>
+                <?php }else{ ?>
+                    <a class="list_commment" href="#">▶comment</a>
+                <?php } ?>
                 <ul class="drop-menu-list">
                     <li class="drop-menu-item">
                         <?php
