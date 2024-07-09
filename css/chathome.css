@@ -177,7 +177,6 @@ tr .userId{
     background: #bfbebe;
     border: solid 2px #5e5d5c;
 	border-radius: 15px 15px 0 0;
-	overflow: hidden; /* オーバーフローを隠す */
     box-shadow: 0 5px #5e5d5c;
 }
 /* ホームボタンをクリックしたとき */
