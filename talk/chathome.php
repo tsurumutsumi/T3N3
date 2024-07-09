@@ -57,16 +57,18 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 <link rel="stylesheet" href="../slick/slick.css">
 <link rel="stylesheet" href="../slick/slick-theme.css">
 
-<div class="head_3">
-    <form action="../home.php" method="post">
-        <button type="submit" class="home_button" data-hover="▶">HOME</button>
-    </form>
-</div>
+<div class="button">
+    <div class="head_3">
+        <form action="../home.php" method="post">
+            <button type="submit" class="home_button" data-hover="▶">HOME</button>
+        </form>
+    </div>
 
-<div class="head_4">
-    <form action="../group/selectgroup.php" method="post">
-        <button type="submit" class="talk_button" data-hover="▶">NEW CHAT</button>
-    </form>
+    <div class="head_4">
+        <form action="../group/selectgroup.php" method="post">
+            <button type="submit" class="talk_button" data-hover="▶">NEW CHAT</button>
+        </form>
+    </div>
 </div>
 
 <?php require 'chathistorie.php'; ?>

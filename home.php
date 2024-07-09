@@ -165,7 +165,7 @@ foreach ($sql as $row) {
     echo '</a>';
 
     // 画像があるかどうかチェック
-    $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
+    $imagePath = !empty($row['picture']) ? 'post_img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     // コメントの表示部分
@@ -185,7 +185,7 @@ foreach ($sql as $row) {
     // } else {
     //     echo '<p>コメントはまだありません。</p>';
     // }
-    echo '</div>'; // existing-comments div の終了
+   // existing-comments div の終了
 
     ?>
 
@@ -198,11 +198,13 @@ foreach ($sql as $row) {
                     <a class="list_commment" href="#">▶comment</a>
                 <?php } ?>
                 <ul class="drop-menu-list">
-                    <li class="drop-menu-item">
-                        <?php
+                <li class="drop-menu-item" id="<?php echo htmlspecialchars($row['post_id']); ?>">
+                <?php
                             if ($comments) {
                                 foreach ($comments as $comment) {
-                                    echo '<p>' . htmlspecialchars($comment['user_id']) . ':' . htmlspecialchars($comment['comment']) . '</p>';
+                                    echo '<p>' . htmlspecialchars($comment['user_id']) . ':' . htmlspecialchars($comment['comment']);
+                                    echo '<data-post-id="' . htmlspecialchars($row['post_id']) . '"></p>'; // 新しいコメントを表示する場所
+                                    //echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
                                 }
                             } else {
                                 echo '<p>コメントはまだありません。</p>';
@@ -212,7 +214,8 @@ foreach ($sql as $row) {
                 </ul>
             </li>
         </ul>
-    </nav>    
+    </nav>   
+                        </div> 
 
     <?php
     // コメントを追加するフォーム
@@ -313,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
             xhr.send("action=" + encodeURIComponent(action) + "&user_id=" + encodeURIComponent(userId));
         });
     });
-
+// TODO
     document.querySelectorAll('.comment-form').forEach(form => {
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -334,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var response = JSON.parse(xhr.responseText);
                     if (response.success) {
                         // 新しいコメントを表示する
-                        var existingComments = document.querySelector('.existing-comments[data-post-id="' + postId + '"]');
+                        var existingComments = document.querySelector('.drop-menu-item[id="' + postId + '"]');//
                         var newComment = document.createElement('p');
                         newComment.innerHTML = '<strong>' + decodeURIComponent(response.user_name) + ':</strong> ' + decodeURIComponent(response.comment);
                         existingComments.appendChild(newComment);
