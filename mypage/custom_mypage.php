@@ -109,7 +109,13 @@ ob_end_flush(); // 出力バッファリングを終了
                                     ?>
                                     <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
                                     <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
-                                    <div class="like2"><img src="../img/mark_heart_red.png"><?php echo '<div class="like_count">'.$post['like_count'] .'</div></div>'; ?>
+                                    <?
+                                     $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
+                                     echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
+                                     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
+                                     $followButtonSrc = in_array($row['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
+                                     echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー">';
+                                     ?>
                                 </div>
                             </div>
                         </li>
