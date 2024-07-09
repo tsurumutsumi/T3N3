@@ -215,7 +215,7 @@ ob_end_flush(); // 出力バッファリングを終了
                                 <p><?php echo $post['post_date']; ?></p>
                             <?php endif; ?>
                             <?php if (isset($post['picture'])): ?>
-                                <img src="../img/<?php echo $post['picture']; ?>" alt="投稿画像" class="post_img">
+                                <img src="../post_img/<?php echo $post['picture']; ?>" alt="投稿画像" class="post_img">
                             <?php endif; ?>
                             <?php if (isset($post['comment'])): ?>
                                 <p class="post_comment"><?php echo $post['comment']; ?></p>

@@ -165,7 +165,7 @@ foreach ($sql as $row) {
     echo '</a>';
 
     // 画像があるかどうかチェック
-    $imagePath = !empty($row['picture']) ? 'img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
+    $imagePath = !empty($row['picture']) ? 'post_img/' . htmlspecialchars($row['picture']) : 'img/no_img.png';
     echo '<img src="', $imagePath, '" class="post_img"><br>';
 
     // コメントの表示部分
@@ -202,7 +202,9 @@ foreach ($sql as $row) {
                         <?php
                             if ($comments) {
                                 foreach ($comments as $comment) {
-                                    echo '<p>' . htmlspecialchars($comment['user_id']) . ':' . htmlspecialchars($comment['comment']) . '</p>';
+                                    echo '<p>' . htmlspecialchars($comment['user_id']) . ':' . htmlspecialchars($comment['comment']);
+                                    echo '<data-post-id="' . htmlspecialchars($row['post_id']) . '"></p>'; // 新しいコメントを表示する場所
+                                    //echo '<div class="comment" id="comment">', htmlspecialchars($row['comment'] ?? ''), '</div>';
                                 }
                             } else {
                                 echo '<p>コメントはまだありません。</p>';
