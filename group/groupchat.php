@@ -15,13 +15,27 @@ $stmt = $dbh->prepare("SELECT group_name FROM group_chat WHERE id = ?");
 $stmt->execute([$group_id]);
 $group = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$group) {
-    echo 'グループが見つかりません';
-    exit;
+
+if (isset($group_id)) {
+    unset($group_id);
+
+    echo '<script type="text/javascript">';
+    echo 'alert("グループ作成完了！");';
+    echo 'window.location.href = "../talk/chathome.php";';
+    echo '</script>';
+    exit();
+} else {
+    header('Location: ../talk/chathome.php');
+    exit();
 }
+
+// if (!$group) {
+//     echo 'グループが見つかりません';
+//     exit;
+// }
 ?>
-<h2><?php echo htmlspecialchars($group['group_name'], ENT_QUOTES, 'UTF-8'); ?></h2>
-<form onsubmit="sendChatData(); return false;">
+<?php //echo htmlspecialchars($group['group_name'], ENT_QUOTES, 'UTF-8'); ?>
+<!-- <form onsubmit="sendChatData(); return false;">
     <table summary="送信フォーム">
         <tr>
             <th>文章(50文字以内)</th>
@@ -29,19 +43,19 @@ if (!$group) {
         </tr>
     </table>
     <p><input type="submit" value="送信" class="button" /></p>
-</form>
+</form> -->
 <!-- 自分の名前 -->
-<input type="hidden" id="my_id" value="<?php echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>">
+<!-- <input type="hidden" id="my_id" value="<?php //echo htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8'); ?>"> -->
 
-<table summary="チャット">
+<!-- <table summary="チャット">
     <tr>
         <th style="width:150px">名前</th><th style="width:180px">投稿日時</th><th>文章</th>
     </tr>
     <tbody id="board"></tbody>
-</table>
+</table> -->
 
-<script type="text/javascript">
-var groupId = <?php echo json_encode($group_id); ?>;
+<!-- <script type="text/javascript">
+var groupId = <?php //echo json_encode($group_id); ?>;
 var myId = document.getElementById("my_id").value;
 var xmlHttpObject;
 
@@ -94,4 +108,4 @@ loadChatData();
 
 // 3秒ごとにチャットの内容を取りに行く
 setInterval(loadChatData, 2000);
-</script>
+</script> -->
