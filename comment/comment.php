@@ -12,11 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $comment = $_POST['comment'] ?? null;
     $userId = $_SESSION['user']['id'];
 
-    // デバッグ用ログ
-    error_log('Received POST ID: ' . $postId);
-    error_log('Received COMMENT: ' . $comment);
-    error_log('Received USER ID: ' . $userId);
-
     if ($postId && $comment) {
         try {
             $pdo = new PDO($connect, USER, PASS);
@@ -32,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $stmt = $pdo->prepare('INSERT INTO comments (comment_id, post_id, user_id, comment, comment_date) VALUES (NULL, ?, ?, ?, ?)');
-            $commentDate = date('Y-m-d');
+            $commentDate = date('Y-m-d H:i:s'); // コメントの日付を取得
             $stmt->execute([$postId, $userId, $comment, $commentDate]);
 
             echo json_encode([
@@ -42,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'comment_date' => $commentDate
             ]);
         } catch (Exception $e) {
-            // エラーメッセージをログに記録
-            error_log('コメントの保存中にエラーが発生しました: ' . $e->getMessage());
             echo json_encode(['success' => false, 'message' => 'コメントの保存中にエラーが発生しました: ' . $e->getMessage()]);
         }
     } else {
