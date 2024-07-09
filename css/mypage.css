@@ -144,8 +144,8 @@ body{
 
 /* 画像の大きさ */
 .iconImg{
-    max-width: 200px;
-    height: 200px;
+    max-width: 150px;
+    height: 150px;
     position: relative;
     left: 8px;
     top: -2px;
