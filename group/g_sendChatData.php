@@ -7,7 +7,7 @@ $group_id = isset($_POST["groupId"]) ? $_POST["groupId"] : "";
 $my_id = isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : "";
 
 $err = array();
-if (!$text) $err[] = "文章を入力してください";
+if (!$text) $err[] = "文章を入力してください"; 
 if (mb_strlen($text) > 50) $err[] = "文章は50文字以内で入力してください";
 if (!$group_id) $err[] = "グループIDが指定されていません";
 

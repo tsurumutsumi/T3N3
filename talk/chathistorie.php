@@ -28,34 +28,15 @@ try {
     //var_dump($individual_chats);
     
     // グルチャの履歴
-    $g_sql = "
-        SELECT 
-    g.id as group_id, 
-    g.group_name as group_name, 
-    gm.user_id as user_id, 
-    u.user_name as user_name, 
-    gm.message as text, 
-    gm.timestamp as date
-FROM 
-    group_chat g
-LEFT JOIN (
-    SELECT 
-        group_id, 
-        user_id, 
-        message, 
-        timestamp
-    FROM 
-        group_messages
-    WHERE 
-        (group_id, timestamp) IN (
-            SELECT 
-                group_id, 
-                MAX(timestamp) as latest_timestamp
-            FROM 
-                group_messages
-            GROUP BY 
-                group_id
-        )
+    $g_sql = "SELECT g.id as group_id, g.group_name as group_name, gm.user_id as user_id,  u.user_name as user_name, 
+                gm.message as text, gm.timestamp as date
+              FROM group_chat g
+              LEFT JOIN (SELECT group_id, user_id, message,timestamp
+                        FROM group_messages
+                         WHERE (group_id, timestamp) IN (
+                        SELECT group_id, MAX(timestamp) as latest_timestamp
+                        FROM group_messages
+                        GROUP BY group_id)
 ) gm ON g.id = gm.group_id
 LEFT JOIN 
     user_management u ON gm.user_id = u.user_id
