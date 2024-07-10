@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../top/db-connect.php';
+require '../top/db-connect.php'; 
 
 $text = isset($_POST["text"]) ? $_POST["text"] : "";
 $user_id = isset($_POST["userId"]) ? $_POST["userId"] : "";
