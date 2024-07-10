@@ -110,13 +110,14 @@ ob_end_flush(); // 出力バッファリングを終了
                                     <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
                                     <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
                                     <?
-                                     $likeButtonSrc = in_array($row['post_id'], $userLikes) ? '../img/mark_heart_red.png' : '../img/mark_heart_gray.png';
-                                     echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
-                                     echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
-                                 
+                                     // いいねボタンを追加
+                                        $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
+                                        echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
+                                        echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
+
                                      // フォローボタンを追加
-                                     $followButtonSrc = in_array($row['user_id'], $userFollow) ? '../img/hito_blue.png' : '../img/hito_gray.png';
-                                     echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー" width=100px,height=100px>';
+                                        $followButtonSrc = in_array($row['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
+                                        echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー">';
                                     ?>
                                 </div>
                             </div>
@@ -128,4 +129,86 @@ ob_end_flush(); // 出力バッファリングを終了
             <?php endif; ?>
     <?php endif; ?>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.like-button').forEach(button => {
+        button.addEventListener('click', function() {
+            var postId = this.getAttribute('data-post-id');
+            var action = this.src.includes('mark_heart_gray.png') ? 'like' : 'unlike'; // 画像の状態でアクションを決定
+
+            console.log('Button clicked');  // デバッグ用
+            console.log('Post ID:', postId);  // デバッグ用
+            console.log('Action:', action);  // デバッグ用
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../like/like.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log('Response received:', xhr.responseText);  // デバッグ用
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        var likeCountSpan = button.nextElementSibling;
+                        var likeCount = parseInt(likeCountSpan.textContent);
+                        if (action === 'like') {
+                            button.src = '../img/mark_heart_red.png'; // 画像を変更
+                            likeCountSpan.textContent = likeCount + 1;
+                        } else {
+                            button.src = '../img/mark_heart_gray.png'; // 画像を変更
+                            likeCountSpan.textContent = likeCount - 1;
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            xhr.send("post_id=" + postId + "&action=" + action);
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.follow-button').forEach(button => {
+        button.addEventListener('click', function() {
+            var userId = this.getAttribute('data-user-id');
+            var action = this.src.includes('hito_gray.png') ? 'follow' : 'unfollow'; // 画像の状態でアクションを決定
+
+            // デバッグ用のログ
+            console.log('Button clicked');  
+            console.log('User ID:', userId);  
+            console.log('Action:', action);  
+
+            if (!userId || !action) {
+                console.error('Invalid userId or action');
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "../follow/follow.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log('Response received:', xhr.responseText);  // デバッグ用
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.status === 'followed') {
+                        document.querySelectorAll('.follow-button[data-user-id="' + userId + '"]').forEach(btn => {
+                            btn.src = '../img/hito_blue.png';
+                        });
+                    } else if (response.status === 'unfollowed') {
+                        document.querySelectorAll('.follow-button[data-user-id="' + userId + '"]').forEach(btn => {
+                            btn.src = '../img/hito_gray.png';
+                        });
+                    } else {
+                        alert(response.message);
+                    }
+                }
+            };
+
+            xhr.send("action=" + encodeURIComponent(action) + "&user_id=" + encodeURIComponent(userId));
+        });
+    });
+});
+</script>
 <?php require '../top/footer.php'; ?>
