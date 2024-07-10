@@ -81,7 +81,7 @@ ob_end_flush(); // 出力バッファリングを終了
             </div>
             <div class="head_4">
                 <form action="mypage.php" method="post">
-                    <button type="submit" class="home_button" data-hover="▶">BACK</button>
+                    <button type="submit" class="home_button" data-hover="▶">MYPAGE</button>
                 </form>
             </div>
             <div class="head_3">
@@ -119,7 +119,7 @@ ob_end_flush(); // 出力バッファリングを終了
                                 <div class="post-3">
                                     <p><?php echo htmlspecialchars($post['post_date']); ?></p>
                                     <?php
-                                        $imagePath = !empty($post['picture']) ? '../img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
+                                        $imagePath = !empty($post['picture']) ? '../post_img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
                                     ?>
                                     <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
                                     <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
