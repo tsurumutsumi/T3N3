@@ -125,12 +125,12 @@ ob_end_flush(); // 出力バッファリングを終了
                                     <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
                                     <?php
                                      // いいねボタンを追加
-                                        $likeButtonSrc = in_array($post['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
+                                        $likeButtonSrc = in_array($post['post_id'], $userLikes) ? '../img/mark_heart_red.png' : '../img/mark_heart_gray.png';
                                         echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($post['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
                                         echo '<span class="like-count">', htmlspecialchars($post['like_count'] ?? 0), '</span>';
 
                                      // フォローボタンを追加
-                                        $followButtonSrc = in_array($post['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
+                                        $followButtonSrc = in_array($post['user_id'], $userFollow) ? '../img/hito_blue.png' : '../img/hito_gray.png';
                                         echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($post['user_id']), '" alt="フォロー">';
                                     ?>
                                 </div>
