@@ -3,7 +3,7 @@ ob_start(); // 出力バッファリングを開始
 session_start();
 require '../top/db-connect.php';
 require '../top/header.php';
-echo '<link rel="stylesheet" href="../css/mypage.css">';
+echo '<link rel="stylesheet" href="../css/custom_mypage.css">';
  
 $pdo = new PDO($connect, USER, PASS);
  

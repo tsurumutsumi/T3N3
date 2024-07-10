@@ -1,0 +1,556 @@
+/* ダウンロードしたフォント */
+@font-face {font-family: "ノスタルドット（M+）";
+    src: url("../font/Nosutaru-dotMPlusH-10-Regular.ttf");}
+
+body{
+    background-image: url(../img/maptile_mizu.png);
+	background-size: 150px;
+    font-family: "ノスタルドット（M+）";
+}
+
+/* 戻るボタン */
+.return{
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.history_title{
+    text-align: center;
+    font-size: 25px;
+}
+/* ユーザー名 */
+.user_name{
+    font-size: 25px;
+    position: relative;
+    top: 40px;
+    left: 20px;
+    
+}
+.value{
+    font-size: 20px;
+}
+
+/* 投稿数やフォロー数の値のみ大きく */
+.profile{
+    display: flex;
+}
+/* 投稿数・bio・フォロー・フォロワーを囲む */
+.text{
+    color: #fff;
+    padding: 15px;
+    border: 5px solid #fff;
+    background-color: #080808;
+    display: inline-block;
+    /* border-radius: 10px; */
+    margin: 20px;
+    height: 30px;
+}
+.follow{
+    color: #fff;
+    padding: 15px;
+    border: 5px solid #fff;
+    background-color: #080808;
+    display: inline-block;
+    margin: 20px;
+}
+.follower{
+    color: #fff;
+    padding: 15px;
+    border: 5px solid #fff;
+    background-color: #080808;
+    display: inline-block;
+    margin: 20px;
+}
+
+/* お試し */
+/* ナビゲーションメニュー */
+.nav-menu {
+    color: #fff; /* メニューテキストの色 */
+  }
+  .menu-list {
+    display: flex;
+    /* justify-content: center; メニューアイテムを中央揃えに */
+    list-style: none;
+  }
+  .menu-item {
+    background-color: #000; /*メニューの背景色*/
+    border-left: 1px solid #fff; /* メニューアイテムの左ボーダー */
+    position: relative;
+    margin: 20px; /* 余白 */
+    border: 4px solid #fff;
+  }
+  .menu-item-bio {
+    background-color: #000; /*メニューの背景色*/
+    border-left: 1px solid #fff; /* メニューアイテムの左ボーダー */
+    position: relative;
+    margin: 20px; /* 余白 */
+    border: 4px solid #fff;
+    width: 300px;
+  }
+  
+  /* メニューアイテムのホバースタイル */
+  .menu-item:hover .drop-menu-list {
+    visibility: visible; /* 下層メニューを表示 */
+  }
+  
+  .menu-item a {
+    align-items: center;
+    color: #fff; /* メニューアイテム内のリンクテキストの色 */
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    text-decoration: none; /* リンクの下線を非表示 */
+    width: 135px;
+    /* padding: 10px; */
+  }
+  .menu-item-bio a {
+    /* align-items: center; */
+    color: #fff;/* メニューアイテム内のリンクテキストの色 */
+    height: 50px;
+    /* justify-content: center; */
+    text-decoration: none;
+    width: 240px;
+    left: 3px;
+    /* margin: 3px; */
+    display: flex;
+    position: relative;
+    top: 13px;
+  }
+
+  
+  /* ドロップダウンメニュー */
+  .drop-menu {
+    position: relative;
+  }
+  .drop-menu-list {
+    background-color: #000; /* ドロップダウンメニューの背景色 */
+    border: 3px solid #fff;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    visibility: hidden; /* 下層メニューを非表示 */
+    width: max-content;
+    z-index: 1;
+  }
+.a_link{
+    position: relative;
+    left: -20px;
+    border-bottom: 3px solid #fff;
+}
+.a_link:hover{
+    color: #e9546b;
+}
+
+/* 画像の大きさ */
+.iconImg{
+    max-width: 150px;
+    height: 150px;
+    position: relative;
+    left: 8px;
+    top: -2px;
+
+}
+.icon_image{
+    position: relative;
+    left: -70px;
+    color: white;
+    text-decoration: none;
+}
+.icon_size{
+    position: relative;
+    left: -5px;
+    margin: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    border-radius: 10%;
+}
+.logout_link:hover{
+    color: #e9546b;
+}
+/* ログアウト */
+.logout{
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    background-color: #000;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+/* ログアウト文字 */
+.logout_link{
+    position: relative;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    bottom: -25px;
+    right: -13px;
+}
+
+/* トップリンク */
+html {
+    scroll-behavior: smooth;
+  }
+  body {
+    height: auto;
+  }
+  @keyframes progress {
+    0% {
+      bottom: -100px;
+    }
+    5% {
+      bottom: 20px;
+    }
+    45% {
+      bottom: 20px;
+    }
+    50% {
+      bottom: 20px;
+    }
+    100% {
+      bottom: 20px;
+    }
+  }
+.top{
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    height: 60px;
+    width: 60px;
+    animation: progress linear;
+    animation-timeline: scroll();
+    transition: bottom 1s ease;
+    z-index: 2;
+}
+.top img{
+    height: 60px;
+    width: 60px;
+}
+
+/* 削除ボタン */
+.post_delete{
+    position: relative;
+    /* background-color: #fff; */
+    background-color: transparent;
+    border: none;
+    border-radius: 20%;
+    height: 50px;
+    width: 50px;
+    top: -25px;
+    left: 55px;
+}
+.post_delete img{
+    position: relative;
+    right: 1px;
+    top: 1px;
+    width: 35px;
+    height: 35px;
+}
+
+/* 投稿とホームをflexで調整 */
+.head{
+    display: flex;
+    /* justify-content: flex-end; */
+    /* margin: 20px; */
+}
+.head>div:nth-of-type(2){
+    margin-right: auto;
+}
+
+/* 戻るボタン */
+.return_button{
+    margin: 10px;
+	width: 150px;
+	height: 50px;
+    font-size: 18px;/*変更(5/17)*/
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+    top: 0;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+	border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+    box-shadow: 0 5px #5e5d5c;
+}
+/* 戻るボタンをクリックしたとき */
+.return_button:active {
+    opacity: 0.5;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
+
+/* 投稿ボタン */
+.post_button{
+    margin: 20px;
+	width: 150px;
+    height: 50px;
+    font-size: 18px;/*変更(5/17)*/
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
+}
+/* 投稿ボタンをクリックしたとき */
+.post_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
+/* ボタンのホバースタイル */
+.post_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* ホームボタン */
+.home_button{
+    margin: 20px;
+	width: 130px;
+    height: 50px;
+	font-size: 18px;
+	font-family: "ノスタルドット（M+）";
+	position: relative;
+    top: 0;
+	display: inline-block;
+	font-weight: bold;
+	padding: 8px 10px 5px 10px;
+	text-decoration: none;
+	color: #080808;
+	background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
+}
+/* ホームボタンをクリックしたとき */
+.home_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
+/* ボタンのホバースタイル */
+.home_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* プロフィール編集ボタン */
+.update_button{
+    margin: 20px;
+	width: 130px;
+    height: 50px;
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    top: 0;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
+}
+/* アップデートボタンをクリックしたとき */
+.update_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
+/* ボタンのホバースタイル */
+.update_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* チャットボタン */
+.talk_button{
+    margin: 20px;
+	width: 130px;
+    height: 50px;
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
+}
+/* トークボタンをクリックしたとき */
+.talk_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
+/* ボタンのホバースタイル */
+.talk_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* いいね一覧ボタン */
+.good_button{
+    margin: 20px;
+	width: 130px;
+    height: 50px;
+    font-size: 18px;
+    font-family: "ノスタルドット（M+）";
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 8px 10px 5px 10px;
+    text-decoration: none;
+    color: #080808;
+    background: #bfbebe;
+    border: solid 2px #5e5d5c;
+	border-radius: 15px 15px 0 0;
+	overflow: hidden; /* オーバーフローを隠す */
+    box-shadow: 0 5px #5e5d5c;
+}
+/* ホームボタンをクリックしたとき */
+.good_button:active {
+    opacity: 0.5;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 0 #5e5d5c;
+  }
+/* ボタンのホバースタイル */
+.good_button:hover::before{
+	content: attr(data-hover);/* ホバー時のテキストをdata-hover属性から取得 */
+}
+
+/* デフォルトアイコンのとこ */
+.icon-option {
+	display: inline-block;
+	margin: 10px;
+	text-align: center;
+}
+.icon-option img {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ccc;
+}
+.icon-option input[type="radio"] {
+	display: none;
+}
+.icon-option input[type="radio"]:checked + img {
+	border: 2px solid #f00;
+}
+
+/* 投稿リスト */
+/* テキスト位置 */
+.post {
+    flex: 1;
+    text-align: center;
+    margin: 5px;
+    border: double 5px;
+    /* 上のみ丸くする */
+    border-radius: 2%;
+    background-color:#000;
+    color: #fff;
+    height: 365px;
+}
+
+/* 画像サイズ */
+.post_img {
+    /* max-width: 70%; */
+    width: 150px;
+    height: 150px;
+    /* height: 200px; */
+    border: #fff;
+}
+.post_list {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);/* 投稿３つとサイズ */
+    gap: 24px 4%;/* 投稿ごとの幅 */
+    list-style: none;
+    justify-content: center;
+}
+.post-2{
+    background-color: #fff;
+}
+.post-3{
+    background-color: #000;
+}
+.post_comment{
+    margin: auto;
+    height: 50px;
+    width: 200px;
+    border: 2px solid #fff;
+    position: relative;
+    top: 15px;
+}
+
+/* いいねの数表示 */
+.like{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: 19px;
+    left: 60px;
+}
+.like_count{
+    position: relative;
+    top: 50px;
+    left: 30px;
+}
+
+.like img{
+    position: relative;
+    top: 15px;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+}
+.like2{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    top: 19px;
+    left: 40%;
+}
+.like2 img{
+    position: relative;
+    top: 15px;
+    margin: 2px;
+    width: 35px;
+    height: 35px;
+}
+.like-button{
+    position: relative;
+    top: 50px;
+    left: -40px;
+    width: 35px;
+    height: 35px;
+}
+.follow-button{
+    width: 35px;
+    height: 35px;
+    position: relative;
+    left: 30px;
+    top: 50px;
+}
