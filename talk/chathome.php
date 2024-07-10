@@ -79,7 +79,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
     if ($chat_partner_id) {
         echo '<div class="talkroomName">'.htmlspecialchars($chat_partner_id) . 'さんとのトークルーム</div>';
     } else {
-        echo 'トークルーム';
+        echo '<div class="talkroomName">トークルーム</div>';
     }
     ?>
 </div>
@@ -87,7 +87,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 
 
 <form onsubmit="sendChatData(); return false;">
-    <form onsubmit="sendChatData(); return false;">
+    <!-- <form onsubmit="sendChatData(); return false;"> -->
         <table summary="送信フォーム" class="sendForm">
             <tr>
                 <td>
@@ -106,7 +106,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
             </tr>
         </table>
         <input type="submit" value="送信" class="send_button" />
-    </form>
+    <!-- </form> -->
 </form>
 <input type="hidden" id="user_id" value="<?php echo htmlspecialchars($chat_partner_id, ENT_QUOTES, 'UTF-8'); ?>">
 <input type="hidden" id="group_id" value="<?php echo htmlspecialchars($Group_id, ENT_QUOTES, 'UTF-8'); ?>">
@@ -212,6 +212,7 @@ function sendChatData() {
 
     document.getElementById("text").value = "";  // フォームをクリアする
 }
+
 
 
 // 初回ロード時に個人チャットデータを取得

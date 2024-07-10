@@ -118,7 +118,7 @@ body::after {
 .user_name{
     font-size: 20px;
     position: relative;
-    top: 20px;
+    top: 35px;
     margin: 20px;
 }
 
@@ -149,8 +149,8 @@ body::after {
 }
 /* アイコンの画像の大きさ */
 .iconImg{
-    width: 120px;
-    height: auto;
+    width: 150px;
+    height: 150px;
 }
 
 /* 検索フォーム */
