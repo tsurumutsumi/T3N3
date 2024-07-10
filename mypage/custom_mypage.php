@@ -56,14 +56,14 @@ ob_end_flush(); // 出力バッファリングを終了
                     if (!empty($user_info['icon'])) {
                         $file_info = pathinfo($user_info['icon']);
                         $file_name = $file_info['filename'];
-                        echo '<img src="../icon_img/', htmlspecialchars($file_name), '_flame.png" alt="アイコン" class="iconImg">';
+                        echo '<img src="../icon_img/' . htmlspecialchars($file_name) . '_flame.png" alt="アイコン" class="iconImg">';
                     } else {
                         echo '<img src="../img/no_img.png" alt="デフォルトアイコン" class="iconImg">';
                     }
                 ?>
             </div>
             <div class="head_2">
-                <?php echo '<p class="user_name">' . htmlspecialchars($user_info['user_name']) . '</p>' ?>
+                <?php echo '<p class="user_name">' . htmlspecialchars($user_info['user_name']) . '</p>'; ?>
             </div>
             <div class="head_4">
                 <form action="mypage.php" method="post">
@@ -76,59 +76,60 @@ ob_end_flush(); // 出力バッファリングを終了
                 </form>
             </div>
             <div class="head_6">
-            <form action="../talk/chathome.php" method="get">
-                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
-                <button type="submit" class="talk_button" data-hover="▶">TALK</button>
-            </form>
+                <form action="../talk/chathome.php" method="get">
+                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
+                    <button type="submit" class="talk_button" data-hover="▶">TALK</button>
+                </form>
             </div>
         </div>
         <div class="profile">
-        <?php 
-            if (empty($user_info['self_introduction'])) {
-                echo '<div class="text">bio：<span class="value">NONE</span></div>';
-            } else {
-                echo '<div class="text">bio：<span class="value">'.htmlspecialchars($user_info['self_introduction']).'</span></div>'; 
-            }
-        ?>
+            <?php 
+                if (empty($user_info['self_introduction'])) {
+                    echo '<div class="text">bio：<span class="value">NONE</span></div>';
+                } else {
+                    echo '<div class="text">bio：<span class="value">' . htmlspecialchars($user_info['self_introduction']) . '</span></div>'; 
+                }
+            ?>
             <div class="text">POST：<span class="value"><?php echo htmlspecialchars($post_count); ?></span></div>
             <div class="text">FOLLOW：<span class="value"><?php echo htmlspecialchars($follow_count); ?></span></div>
             <div class="text">FOLLOWER：<span class="value"><?php echo htmlspecialchars($follower_count); ?></span></div>
         </div>
         <?php if (!empty($posts)): ?>
-                <div class="history_title">
-                    <p>POST HISTORY...</p>
-                </div>
-                <ul class="post_list">
-                    <?php foreach ($posts as $post): ?>
-                        <li class="post" id="post-<?php echo htmlspecialchars($post['post_id']); ?>">
-                            <div class="post-2">
-                                <div class="post-3">
-                                    <p><?php echo htmlspecialchars($post['post_date']); ?></p>
-                                    <?php
-                                        $imagePath = !empty($post['picture']) ? '../img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
-                                    ?>
-                                    <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
-                                    <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
-                                    <?
+            <div class="history_title">
+                <p>POST HISTORY...</p>
+            </div>
+            <ul class="post_list">
+                <?php foreach ($posts as $post): ?>
+                    <li class="post" id="post-<?php echo htmlspecialchars($post['post_id']); ?>">
+                        <div class="post-2">
+                            <div class="post-3">
+                                <p><?php echo htmlspecialchars($post['post_date']); ?></p>
+                                <?php
+                                    $imagePath = !empty($post['picture']) ? '../img/' . htmlspecialchars($post['picture']) : '../img/no_img.png';
+                                ?>
+                                <img src="<?php echo $imagePath; ?>" alt="投稿画像" class="post_img">
+                                <p class="post_comment"><?php echo htmlspecialchars($post['comment']); ?></p>
+                                <?php
                                      // いいねボタンを追加
-                                        $likeButtonSrc = in_array($row['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
-                                        echo '<input type="image" class="like-button" data-post-id="', htmlspecialchars($row['post_id'] ?? 0), '" src="', $likeButtonSrc, '" alt="いいね">';
-                                        echo '<span class="like-count">', htmlspecialchars($row['like_count'] ?? 0), '</span>';
+                                    $likeButtonSrc = in_array($post['post_id'], $userLikes) ? 'img/mark_heart_red.png' : 'img/mark_heart_gray.png';
+                                    echo '<input type="image" class="like-button" data-post-id="' . htmlspecialchars($post['post_id']) . '" src="' . htmlspecialchars($likeButtonSrc) . '" alt="いいね">';
+                                    echo '<span class="like-count">' . htmlspecialchars($post['like_count']) . '</span>';
 
                                      // フォローボタンを追加
-                                        $followButtonSrc = in_array($row['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
-                                        echo '<input type="image" src="', $followButtonSrc, '" class="follow-button" data-user-id="', htmlspecialchars($row['user_id']), '" alt="フォロー">';
-                                    ?>
-                                </div>
+                                    $followButtonSrc = in_array($user_info['user_id'], $userFollow) ? 'img/hito_blue.png' : 'img/hito_gray.png';
+                                    echo '<input type="image" src="' . htmlspecialchars($followButtonSrc) . '" class="follow-button" data-user-id="' . htmlspecialchars($user_info['user_id']) . '" alt="フォロー">';
+                                ?>
                             </div>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php else: ?>
             <p>投稿がありません。</p>
-            <?php endif; ?>
+        <?php endif; ?>
     <?php endif; ?>
 </div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-button').forEach(button => {
