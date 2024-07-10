@@ -516,7 +516,7 @@ html {
 .like-count{
     position: relative;
     top: 50px;
-    left: 30px;
+    left: -35px;
 }
 
 .like img{
