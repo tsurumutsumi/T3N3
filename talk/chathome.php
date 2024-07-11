@@ -84,30 +84,27 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
     ?>
 </div>
 
-
-
 <form onsubmit="sendChatData(); return false;">
-    <form onsubmit="sendChatData(); return false;">
-        <table summary="送信フォーム" class="sendForm">
-            <tr>
-                <td>
-                    <?php
-                    if (isset($_SESSION['user']['id'])) {
-                        echo '<div class="userId">'.htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8').'</div>';
-                    } else {
-                        echo '<div class="userId">ユーザーIDが指定されていません</div>';
-                        exit;
-                    }
-                    ?>
-                </td>
-            </tr>
-            <tr class="talk">
-                <td>50字以内でチャットしてください<br><input type="text" id="text" style="width:100%" maxlength="50" required /></td>
-            </tr>
-        </table>
-        <input type="submit" value="送信" class="send_button" />
-    </form>
+    <table summary="送信フォーム" class="sendForm">
+        <tr>
+            <td>
+                <?php
+                if (isset($_SESSION['user']['id'])) {
+                    echo '<div class="userId">'.htmlspecialchars($_SESSION['user']['id'], ENT_QUOTES, 'UTF-8').'</div>';
+                } else {
+                    echo '<div class="userId">ユーザーIDが指定されていません</div>';
+                    exit;
+                }
+                ?>
+            </td>
+        </tr>
+        <tr class="talk">
+            <td>50字以内でチャットしてください<br><input type="text" id="text" style="width:100%" maxlength="50" required /></td>
+        </tr>
+    </table>
+    <input type="submit" value="送信" class="send_button" />
 </form>
+
 <input type="hidden" id="user_id" value="<?php echo htmlspecialchars($chat_partner_id, ENT_QUOTES, 'UTF-8'); ?>">
 <input type="hidden" id="group_id" value="<?php echo htmlspecialchars($Group_id, ENT_QUOTES, 'UTF-8'); ?>">
 
@@ -170,27 +167,7 @@ function sendChatData() {
     xmlHttpObject = createXMLHttpRequest();
     var url = "";
 
-    // groupIdがnull、空文字、またはundefinedでないかをチェック
-    if (groupId && groupId.trim() !== "" && groupId !== "null" && groupId !== "undefined") {
-        url = "../group/g_sendChatData.php";
-        xmlHttpObject.open("POST", url, true);
-        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlHttpObject.onreadystatechange = function () {
-            if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
-                var response = JSON.parse(xmlHttpObject.responseText);
-                if (response.status === 'success') {
-                    loadChatData(true, groupId);
-                } else {
-                    alert(response.message);
-                }
-            }
-        };
-        xmlHttpObject.send(
-            "groupId=" + encodeURIComponent(groupId) +
-            "&myId=" + encodeURIComponent(myId) +
-            "&text=" + encodeURIComponent(text)
-        );
-    } else if (userId && userId.trim() !== "" && userId !== "null" && userId !== "undefined") {
+    if (userId) {
         url = "sendChatData.php";
         xmlHttpObject.open("POST", url, true);
         xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -210,15 +187,28 @@ function sendChatData() {
             "&text=" + encodeURIComponent(text)
         );
     } else {
-        alert("送信先が指定されていません。");
+        url = "../group/g_sendChatData.php";
+        xmlHttpObject.open("POST", url, true);
+        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.onreadystatechange = function () {
+            if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
+                var response = JSON.parse(xmlHttpObject.responseText);
+                if (response.status === 'success') {
+                    loadChatData(true, groupId);
+                } else {
+                    alert(response.message);
+                }
+            }
+        };
+        xmlHttpObject.send(
+            "groupId=" + encodeURIComponent(groupId) +
+            "&myId=" + encodeURIComponent(myId) +
+            "&text=" + encodeURIComponent(text)
+        );
     }
 
     document.getElementById("text").value = "";  // フォームをクリアする
 }
-
-
-
-
 
 // 初回ロード時に個人チャットデータを取得
 loadChatData(false, document.getElementById('user_id').value);
