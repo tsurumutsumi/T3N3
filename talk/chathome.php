@@ -34,7 +34,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     $sql = "
-        SELECT group_id
+        SELECT *
         FROM group_messages
         WHERE user_id = :user_id
         ORDER BY timestamp DESC
@@ -87,7 +87,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 
 
 <form onsubmit="sendChatData(); return false;">
-    <!-- <form onsubmit="sendChatData(); return false;"> -->
+    <form onsubmit="sendChatData(); return false;">
         <table summary="送信フォーム" class="sendForm">
             <tr>
                 <td>
@@ -106,7 +106,7 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
             </tr>
         </table>
         <input type="submit" value="送信" class="send_button" />
-    <!-- </form> -->
+    </form>
 </form>
 <input type="hidden" id="user_id" value="<?php echo htmlspecialchars($chat_partner_id, ENT_QUOTES, 'UTF-8'); ?>">
 <input type="hidden" id="group_id" value="<?php echo htmlspecialchars($Group_id, ENT_QUOTES, 'UTF-8'); ?>">
@@ -170,7 +170,8 @@ function sendChatData() {
     xmlHttpObject = createXMLHttpRequest();
     var url = "";
 
-    if (groupId) {
+    // groupIdがnull、空文字、またはundefinedでないかをチェック
+    if (groupId && groupId.trim() !== "" && groupId !== "null" && groupId !== "undefined") {
         url = "../group/g_sendChatData.php";
         xmlHttpObject.open("POST", url, true);
         xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -189,7 +190,7 @@ function sendChatData() {
             "&myId=" + encodeURIComponent(myId) +
             "&text=" + encodeURIComponent(text)
         );
-    } else {
+    } else if (userId && userId.trim() !== "" && userId !== "null" && userId !== "undefined") {
         url = "sendChatData.php";
         xmlHttpObject.open("POST", url, true);
         xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -208,10 +209,14 @@ function sendChatData() {
             "&myId=" + encodeURIComponent(myId) +
             "&text=" + encodeURIComponent(text)
         );
+    } else {
+        alert("送信先が指定されていません。");
     }
 
     document.getElementById("text").value = "";  // フォームをクリアする
 }
+
+
 
 
 
