@@ -58,7 +58,39 @@ if (!isset($_SESSION['user']['id'])) {
         echo '<a href="../mypage/mypage.php?user_id=' . htmlspecialchars($row['user_id']) . '">';
             $iconPath = !empty($row['icon']) ? '../icon_img/' . htmlspecialchars($row['icon']) : '../img/no_img.png';
             echo '<img src="' . $iconPath . '" class="like_icon">';
-            echo '<div class="name">'.htmlspecialchars($row['user_name'] ?? '名無し').'</div>';
+
+            $user_name = $row['user_name'];
+            $full_width_count = 0;
+            $half_width_count = 0;
+
+            // 全角文字と半角文字をそれぞれカウント
+            for ($i = 0; $i < mb_strlen($user_name); $i++) {
+                $char = mb_substr($user_name, $i, 1);
+                if (mb_strwidth($char) == 2) {
+                    $full_width_count++;
+                } else {
+                    $half_width_count++;
+                }
+            }
+
+            $font_class = '';
+            // 文字数に応じてフォントサイズのクラスを設定
+            // if文とCSSを増やしたらもっと細かく調整できる
+            if ($full_width_count <= 6 && $half_width_count <= 10) {
+                $font_class = 'font-size-25';
+            } elseif (($full_width_count > 6 && $full_width_count <= 7) || ($half_width_count > 10 && $half_width_count <= 14)) {
+                $font_class = 'font-size-19';
+            } elseif(($full_width_count > 7 && $full_width_count <= 8) || ($half_width_count > 14 && $half_width_count <= 16)) {
+                $font_class = 'font-size-17';
+            } elseif(($full_width_count > 8 && $full_width_count <= 9) || ($half_width_count > 16 && $half_width_count <= 18)) {
+                $font_class = 'font-size-15';
+            } elseif(($full_width_count > 9 && $full_width_count <= 10) || ($half_width_count > 18 && $half_width_count <= 20)) {
+                $font_class = 'font-size-13';
+            } else {
+                $font_class = 'font-size-small';
+            }
+            echo '<div class="name ' . $font_class . '">' . htmlspecialchars($user_name) . '</div>';
+            echo '<hr></hr>';
         echo '</a><br>';
 
         // 画像があるかどうかチェック
