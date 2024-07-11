@@ -17,8 +17,9 @@ if (!count($err)) {
         $stmt = $dbh->prepare("INSERT INTO chat (user_id, date, my_id, text) VALUES (?, NOW(), ?, ?)");
         $stmt->execute([$user_id, $my_id, $text]);
     } catch (PDOException $e) {
-        die('接続エラー： ' . $e->getMessage());
+        die('接続エラー： ' . $e->getMessage() . ' SQLSTATE: ' . $e->getCode());
     }
+    
 } else {
     $msg = showerr($err);
 }
