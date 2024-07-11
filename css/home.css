@@ -67,7 +67,7 @@ body::after {
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(90deg, #b39855 0%, #fff9e6 50%, #b39855 100%);
-    clip-path: polygon(1% 10%, 25% 20%, 50% 0%, 75% 20%, 100% 10%, 95% 100%, 5% 100%);
+    clip-path: polygon(0% 10%, 25% 20%, 50% 0%, 75% 20%, 100% 10%, 95% 100%, 5% 100%);
     padding: 10px;
     border-radius: 5px;
 }
