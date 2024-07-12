@@ -167,26 +167,7 @@ function sendChatData() {
     xmlHttpObject = createXMLHttpRequest();
     var url = "";
 
-    if (userId) {
-        url = "sendChatData.php";
-        xmlHttpObject.open("POST", url, true);
-        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlHttpObject.onreadystatechange = function () {
-            if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
-                var response = JSON.parse(xmlHttpObject.responseText);
-                if (response.status === 'success') {
-                    loadChatData(false, userId);
-                } else {
-                    alert(response.message);
-                }
-            }
-        };
-        xmlHttpObject.send(
-            "userId=" + encodeURIComponent(userId) +
-            "&myId=" + encodeURIComponent(myId) +
-            "&text=" + encodeURIComponent(text)
-        );
-    } else {
+    if (groupId) {
         url = "../group/g_sendChatData.php";
         xmlHttpObject.open("POST", url, true);
         xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -202,6 +183,25 @@ function sendChatData() {
         };
         xmlHttpObject.send(
             "groupId=" + encodeURIComponent(groupId) +
+            "&myId=" + encodeURIComponent(myId) +
+            "&text=" + encodeURIComponent(text)
+        );
+    }else{
+        url = "sendChatData.php";
+        xmlHttpObject.open("POST", url, true);
+        xmlHttpObject.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlHttpObject.onreadystatechange = function () {
+            if (xmlHttpObject.readyState == 4 && xmlHttpObject.status == 200) {
+                var response = JSON.parse(xmlHttpObject.responseText);
+                if (response.status === 'success') {
+                    loadChatData(false, userId);
+                } else {
+                    alert(response.message);
+                }
+            }
+        };
+        xmlHttpObject.send(
+            "userId=" + encodeURIComponent(userId) +
             "&myId=" + encodeURIComponent(myId) +
             "&text=" + encodeURIComponent(text)
         );
