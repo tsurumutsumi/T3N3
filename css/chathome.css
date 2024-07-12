@@ -158,6 +158,8 @@ tr .userId{
 
 .button{
     display: flex;
+    position: relative;
+    top: -180px;
 }
 
 /* ホームボタン */
