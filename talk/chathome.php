@@ -57,6 +57,8 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
 <link rel="stylesheet" href="../slick/slick.css">
 <link rel="stylesheet" href="../slick/slick-theme.css">
 
+<?php require 'chathistorie.php'; ?>
+
 <div class="button">
     <div class="head_3">
         <form action="../home.php" method="post">
@@ -70,8 +72,6 @@ $Group_id = $_GET['group_id'] ?? $latest_group_id;
         </form>
     </div>
 </div>
-
-<?php require 'chathistorie.php'; ?>
 
 <!-- 表示するトークルームのタイトル -->
 <div class="talkroom" id="talkroom-title">
