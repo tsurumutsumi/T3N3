@@ -34,7 +34,7 @@ if(isset($_POST['mail']) && isset($_POST['password'])) {
     <div class="ipname">
         <input type="text" name="nickname" placeholder="" class="name" v-model="user_name"/>
         <p v-if="isInvalidUserName" class="error">ユーザー名は英数字または日本語で1文字以上10文字以内で入力してください</p>
-        <label>ニックネーム</label>
+        <label>ユーザー名</label>
         <span class="focus_line"></span>
     </div>
     <h1>プロフィールアイコンを選択</h1>

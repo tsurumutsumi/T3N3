@@ -12,7 +12,7 @@ require '../top/header.php';?>
         <h1>仮登録</h1>
         <p>メールに書かれているリンクから登録お願いします。</p>
         <div class="link">
-            <a href="https://aso2201161.vivian.jp/T3N3/sign_up/sign_up_ok.php">https://aso2201161.vivian.jp/T3N3/sign_up/sign_up_ok.php</a>
+            <a href="https://aso2201161.vivian.jp/T3N3/sign_up/sign_up_ok.php">メール送信</a>
         </div>
     </form>
 </div>
